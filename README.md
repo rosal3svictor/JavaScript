@@ -5,7 +5,7 @@
 <div align = "center">
   <img 
     src = "./assets/javascript_logo.png"
-    width = "60%"
+    width = "40%"
     alt = "nodejs-logo" />
 </div>
 
