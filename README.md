@@ -137,4 +137,111 @@ This type checking can occur before or during the execution of the program.
 
 1. **Static type checking**: In compiled languages, the compiler takes our code and analyzes it in order to verify the type requirements from the language. It this verification turns out to be successful, the compiler can translate the program to a language that the computer can understand and execute. Otherwise, the executable program cannot be built, never ends up executing. Some of the languages with this type checking are: C#, Go, Java, Scala, Kotlin.
 
-2. **Dynamic type checking**: 
+2. **Dynamic type checking**: The type ckecking is done at runtime execution. Interpreted languages like JavaScript, we deliver our code directly to another program that know who to read it and execute it (Any JavaScript Engine). Some of the languages with this type checking are: PHP, Ruby, Python. On this type of checking we cannot know what data type are our variables until the program is run and they start taking values.
+
+# Type Requirement
+
+How demanding is a language to consider that we are making type errors.
+
+# Type Conversion
+
+JavaScript allows making operations among values with different types with no problem, but to make that possible, it will take certain decisions for us:
+
+<div aign="center">
+  <img src="./assets/img8.png" alt="image 8"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img9.png" alt="image 9"/>
+</div>
+
+To avoid this, we can make a explicit type convertion to: string, number, boolean
+
+<div aign="center">
+  <img src="./assets/img10.png" alt="image 10"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img11.png" alt="image 11"/>
+</div>
+
+_**NOTE: We have to use them as functions, not as contructors. If we do so, we're going to be creating objects, not primitive values.**_
+
+There are another ways of making explicit type convertions:
+
+### To a string (if the value is neither null nor undefined):
+
+```
+2019 + "" = "2019"
+true + "" = "true"
+null + "" = "null"
+(2019).toString() = "2019"
+
+var valor = true
+valor.toString() ---> "true"
+```
+
+### To a number:
+
+```
++'1234' = 1234
++'3.14' = 3.14
++true = 1
++false = 0
+```
+
+_**NOTE: Either by implicit or explicit conversion, if a value is tried to be converted into a number and that operation cannot be resolved, we will obtain ```NaN``` as a result.**_
+
+### To a boolean:
+
+<div aign="center">
+  <img src="./assets/img12.png" alt="image 12"/>
+</div>
+
+There are few exceptions:
+
+<div aign="center">
+  <img src="./assets/img13.png" alt="image 13"/>
+</div>
+
+# Type Equivalence or Compatibility
+
+How a language determines that a type is **compatible** with another type or **equivalent** to another type.
+
+In Java, for instance, we can create to classes called 'Calculadora 1' y 'Calculadora 2' both of them with a unique method that does the same: it sums two integers. If after that we create a variable with type 'Calculadora 1' called 'calculadora' and we assing it a new instance of 'Calculadora 2', even though the internal structures of both classes are the same, we will have a type error on this language.
+
+That's what is known as **__Nominal Type__**: Two types are compatible when they have the same name or when one is a subtype of the other (by inheritance).
+
+With the languages having nominal typing programs are often created by writing multiple classes and using many object-oriented programming design patterns. Other languages sharing this typing are: Java, PHP, C#, C++, Swift.
+
+Another type system is **Structural Type**: For two types to be compatible, **it is enough that they share the structure** that interests us.
+
+<div aign="center">
+  <img src="./assets/img14.png" alt="image 14"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img15.png" alt="image 15"/>
+</div>
+
+_**NOTE: Either the Nominal Typing or the Structural Typing are performed statically, that is, before the program is executed.**_
+
+And what about the dynamic typing languages? how they determine that two types are compatible?
+
+These type of languages use somthing called **_Duck Typing_** (o la prueba del pato): it's called like that because it comes from an old saying: If it walks like a duck, swims like a duck, and 'cuack' like a duck, I don't know if it's a duck but I can treat it like one. Taken to programming: **we don't care what type an object has**, as long as it has the attributes and methods we want to access.
+
+Now, as we saw, the dynamic type checking is performed at runtime execution, so:
+
+<div aign="center">
+  <img src="./assets/img16.png" alt="image 16"/>
+</div>
+
+we're going to have an error type Error while the program is being executed.
+
+<div aign="center">
+  <img src="./assets/img17.png" alt="image 17"/>
+</div>
+
+# TypeScript
+
+Is a typed superset of JavaScript that compiles to plain JavaScript, built and maintaned by Microsoft. It starts of **the same JavaScript syntax**, but adds **structural type checking** before our program executes.  
