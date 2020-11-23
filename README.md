@@ -22,6 +22,8 @@
   4. [Type equivalence or compatibility](#type-equivalence-or-compatibility)
   5. [TypeScript](#typeScript)
 
+- [== vs ===](#==-vs===)
+
 # Values vs References
 When we declare a variable _fruit_ and assign it the _string_ "banana" we'd be creating a little container in the computer's memory and storing inside of it the value "banana". If next we change the value to the fruit variable, we'd be changing the value that is being stored and the previous value it had would be lost.
 
@@ -139,11 +141,11 @@ This type checking can occur before or during the execution of the program.
 
 2. **Dynamic type checking**: The type ckecking is done at runtime execution. Interpreted languages like JavaScript, we deliver our code directly to another program that know who to read it and execute it (Any JavaScript Engine). Some of the languages with this type checking are: PHP, Ruby, Python. On this type of checking we cannot know what data type are our variables until the program is run and they start taking values.
 
-# Type Requirement
+## Type Requirement
 
 How demanding is a language to consider that we are making type errors.
 
-# Type Conversion
+## Type Conversion
 
 JavaScript allows making operations among values with different types with no problem, but to make that possible, it will take certain decisions for us:
 
@@ -204,7 +206,7 @@ There are few exceptions:
   <img src="./assets/img13.png" alt="image 13"/>
 </div>
 
-# Type Equivalence or Compatibility
+## Type Equivalence or Compatibility
 
 How a language determines that a type is **compatible** with another type or **equivalent** to another type.
 
@@ -242,6 +244,78 @@ we're going to have an error type Error while the program is being executed.
   <img src="./assets/img17.png" alt="image 17"/>
 </div>
 
-# TypeScript
+## TypeScript
 
-Is a typed superset of JavaScript that compiles to plain JavaScript, built and maintaned by Microsoft. It starts of **the same JavaScript syntax**, but adds **structural type checking** before our program executes.  
+Is a typed superset of JavaScript that compiles to plain JavaScript, built and maintaned by Microsoft. It starts of **the same JavaScript syntax**, but adds **structural type checking** before our program executes.
+
+# == vs ===
+  JavaScript has two ways of comparing values but, they work differently. Now, when should I use any and why?
+
+### **When to use (strict equality operator) === :**
+We check both type and value equality.
+
+<div aign="center">
+  <img src="./assets/img18.png" alt="image 18"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img19.png" alt="image 19"/>
+</div>
+
+NOTE: 
+1. Strings are case sentitive, be careful with this.
+2. Strict equality operator is also known as identity operator: When we use it to compare objects, this operator tell us wheter we are referencing to the same space in memory, or to the same object in memory.
+
+### **When to use (loose equality operator) == :**
+
+<div aign="center">
+  <img src="./assets/img20.png" alt="image 20"/>
+</div>
+
+why does it happen? when we use this operator JavaScript internally uses what is called _type coercion_. So, results might not meet the expected output.
+
+<div aign="center">
+  <img src="./assets/img21.png" alt="image 21"/>
+</div>
+
+When it comes to objects or functions, why any of them is working?
+
+<div aign="center">
+  <img src="./assets/img22.png" alt="image 22"/>
+</div>
+
+the reaons is that that type of resourse is more complex than a primitive value: 
+
+<div aign="center">
+  <img src="./assets/img23.png" alt="image 23"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img24.png" alt="image 24"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img25.png" alt="image 25"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img26.png" alt="image 26"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img27.png" alt="image 27"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img28.png" alt="image 28"/>
+</div>
+
+The only case for that operation to return TRUE is the both values are the same, which is the reference to a same space in memory: 
+
+<div aign="center">
+  <img src="./assets/img29.png" alt="image 29"/>
+</div>
+
+<div aign="center">
+  <img src="./assets/img30.png" alt="image 30"/>
+</div>
