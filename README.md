@@ -13,6 +13,8 @@
 
 ## Table of Contents
 
+- [Variable Naming Conventions](#variable-naming-conventions)
+- [Data Types](#data-types)
 - [Value vs References](#values-vs-references)
 - [Type systems](#type-systems)
 
@@ -23,6 +25,11 @@
   5. [TypeScript](#typeScript)
 
 - [== vs ===](#==-vs===)
+
+# Variable Naming Conventions
+
+
+# Data Types
 
 # Values vs References
 When we declare a variable _fruit_ and assign it the _string_ "banana" we'd be creating a little container in the computer's memory and storing inside of it the value "banana". If next we change the value to the fruit variable, we'd be changing the value that is being stored and the previous value it had would be lost.
