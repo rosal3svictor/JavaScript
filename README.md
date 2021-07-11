@@ -27,7 +27,9 @@
 - [== vs ===](#==-vs===)
 
 # Variable Naming Conventions
-
+1. They must be written using camelCase style.
+2. You cannot use keywords from the language such as `new` or `function`.
+3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them. (They cannot start with a number).
 
 # Data Types
 
