@@ -19,7 +19,7 @@
 - [Type systems](#type-systems)
 
   1. [Type checking](#type-checking)
-  2. [Type requirement](#type-requirement) 
+  2. [Type requirement](#type-requirement)
   3. [Type conversion](#type-conversion)
   4. [Type equivalence or compatibility](#type-equivalence-or-compatibility)
   5. [TypeScript](#typeScript)
@@ -27,13 +27,158 @@
 - [== vs ===](#==-vs===)
 
 # Variable Naming Conventions
+
 1. They must be written using camelCase style.
 2. You cannot use keywords from the language such as `new` or `function`.
 3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them. (They cannot start with a number).
 
 # Data Types
 
+JavaScript has a `dynamic type` which means that variables don't have a specific data type associated. They can be assigned or re-assigned any value.
+
+It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when the line of code that contains it, is executed. It depends on the operation that is being perfomed with it.
+
+<div  align="center"><code>2 + '1' = 21</code></div>
+<div  align="center"><code>1 - '2' = -1</code></div>
+
+Due to its particular characteristics, there are two groups of data types:
+
+1. Primitive Types
+2. Object Types (Arrays, functions, dates, regular expressions and any literal object)
+
+## Primitive Types
+
+They are basic, immutable values that contain neither methods nor properties.
+
+- String:
+
+  1. They allows to represent texts in our programs.
+  2. They are defined between 2 `doble` or `single` quotes. The important thing here is that we have to use them consistently `'string'` or `"string"` not `'string"`.
+  3. In ES2015, was introduced another character: the `backtick`. This allows to interpolate a variable or expression within the string:
+  <div  align="center">
+    let saludo = `Hola, me llamo ${nombre} ${apellido} y tengo ${edad} años.`
+  </div>
+  4. In order to represent them, JavaScript implements an encoding called UTF-16, what allows us to represent characters from many languages, even emojies.
+  5. There is a string which does not contain length and is called `empty string : ''` and it's mainly used to provide a initial value to a variable.
+  6. To be able to obtain a string from a varible, it is possible to access the toString() method
+    <div  align="center">
+      <code>"29".toString() = "29"</code>
+    </div>
+    <i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i>
+  or concatenating it with the empty string
+    <div  align="center">
+      <code>29 + '' = '29'</code>
+    </div>
+
+- Number:
+
+  1. They allow us to represent numbers: positive, negative and decimal.
+  2. When it comes to repesent numbers, JavaScript is not accurate
+    <div  align="center">
+      <code>0.1 + 0.2 = 0.30000000000000004</code>
+    </div>
+  or
+    <div  align="center">
+      <code>+(0.1 + 0.2).toFixed(40) = 0.3000000000000000444089209850062616169453</code>
+    </div>
+  this behavour also happens in Python, Ruby o Java as well.
+
+  This has to do with the way numbers are designed within the programming language, it is used a format called `IEEE 754` and by using it each number takes 64bits (8bites) in memory.
+
+  3. The range of numbers we can use on this format goes after
+    <div  align="center">
+      <code>-(2 ** 53) + 1 and (2 ** 53) - 1</code>
+    </div>
+  we can represent numbers beyond those limits, but they are going to be approximations, and if we perform operations with them we will get unexpected results.
+    <div  align="center">
+      <code>numeroMinimo === Number.MIN_SAFE_INTEGER</code>
+    </div>
+    <div  align="center">
+      <code>minNumber === Number.MIN_VALUE</code>
+    </div>
+    <div  align="center">
+      <code>numeroMaximo === Number.MAX_SAFE_INTEGER</code>
+    </div>
+    <div  align="center">
+      <code>maxNumber === Number.MAX_VALUE</code>
+    </div>
+
+  they limit the range of numbers it which is safe to perform numeric operations, and to verify a number is within the limits we can use
+    <div  align="center">
+      <code>Number.isSafeInteger(19080) === true</code>
+    </div>
+
+  4. There are two values of type number that goes beyond those numbers
+  <div  align="center">
+    <code>Inifity === number/0 and -Infinity === number/-0</code>
+  </div>
+  any number is not greater of smaller the both of them, they represent approximations.
+
+  5. If we make 0/0 we'll get
+    <div  align="center">
+      <code>NaN</code>
+    </div>
+  it's type number and is what we get when is perfomed an invalid computation.
+    <div  align="center">
+      <code>"hola"/3 === NaN or NaN + 30 === NaN</code>
+    </div>
+    but we have a method to verify it
+    <div  align="center">
+      <code>isNaN(30) ---> true</code>
+    </div>
+    <div  align="center">
+      <code>isNaN(NaN) ---> true</code>
+    </div>
+
+  it's a very special value in JavaScript, it's not equal to anything even itself
+    <div  align="center">
+      <code>NaN === NaN ---> false</code>
+    </div>
+
+  6. To verify that a number is finite or not we use this method
+  <div  align="center">
+    <code>isFinite(300) === true</code>
+  </div>
+  <div  align="center">
+    <code>isFinite(Infinity) === false</code>
+  </div>
+
+- Boolean:
+
+  1. It can only have to possible values: `true` or `false`.
+  2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`.
+
+- Null:
+
+  1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
+  2. `Null` is a primitive data type even though that the typeof operator returns `object` when we use it with that type.
+
+- Undefined:
+
+  1. It means `unknown data type`. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
+  2. `Undefined` means:
+
+  - A variable was not given a value.
+  - It was not received a param.
+  - A function call finished without returning a value.
+
+- Symbol: To be reviewed
+
+- BigInt:
+
+  1. It allows us to write integer numbers without limit.
+  2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
+  <div  align="center">
+    <code>let numeroGrande = 8927345254435334599065n</code>
+  </div>
+
+  we can also use the `Bigint` function to create them based on numbers or strings.
+  <div  align="center">
+    <code>let numeroGrande2 = BigInt('8927345254435334599065')</code>
+  </div>
+
 # Values vs References
+
 When we declare a variable _fruit_ and assign it the _string_ "banana" we'd be creating a little container in the computer's memory and storing inside of it the value "banana". If next we change the value to the fruit variable, we'd be changing the value that is being stored and the previous value it had would be lost.
 
 <div align="center">
@@ -72,7 +217,7 @@ what's going to happen is that the reference to the object is going to be stored
   <img src="./assets/img4.png" alt="img 4">
 </div>
 
-Each one of them is independent, so if we decide to assign a new object to any, its reference is now going to be diferrent in the computer's memory discarding the previous reference but, the other one is going to have its current value. 
+Each one of them is independent, so if we decide to assign a new object to any, its reference is now going to be diferrent in the computer's memory discarding the previous reference but, the other one is going to have its current value.
 
 When there's no reference to an object, the JavaScript engine will know that it can remove that space in memory, leaving it free to be assigned to other objects.
 
@@ -88,18 +233,19 @@ When we declare a function, we state the paremeters this is going to receive. So
   <img src="./assets/img6.png" alt="img 6">
 </div>
 
-How can I pass a copy of the object and not a reference? 
+How can I pass a copy of the object and not a reference?
 
 It all depends on what the object you are trying to copy is.
 
 But basically, if the object you are trying to copy has only primitive values, you can do it in two ways:
 
-1) _let copyPerson = Object.assign ({}, person);_ What it does is assign to a new empty object all the enumerable properties of the other object with their values. Obviously it creates a new object, a new reference, but its properties are the same.
-2) _let anotherPerson = {... person};_ This does basically the same thing. With the spread operator, we are filling a new empty object with all the properties and values ​​of the person object.
+1. _let copyPerson = Object.assign ({}, person);_ What it does is assign to a new empty object all the enumerable properties of the other object with their values. Obviously it creates a new object, a new reference, but its properties are the same.
+2. _let anotherPerson = {... person};_ This does basically the same thing. With the spread operator, we are filling a new empty object with all the properties and values ​​of the person object.
 
 This way of copying objects is called shallow copy (shallow copying).
 
-Now what if the person object has more objects inside? As in this case: 
+Now what if the person object has more objects inside? As in this case:
+
 ```
 let person = {name: 'Sacha', pets: ['Haru', 'Yuri'];
 ```
@@ -108,14 +254,15 @@ If we use any of the above methods, what will be copied is the array reference!
 
 ```
 let personCopy = {... person};
-copyPersona.mascotas.push ('Felix'); 
+copyPersona.mascotas.push ('Felix');
 ```
 
 👆 This last line would be modifying the person pet array too!
 
 If we know that the object we want to copy is like this, we are in trouble. Even worse if that object is very large. But do not despair, it has a solution.
 
-One way would be to do: 
+One way would be to do:
+
 ```
 let personCopy = JSON.parse (JSON.stringify (person));
 ```
@@ -130,14 +277,15 @@ We can iterate all the properties and copy them recursively. That is, if we see 
 
 The best solution in these cases would be to use an external library or package, with an already tested and documented solution, which we know works well.
 
-1) One option would be to look for one that works for us in npm: https://www.npmjs.com/search?q=deep%20copy
-2) Use lodash's deepClone method: https://lodash.com/docs/#cloneDeep
+1. One option would be to look for one that works for us in npm: https://www.npmjs.com/search?q=deep%20copy
+2. Use lodash's deepClone method: https://lodash.com/docs/#cloneDeep
 
 # Type Systems
 
 Rules that a language imposed in order to classify what value types exists, how we can manipulate them, and what are the valid operations they support to be done between them.
 
 ## Type checking
+
 Process of verifying and enforce the existing type restrictions for the language.
 
 <div align="center">
@@ -201,7 +349,7 @@ valor.toString() ---> "true"
 +false = 0
 ```
 
-_**NOTE: Either by implicit or explicit conversion, if a value is tried to be converted into a number and that operation cannot be resolved, we will obtain ```NaN``` as a result.**_
+_**NOTE: Either by implicit or explicit conversion, if a value is tried to be converted into a number and that operation cannot be resolved, we will obtain `NaN` as a result.**_
 
 ### To a boolean:
 
@@ -221,7 +369,7 @@ How a language determines that a type is **compatible** with another type or **e
 
 In Java, for instance, we can create to classes called 'Calculadora 1' y 'Calculadora 2' both of them with a unique method that does the same: it sums two integers. If after that we create a variable with type 'Calculadora 1' called 'calculadora' and we assing it a new instance of 'Calculadora 2', even though the internal structures of both classes are the same, we will have a type error on this language.
 
-That's what is known as **__Nominal Type__**: Two types are compatible when they have the same name or when one is a subtype of the other (by inheritance).
+That's what is known as \***\*Nominal Type\*\***: Two types are compatible when they have the same name or when one is a subtype of the other (by inheritance).
 
 With the languages having nominal typing programs are often created by writing multiple classes and using many object-oriented programming design patterns. Other languages sharing this typing are: Java, PHP, C#, C++, Swift.
 
@@ -258,9 +406,11 @@ we're going to have an error type Error while the program is being executed.
 Is a typed superset of JavaScript that compiles to plain JavaScript, built and maintaned by Microsoft. It starts of **the same JavaScript syntax**, but adds **structural type checking** before our program executes.
 
 # == vs ===
-  JavaScript has two ways of comparing values but, they work differently. Now, when should I use any and why?
+
+JavaScript has two ways of comparing values but, they work differently. Now, when should I use any and why?
 
 ### **When to use (strict equality operator) === :**
+
 We check both type and value equality.
 
 <div aign="center">
@@ -271,7 +421,8 @@ We check both type and value equality.
   <img src="./assets/img19.png" alt="image 19"/>
 </div>
 
-NOTE: 
+NOTE:
+
 1. Strings are case sentitive, be careful with this.
 2. Strict equality operator is also known as identity operator: When we use it to compare objects, this operator tell us wheter we are referencing to the same space in memory, or to the same object in memory.
 
@@ -293,7 +444,7 @@ When it comes to objects or functions, why any of them is working?
   <img src="./assets/img22.png" alt="image 22"/>
 </div>
 
-the reaons is that that type of resourse is more complex than a primitive value: 
+the reaons is that that type of resourse is more complex than a primitive value:
 
 <div aign="center">
   <img src="./assets/img23.png" alt="image 23"/>
@@ -319,7 +470,7 @@ the reaons is that that type of resourse is more complex than a primitive value:
   <img src="./assets/img28.png" alt="image 28"/>
 </div>
 
-The only case for that operation to return TRUE is the both values are the same, which is the reference to a same space in memory: 
+The only case for that operation to return TRUE is the both values are the same, which is the reference to a same space in memory:
 
 <div aign="center">
   <img src="./assets/img29.png" alt="image 29"/>
