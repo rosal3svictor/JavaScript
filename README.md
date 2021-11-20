@@ -71,13 +71,6 @@ JavaScript has a `dynamic type` which means that variables don't have to manuall
 
 It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when is exceuted the line of code that contains it. It depends on the operation that is being perfomed with it.
 
----
-
-marp: true
-author: Victor Rosales
-size: 4:3
-theme: gaia
-
 ```JavaScript
                             2 + '1' = 21
                             1 - '2' = -1
