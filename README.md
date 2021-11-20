@@ -67,12 +67,21 @@ Let's deconstruct this to make a little more sense:
 
 # Data Types
 
-JavaScript has a `dynamic type` which means that variables don't have a specific data type associated. They can be assigned or re-assigned any value.
+JavaScript has a `dynamic type` which means that variables don't have to manually define the data type of the value they store. Instead, data types are determined **automatically**. The distinction between `value` and `variable` is pretty important, because in JavaScript is the _**value**_ that has a type, not the variable. So, variables simply store values that have a type. We also can assign a new value with a different data type to the same variable previously defined without a problem.
 
-It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when the line of code that contains it, is executed. It depends on the operation that is being perfomed with it.
+It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when is exceuted the line of code that contains it. It depends on the operation that is being perfomed with it.
 
-<div  align="center"><code>2 + '1' = 21</code></div>
-<div  align="center"><code>1 - '2' = -1</code></div>
+---
+
+marp: true
+author: Victor Rosales
+size: 4:3
+theme: gaia
+
+```JavaScript
+                            2 + '1' = 21
+                            1 - '2' = -1
+```
 
 Due to its particular characteristics, there are two groups of data types:
 
@@ -83,112 +92,150 @@ Due to its particular characteristics, there are two groups of data types:
 
 They are basic, immutable values that contain neither methods nor properties.
 
+```JavaScript
+          /*If we are in the browser's console*/
+          var numero = 2;
+          numero.name = "number two";
+          numero.name;
+          undefined; //the assignment of the new property didn't work
+
+          var text = "Cocina";
+          text[0] = "B";
+          text //we access the variable
+          "Cocina"
+
+          text = "Bocina";
+          text //we access the variable
+          "Bocina"
+```
+
 - String:
 
-  1. They allows to represent texts in our programs.
-  2. They are defined between 2 `doble` or `single` quotes. The important thing here is that we have to use them consistently `'string'` or `"string"` not `'string"`.
-  3. In ES2015, was introduced another character: the `backtick`. This allows to interpolate a variable or expression within the string:
-  <div  align="center">
-    let saludo = `Hola, me llamo ${nombre} ${apellido} y tengo ${edad} años.`
-  </div>
-  4. In order to represent them, JavaScript implements an encoding called UTF-16, what allows us to represent characters from many languages, even emojies.
-  5. There is a string which does not contain length and is called `empty string : ''` and it's mainly used to provide a initial value to a variable.
-  6. To be able to obtain a string from a varible, it is possible to access the toString() method
-    <div  align="center">
-      <code>"29".toString() = "29"</code>
-    </div>
-    <i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i>
-  or concatenating it with the empty string
-    <div  align="center">
-      <code>29 + '' = '29'</code>
-    </div>
+1. They allows to represent texts in our programs.
+2. They are defined between 2 `doble` or `single` quotes. The important thing here is that we have to use them consistently `'string'` or `"string"` not `'string"`.
+3. In ES2015, was introduced another character: the `backtick`. This allows to interpolate a variable or expression within the string:
 
-- Number:
+```JavaScript
+        let saludo = `Hola, me llamo ${nombre} ${apellido}.`
+```
+
+4. In order to represent them, JavaScript implements an encoding called UTF-16, what allows us to represent characters from many languages, even emojies.
+5. There is a string which does not contain length and is called `empty string : ''` and it's mainly used to provide a initial value to a variable.
+6. To be able to obtain a string from a varible, it is possible to access the toString() method
+
+```JavaScript
+                      "29".toString() = "29"
+```
+
+<i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i>
+or concatenating it with the empty string
+
+```JavaScript
+                            29 + '' = '29'
+```
+
+- Number: They are so called floating point numbers, which means that they always have decimals even if we don't see them of define them.
 
   1. They allow us to represent numbers: positive, negative and decimal.
   2. When it comes to repesent numbers, JavaScript is not accurate
-    <div  align="center">
-      <code>0.1 + 0.2 = 0.30000000000000004</code>
-    </div>
-  or
-    <div  align="center">
-      <code>+(0.1 + 0.2).toFixed(40) = 0.3000000000000000444089209850062616169453</code>
-    </div>
-  this behavour also happens in Python, Ruby o Java as well.
 
-  This has to do with the way numbers are designed within the programming language, it is used a format called `IEEE 754` and by using it each number takes 64bits (8bites) in memory.
+```JavaScript
+                    0.1 + 0.2 = 0.30000000000000004
+```
 
-  3. The range of numbers we can use on this format goes after
-    <div  align="center">
-      <code>-(2 ** 53) + 1 and (2 ** 53) - 1</code>
-    </div>
-  we can represent numbers beyond those limits, but they are going to be approximations, and if we perform operations with them we will get unexpected results.
-    <div  align="center">
-      <code>numeroMinimo === Number.MIN_SAFE_INTEGER</code>
-    </div>
-    <div  align="center">
-      <code>minNumber === Number.MIN_VALUE</code>
-    </div>
-    <div  align="center">
-      <code>numeroMaximo === Number.MAX_SAFE_INTEGER</code>
-    </div>
-    <div  align="center">
-      <code>maxNumber === Number.MAX_VALUE</code>
-    </div>
+or
 
-  they limit the range of numbers it which is safe to perform numeric operations, and to verify a number is within the limits we can use
-    <div  align="center">
-      <code>Number.isSafeInteger(19080) === true</code>
-    </div>
+```JavaScript
++(0.1 + 0.2).toFixed(40) = 0.3000000000000000444089209850062616169453
+```
 
-  4. There are two values of type number that goes beyond those numbers
-  <div  align="center">
-    <code>Inifity === number/0 and -Infinity === number/-0</code>
-  </div>
-  any number is not greater of smaller the both of them, they represent approximations.
+this behavour also happens in Python, Ruby o Java as well.
 
-  5. If we make 0/0 we'll get
-    <div  align="center">
-      <code>NaN</code>
-    </div>
-  it's type number and is what we get when is perfomed an invalid computation.
-    <div  align="center">
-      <code>"hola"/3 === NaN or NaN + 30 === NaN</code>
-    </div>
-    but we have a method to verify it
-    <div  align="center">
-      <code>isNaN(30) ---> true</code>
-    </div>
-    <div  align="center">
-      <code>isNaN(NaN) ---> true</code>
-    </div>
+This has to do with the way numbers are designed within the programming language, it is used a format called `IEEE 754` and by using it each number takes 64bits (8bites) in memory.
 
-  it's a very special value in JavaScript, it's not equal to anything even itself
-    <div  align="center">
-      <code>NaN === NaN ---> false</code>
-    </div>
+3. The range of numbers we can use on this format goes after
 
-  6. To verify that a number is finite or not we use this method
-  <div  align="center">
-    <code>isFinite(300) === true</code>
-  </div>
-  <div  align="center">
-    <code>isFinite(Infinity) === false</code>
-  </div>
+```JavaScript
+                  -(2 ** 53) + 1 and (2 ** 53) - 1
+```
 
-- Boolean:
+we can represent numbers beyond those limits, but they are going to be approximations, and if we perform operations with them we will get unexpected results.
 
-  1. It can only have to possible values: `true` or `false`.
-  2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`.
+```JavaScript
+                numeroMinimo === Number.MIN_SAFE_INTEGER
+```
+
+```JavaScript
+                minNumber === Number.MIN_VALUE
+```
+
+```JavaScript
+                numeroMaximo === Number.MAX_SAFE_INTEGER
+```
+
+```JavaScript
+                maxNumber === Number.MAX_VALUE
+```
+
+they limit the range of numbers it which is safe to perform numeric operations, and to verify a number is within the limits we can use
+
+```JavaScript
+                Number.isSafeInteger(19080) === true
+```
+
+4. There are two values of type number that goes beyond those numbers
+
+```JavaScript
+            Inifity === number/0 and -Infinity === number/-0
+```
+
+any number is not greater of smaller the both of them, they represent approximations.
+
+5. If we make 0/0 we'll get
+
+```JavaScript
+                                NaN
+```
+
+it's type number and is what we get when is perfomed an invalid computation.
+
+```JavaScript
+                "hola"/3 === NaN or NaN + 30 === NaN
+```
+
+but we have a method to verify it
+
+```JavaScript
+                        isNaN(30) ---> false
+                        isNaN(NaN) ---> true
+```
+
+it's a very special value in JavaScript, it's not equal to anything even itself
+
+```JavaScript
+                        NaN === NaN ---> false
+```
+
+6. To verify that a number is finite or not we use this method
+
+```JavaScript
+                      isFinite(300) === true
+                      isFinite(Infinity) === false
+```
+
+- Boolean: It's a logical type which can only be _true_ or _false_
+
+  1. Used for taking decisions.
+  2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')
 
 - Null:
 
   1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
-  2. `Null` is a primitive data type even though that the typeof operator returns `object` when we use it with that type.
+  2. `Null` is a primitive data type even though that the typeof operator returns `object`.
 
 - Undefined:
 
-  1. It means `unknown data type`. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
+  1. It means _**unknown data type**_. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
   2. `Undefined` means:
 
   - A variable was not given a value.
@@ -201,14 +248,52 @@ They are basic, immutable values that contain neither methods nor properties.
 
   1. It allows us to write integer numbers without limit.
   2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
-  <div  align="center">
-    <code>let numeroGrande = 8927345254435334599065n</code>
-  </div>
 
-  we can also use the `Bigint` function to create them based on numbers or strings.
-  <div  align="center">
-    <code>let numeroGrande2 = BigInt('8927345254435334599065')</code>
-  </div>
+```JavaScript
+              let numeroGrande = 8927345254435334599065n
+```
+
+we can also use the `Bigint` function to create them based on numbers or strings.
+
+```JavaScript
+          let numeroGrande2 = BigInt('8927345254435334599065')
+```
+
+How is it that we can do something like this:
+
+```JavaScript
+                      let name = "Victor";
+                      name.toUppercase()
+                      "VICTOR"
+```
+
+when we just said that primitive values don't have neither _properties_ or _methods_?
+
+That's because the data types
+
+```JavaScript
+                              boolean
+                              number
+                              string
+```
+
+have their equivalents in the object's. For instance:
+
+```JavaScript
+                  let name = new String('Victor')
+                  name
+                  String {"Victor"}
+
+                  let isAGoodDay = new Boolean(true)
+                  isAGoodDay
+                  Boolean {true}
+
+                  let number = new Number(10)
+                  number
+                  Number {10}
+```
+
+these objects are going to be used by the JavaScript Engine. Each time we want to access to a property or attribute of a primitive value, the JavaScript Engine is going to create one of these objects temporaryly so we can be able to access them. This temporary object as so called _**Object Wrapper**_, that is basically and object that wraps a primitive value when we want to access any property or method of it. This object is goint to be temporary because the engine only uses it for a fraction of time, after being used it is removed from the memory.
 
 # Values vs References
 
