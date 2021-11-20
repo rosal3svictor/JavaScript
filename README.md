@@ -15,6 +15,7 @@
 
 - [How to open the inspector tools in Chrome](#how-to-open-the-inspector-tools-in-chrome)
 - [Brief introduction to JavaScript](#brief-introduction-to-javascript)
+- [Values and Variables](#values-and-variables)
 - [Variable Naming Conventions](#variable-naming-conventions)
 - [Data Types](#data-types)
 - [Value vs References](#values-vs-references)
@@ -36,7 +37,7 @@ There are 3 ways to accomplish that:
 2. right click and then select option "inspect"
 3. On Chrome: Click on view -> developer -> inspect elements.
 
-# Bried introduction to JavaScript
+# Brief introduction to JavaScript
 
 JavaScript is a high-level, object-oriented, multi-paradigm, single-threaded, non-blocking, asynchronous, concurrent programming language.
 
@@ -50,11 +51,19 @@ Let's deconstruct this to make a little more sense:
 - **Object-Oriented**: The language is mostly based on the concept of _objects_ for storing most kinds of data.
 - **High-Level**: We don't have to worry about complex stuff such as managing the computer's memory while it runs our program. In JavaScript there are many of these so called _abstractions_ that we don't want to worry about. Those things make the language easier to write and learn.
 
+# Values and Variables
+
+- **Value**: It's basically a piece of data so, it's the most fundamental unit of information that we have in programming.
+- **Variable**: Imagine a box, within it you can hold some object, for example a book, and we can then write a label on the box to describe what's in it. Later on, when needed, we can find that object by using the label.
+
 # Variable Naming Conventions
 
-1. They must be written using camelCase style.
+1. They must be written using camelCase notation.
 2. You cannot use keywords from the language such as `new` or `function`.
 3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them. (They cannot start with a number).
+4. Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names for a specific use case which is Object Oriented Programming.
+5. Declare only constants using all uppercase letters (it's a convention)
+6. Always make **descriptive** the name for variables so, it provides a notion of what it holds.
 
 # Data Types
 
