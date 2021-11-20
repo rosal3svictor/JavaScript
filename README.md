@@ -13,6 +13,8 @@
 
 ## Table of Contents
 
+- [How to open the inspector tools in Chrome](#how-to-open-the-inspector-tools-in-chrome)
+- [Brief introduction to JavaScript](#brief-introduction-to-javascript)
 - [Variable Naming Conventions](#variable-naming-conventions)
 - [Data Types](#data-types)
 - [Value vs References](#values-vs-references)
@@ -25,6 +27,28 @@
   5. [TypeScript](#typeScript)
 
 - [== vs ===](#==-vs===)
+
+# How to open the inspector tools in Chrome
+
+There are 3 ways to accomplish that:
+
+1. command + option + i (MacOS), control + alt + i (Windows)
+2. right click and then select option "inspect"
+3. On Chrome: Click on view -> developer -> inspect elements.
+
+# Bried introduction to JavaScript
+
+JavaScript is a high-level, object-oriented, multi-paradigm, single-threaded, non-blocking, asynchronous, concurrent programming language.
+
+Let's deconstruct this to make a little more sense:
+
+- **Programming Language**: It's a tool that allow us to write code that will instruct a computer to do something.
+- **Concurrent**: Means multiple computations are happening at the same time.
+- **Asynchronous**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
+- **Non-Blocking**: Refers to code that doesn't block the execution of the program.
+- **Single-Threaded**: It has only one call stack that is used to execute the program. -**Multi-Paradigm**: Meaning that it's so flexible and versatile that we can use all kind of different programming styles such as imperative and declarative programming, and these different styles are different ways to structure our code basically.
+- **Object-Oriented**: The language is mostly based on the concept of _objects_ for storing most kinds of data.
+- **High-Level**: We don't have to worry about complex stuff such as managing the computer's memory while it runs our program. In JavaScript there are many of these so called _abstractions_ that we don't want to worry about. Those things make the language easier to write and learn.
 
 # Variable Naming Conventions
 
