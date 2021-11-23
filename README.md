@@ -17,6 +17,7 @@
 - [Brief introduction to JavaScript](#brief-introduction-to-javascript)
 - [Values and Variables](#values-and-variables)
 - [Variable Naming Conventions](#variable-naming-conventions)
+- [Statements and Expresions](#statements-and-expressions)
 - [Data Types](#data-types)
 - [Value vs References](#values-vs-references)
 - [Type systems](#type-systems)
@@ -65,6 +66,35 @@ Let's deconstruct this to make a little more sense:
 5. Declare only constants using all uppercase letters (it's a convention)
 6. Always make **descriptive** the name for variables so, it provides a notion of what it holds.
 
+# Statements and Expressions
+
+An _**expression**_ is a piece of code that produces a value, for example:
+
+```JavaScript
+                                      3 + 4
+                                      1991
+                              true && false && !false
+```
+
+On the other hand, we have _**statements**_, they are a bigger piece of code that is executed and which does not produces a value on itself. They are 'full sentences that translate **actions**', the one we want our program to perform.
+
+We can compare it with a normal spoken language: a _statement_ is like a complete sentence and, an _expressions_ are the words that make up that sentence.
+
+```JavaScript
+                  if (23 > 10) {
+                    const str = '23 is bigger'; //This is an expression
+                  }
+          //NOTE: This 'statement' does not really produces a value, does it?
+```
+
+Now, this difference between expressions and statements is important to know because JavaScript expects statements and expressions in different places. For example, in a template literal we can only insert expressions but not statements
+
+```JavaScript
+          console.log(`I'm ${2037 - 1991} years old.`); // This would work
+    console.log(`I'm ${if (23 > 10) const str = "23 is bigger"} years old.`);
+    // This 👆🏻 won't work. It doesn't even make sense to do something like that.
+```
+
 # Data Types
 
 JavaScript has a `dynamic type` which means that variables don't have to manually define the data type of the value they store. Instead, data types are determined **automatically**. The distinction between `value` and `variable` is pretty important, because in JavaScript is the _**value**_ that has a type, not the variable. So, variables simply store values that have a type. We also can assign a new value with a different data type to the same variable previously defined without a problem.
@@ -72,8 +102,8 @@ JavaScript has a `dynamic type` which means that variables don't have to manuall
 It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when is exceuted the line of code that contains it. It depends on the operation that is being perfomed with it.
 
 ```JavaScript
-                            2 + '1' = 21
-                            1 - '2' = -1
+                                      2 + '1' = 21
+                                      1 - '2' = -1
 ```
 
 Due to its particular characteristics, there are two groups of data types:
@@ -109,7 +139,7 @@ They are basic, immutable values that contain neither methods nor properties.
 3. In ES2015, was introduced another character: the `backtick`. This allows to interpolate a variable or expression within the string:
 
 ```JavaScript
-        let saludo = `Hola, me llamo ${nombre} ${apellido}.`
+              let saludo = `Hola, me llamo ${nombre} ${apellido}.`
 ```
 
 4. In order to represent them, JavaScript implements an encoding called UTF-16, what allows us to represent characters from many languages, even emojies.
@@ -117,14 +147,14 @@ They are basic, immutable values that contain neither methods nor properties.
 6. To be able to obtain a string from a varible, it is possible to access the toString() method
 
 ```JavaScript
-                      "29".toString() = "29"
+                              "29".toString() = "29"
 ```
 
 <i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i>
 or concatenating it with the empty string
 
 ```JavaScript
-                            29 + '' = '29'
+                                  29 + '' = '29'
 ```
 
 - Number: They are so called floating point numbers, which means that they always have decimals even if we don't see them of define them.
@@ -133,13 +163,13 @@ or concatenating it with the empty string
   2. When it comes to repesent numbers, JavaScript is not accurate
 
 ```JavaScript
-                    0.1 + 0.2 = 0.30000000000000004
+                           0.1 + 0.2 = 0.30000000000000004
 ```
 
 or
 
 ```JavaScript
-+(0.1 + 0.2).toFixed(40) = 0.3000000000000000444089209850062616169453
+        +(0.1 + 0.2).toFixed(40) = 0.3000000000000000444089209850062616169453
 ```
 
 this behavour also happens in Python, Ruby o Java as well.
@@ -149,37 +179,37 @@ This has to do with the way numbers are designed within the programming language
 3. The range of numbers we can use on this format goes after
 
 ```JavaScript
-                  -(2 ** 53) + 1 and (2 ** 53) - 1
+                          -(2 ** 53) + 1 and (2 ** 53) - 1
 ```
 
 we can represent numbers beyond those limits, but they are going to be approximations, and if we perform operations with them we will get unexpected results.
 
 ```JavaScript
-                numeroMinimo === Number.MIN_SAFE_INTEGER
+                      numeroMinimo === Number.MIN_SAFE_INTEGER
 ```
 
 ```JavaScript
-                minNumber === Number.MIN_VALUE
+                          minNumber === Number.MIN_VALUE
 ```
 
 ```JavaScript
-                numeroMaximo === Number.MAX_SAFE_INTEGER
+                      numeroMaximo === Number.MAX_SAFE_INTEGER
 ```
 
 ```JavaScript
-                maxNumber === Number.MAX_VALUE
+                          maxNumber === Number.MAX_VALUE
 ```
 
 they limit the range of numbers it which is safe to perform numeric operations, and to verify a number is within the limits we can use
 
 ```JavaScript
-                Number.isSafeInteger(19080) === true
+                        Number.isSafeInteger(19080) === true
 ```
 
 4. There are two values of type number that goes beyond those numbers
 
 ```JavaScript
-            Inifity === number/0 and -Infinity === number/-0
+                  Inifity === number/0 and -Infinity === number/-0
 ```
 
 any number is not greater of smaller the both of them, they represent approximations.
@@ -187,33 +217,33 @@ any number is not greater of smaller the both of them, they represent approximat
 5. If we make 0/0 we'll get
 
 ```JavaScript
-                                NaN
+                                        NaN
 ```
 
 it's type number and is what we get when is perfomed an invalid computation.
 
 ```JavaScript
-                "hola"/3 === NaN or NaN + 30 === NaN
+                        "hola"/3 === NaN or NaN + 30 === NaN
 ```
 
 but we have a method to verify it
 
 ```JavaScript
-                        isNaN(30) ---> false
-                        isNaN(NaN) ---> true
+                                isNaN(30) ---> false
+                                isNaN(NaN) ---> true
 ```
 
 it's a very special value in JavaScript, it's not equal to anything even itself
 
 ```JavaScript
-                        NaN === NaN ---> false
+                                NaN === NaN ---> false
 ```
 
 6. To verify that a number is finite or not we use this method
 
 ```JavaScript
-                      isFinite(300) === true
-                      isFinite(Infinity) === false
+                                isFinite(300) === true
+                            isFinite(Infinity) === false
 ```
 
 - Boolean: It's a logical type which can only be _true_ or _false_
