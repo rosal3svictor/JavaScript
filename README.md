@@ -30,6 +30,8 @@
 
 - [== vs ===](#==-vs===)
 - [Functions](#functions)
+- [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
+- [Execution Contexts And The Call Stack](#execution-contexts-and-the-call-stack)
 
 # How to open the inspector tools in Chrome
 
@@ -686,4 +688,77 @@ The only case for that operation to return TRUE is the both values are the same,
   <img src="./assets/functions_0.jpeg" alt="image 0" />
   <br/><br/>
   <img src="./assets/functions_1.jpeg" alt="image 1" />
+</div>
+
+# JavaScript Engine and Runtime
+
+- Engine: program that **executes** our code. Every browser has its own JavaScript engine, but probably the most well-known engine is Google's V8. V8 powers Google Chrome but also NodeJS, which is that JavaScript runtime.
+
+  Every JavaScrit engine is composed by:
+
+1. CallStack: is where our code is executed using something called execution context.
+2. Heap: Unstructured memory tool which stores all the object that our application needs.
+
+## Compilation VS Interpretation
+
+- **Compilation**: The entire source code is converted into machine code at once, and written to a binary file that can be excecuted by a computer. So, we have two different steps here: first, the machine code is built and then it's executed in the CPU (in the processor).
+
+- **Interpreted**: Interpreter runs through the source code and executes it line by line. The code is read and executed all the same time. Of course, the code needs to be converted into machine code but it simply happens right before it's executed. JavaScript used to be purely an interpreted language but the problem with it is that they're much slower than compiled ones.
+
+Instead of simple interpretation, modern JavaScript engine know use a mix between compilation and interpretation, which is called _Just-In-Time (JIT) compilation_: this approach basically compiles the entire code into machine code at once, and the executes it right away.
+
+## Modern JUST-IN-TIME compilation of JavaScript
+
+As a piece of JavaScript code enters the engine, the first step is to _**parse**_ de code, which basically means to read the code. During the parsing process, the code is parsed into a data structure called "The Abstract Sintax Tree (AST)". This works by first splitting up each line of code into pieces that are meaningful to the language like the _const_ of _function_ keywords and then saving all these pieces into the tree in a structured way. This step also checks if there are any syntax errors and the resulting tree would later be used to generate the machine code.
+
+Now, let's say we have a very simple program. All it does is to declare a variable and this is what the AST for that single line of code looks like
+
+<div align="center">
+  <img src="./assets/ast_0.png" />
+</div>
+
+This tree has NOTHING to do with the DOM Tree.
+
+The next step is _**compilation**_, which takes the generated AST and compiles it into machine code. This machine code then gets executed right away. Modern JavaScript Engines have some clever _optimization strategies_, what they do is to create a very un-optimized version of machine code in the beginning just so that it can start executing as fast as possible, then in the background, this code is optimized and re-compiled during the already running program execution. And this can be done multiple times, and after each optimization each un-optimized code is simply swaped for the new more optimized code without ever stoping execution, of course. This process is what makes the V8 Engine so fast.
+
+<div align="center">
+  <img src="./assets/ast_1.png" />
+</div>
+
+## JavaScript Runtime
+
+We can imagine it as a big box or a big container which includes all the things that we need in order to use JavaScript in the browser. And the heart of every JavaScript runtime is always a JavaScript Engine. In order to work properly we also need access to the WEB API's (Functionalities provided to the engine which are not part if JavaScript itself, JavaScript simply get access to these API's through the globan _window_ object). A JavaScrit runtime also includes something called _Callback Queue_: this a data structure that contains all the callback functions that are ready to be executed.
+
+<div align="center">
+  <img src="./assets/j_runtime.png" />
+</div>
+
+# Execution Contexts And The Call Stack
+
+Let's suppose that our code was just finish compiling. The code is ready to be executed, what happens then is that a so called _**Global Execution Context**_ is created for the Top Level Code (Default context, created for code that is not inside any function)
+
+<div align="center">
+  <img src="./assets/ec_0.png" />
+</div>
+
+What exactly is an _execution context_? is an environment in which a piece of JavaScript is executed. Stores all the necessary information for some code to be executed. So, JavaScript code always runs inside an execution context.
+
+Now that we have an environment in where the Top Level Code can be executed, it finally is executed. And once this code is executed is finished, functions finally starts to execcute as well, and here is how it works:
+
+For each an every function call, a new execution context would be created containing all the information that is necessary to run exactly that function. All these execution contexts together make up the Call Stack. When all functions are done executing, the engine will basically keep waiting for callback functions to arrive so it can execute these, for instance, a callback function associated to a click event; And remember that is the Event Loop which these new callbacks.
+
+## Execution Context In Detail
+
+The first thing that's inside any execution context is a so called variable environment. In this environment all variables and function declarations are stored and there's also a special argument's object. This object contains all the arguments that were passed into the function that the current execution context belongs to. However, the function can access variables outside of the function, this is possible because of the _**Scope Chain**_ (it consists of references to variables that are located outside of the current function) and to keep track of this scope chain, it is stored in each execution context. Finally, each context also gets a special variable called the _**this**_ keyword. Now, the content of the execution context (Variable Environment, Scope Chain and _this_ keyword) is generated during the _**Creation Phase**_ which happens right before execution.
+
+One final, but very important detail that we need to keep in mind, is that execution contexts belonging to arrow functions do not get their own arguments keyword nor do they get the _this keyword_. So, basically arrow functions can use the arguments object and the _this_ keyword from their closest, regular function parent.
+
+<div align="center">
+  <img src="./assets/ec_1.png" />
+</div>
+
+Now, how will the engine keep track of the orderin which functions were called and how will it know where it currently is in the execution? That's where the Call Stack comes in. Remember that the call stask together with the memory heap makes up the JavaScript Engine itself. But what exactly is the Call Stack? it's basically a "place" where execution contexts get stacked on top of each other, to keep track of where we are in the execution.
+
+<div align="center">
+  <img src="./assets/cs.png" />
 </div>
