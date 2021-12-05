@@ -29,6 +29,7 @@
   5. [TypeScript](#typeScript)
 
 - [== vs ===](#==-vs===)
+- [Functions](#functions)
 
 # How to open the inspector tools in Chrome
 
@@ -68,15 +69,57 @@ Let's deconstruct this to make a little more sense:
 
 # Statements and Expressions
 
-An _**expression**_ is a piece of code that produces a value, for example:
+All programming languages have _**language syntax**_. It is a set of rules that define how we can combine different symbols to _**produce valid instructions**_ in order _**to create a program**_ that the _**computer understands**_. A computer can't understand a program if it doesn't comply with the language syntax we are using.
+
+In JavaScript we have two syntactic structures to create programs:
+
+An _**expression**_ is a unit of code that produces a value when evaluated, for example: we can compare them with the "words" in the Spanish language.
+
+Let's suppose we have to assign a value to a variable, how do you think we can complete that line of code? Let's start with the most basics:
+
+1. **Primary Expressions**:
+   Any small word that produces a value by itself. Yes, any primitive value is a good example.
 
 ```JavaScript
-                                      3 + 4
-                                      1991
-                              true && false && !false
+                                  'texto'
+                                  true
+                                  false
+                                  null
+                                  undefined
+                                  Symbol('foo')
+                                  90099839723042342234n
+
 ```
 
-On the other hand, we have _**statements**_, they are a bigger piece of code that is executed and which does not produces a value on itself. They are 'full sentences that translate **actions**', the one we want our program to perform.
+we can also use certain _reserved words_ of the language like _this_, or the name of other variable. All of them are _**primary expressions**_ since with a single word we are producinga single value.
+
+Another expressions we can use are: _**Objects and arrays**_. On each position of the array we have to define a _**value**_, or something that _**produces a value**_, an expression. The same happens with the object: keys are generally string that do not need _quotes ('', "")_ if the dont have _blank spaces_ in between, and its values are expressions.
+
+2. **Function Expressions**:
+   When we write a function in the part of the code where we're expecting a value.
+
+```JavaScript
+                      const func = () => console.log('Hello!');
+                      numeros.filter(function filtrarPares(number) {
+                        return number % 2 === 0;
+                      });
+```
+
+3. **Objec Properties**:
+
+```JavaScript
+                          let unaVariable;
+                          const miObjeto = { nombre: 'Sacha' };
+                          const miArray = [1, 2 ,3];
+
+                          unaVariable = miObjeto['nombre'];
+                          unaVariable = miArray[0];
+```
+
+4. **Function Invocation**:
+   In JavaScript when we invoke a function we will always have a back a _value_ as a return.
+
+On the other hand, we have _**statements**_. They are **actions** that are executed so the programs carries on the logic we want it to perform.
 
 We can compare it with a normal spoken language: a _statement_ is like a complete sentence and, an _expressions_ are the words that make up that sentence.
 
@@ -619,4 +662,12 @@ The only case for that operation to return TRUE is the both values are the same,
 
 <div aign="center">
   <img src="./assets/img30.png" alt="image 30"/>
+</div>
+
+# Functions
+
+<div align="center">
+  <img src="./assets/functions_0.jpeg" alt="image 0" />
+  <br/><br/>
+  <img src="./assets/functions_1.jpeg" alt="image 1" />
 </div>
