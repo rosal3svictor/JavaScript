@@ -3,7 +3,7 @@
 </div>
 
 <div align = "center">
-  <img 
+  <img
     src = "./assets/javascript_logo.png"
     width = "40%"
     alt = "nodejs-logo" />
@@ -41,16 +41,32 @@ There are 3 ways to accomplish that:
 
 # Brief introduction to JavaScript
 
-JavaScript is a high-level, object-oriented, multi-paradigm, single-threaded, non-blocking, asynchronous, concurrent programming language.
+JavaScript is a high-level, prototype-based object oriented, multi-paradigm, interpreted or just-in-time compiled, dymanically-typed, single-threaded, garbage-collected programming language with first-class functions and a non-blocking event loop concurrency model.
 
 Let's deconstruct this to make a little more sense:
 
 - **Programming Language**: It's a tool that allow us to write code that will instruct a computer to do something.
 - **Concurrent**: Means multiple computations are happening at the same time.
 - **Asynchronous**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
-- **Non-Blocking**: Refers to code that doesn't block the execution of the program.
-- **Single-Threaded**: It has only one call stack that is used to execute the program. -**Multi-Paradigm**: Meaning that it's so flexible and versatile that we can use all kind of different programming styles such as imperative and declarative programming, and these different styles are different ways to structure our code basically.
-- **Object-Oriented**: The language is mostly based on the concept of _objects_ for storing most kinds of data.
+- **Non-Blocking**: Refers to code that doesn't block the execution of the program. By using an event loop: takes long tasks, executed them in the "background", and puts them back in the main thread once they are finished.
+- **Dynamically-Typed**: In JavaScript we don't assign data types to variables, instead they only became known when the JavaScript engine executes our code. Also, the type of variables can easily be changed as we re-assign variables.
+- **Single-Threaded**: It has only one call stack that is used to execute the program. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
+- **Multi-Paradigm**: Meaning that it's so flexible and versatile that we can use all kind of different programming styles such as imperative and declarative programming, and these different styles are different ways to structure our code basically.
+- **First-class Functions**: In a language with first-class functions, functions are simply **treated as variables**. We can pass them into other functions, and return them from functions.
+- **Object-Oriented**: About the this nature, it is a prototype-based object-oriented approach. What does that mean?
+
+  1. Almost everything in JavaScript is an object except for primitive values: Have you ever wondered why we can create an array and then use the _push_ method on it for example? Well, it's because of the _prototypo inherintance_. Baically we create arrays from an array blueprint, which is like a template, and this is called the _prototype_; This prototype contains all the array methods, and the arrays we create in our code then inherit the methods from the blueprint so that we can use them on the arrays.
+
+- **Multi-paradigm**: A _paradigm_ is an approach and mindset of structuring code, which will direct your coding style and technique. Three popular paradigm are:
+
+  1. Procedural Programming
+  2. Object Oriented Programming (OOP)
+  3. Functional Programming (FP)s
+
+  They can be clasified between _imperative_ and _declarative_.
+
+- **Interpreted or _just-in-time_ compiled**: The computer processor only understands _0_ and _1_, which is also called _machine code_ and since it's not practical to write, we simply write human-readable JavaScript code which is an abstraction over machine code. But this code, eventually needs to be converted into machine code, and that step can be either compiling or interpreting. This step is neccesary in every programming language, which in JavaScript, it happens inside the JavaScript Engine.
+- **Garbage-collected**: It's basically an algorythim inside the JavaScript engine which automatically removes all unused objects from the computer memory.
 - **High-Level**: We don't have to worry about complex stuff such as managing the computer's memory while it runs our program. In JavaScript there are many of these so called _abstractions_ that we don't want to worry about. Those things make the language easier to write and learn.
 
 # Values and Variables
