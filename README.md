@@ -32,6 +32,9 @@
 - [Functions](#functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
 - [Execution Contexts And The Call Stack](#execution-contexts-and-the-call-stack)
+- [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
+- [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
+- [How the `this` keyword works](#how-the-this-keyword-works)
 
 # How to open the inspector tools in Chrome
 
@@ -762,3 +765,66 @@ Now, how will the engine keep track of the orderin which functions were called a
 <div align="center">
   <img src="./assets/cs.png" />
 </div>
+<br/>
+
+# Scoping and Scope In JavaScript
+
+_**Scoping**_: How our program's variables are **organized** and **accessed**. "Where do variables live?" or "Where can we access a certain variable, and where not?"
+
+_**Lexical Scoping**_: Scoping is controlled by **placement** of functions and blocks in the code. For example, a function that is written inside another function has access to the variables of the parent's function.
+
+_**Scope**_: Space or environment in which a certain variable is **declared** _(variable environment in case of functions)._ There is a **global** scope, **function** scope, and **block** scope.
+
+- _**Scope of a variable**_: Region of our cocde where a certain variable can be **accessed**.
+  <br/>
+
+## The 3 Types Of Scope
+
+<div align="center">
+  <img src="./assets/3_types_scope.png" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="./assets/scope_chain.png" />
+  <img src="./assets/scope_chain_1.png" />
+  <img src="./assets/scope_chain_2.png" />
+</div>
+<br />
+
+# Hoisting and Temporal Dead Zone
+
+- _**Hoisting**_: Makes some types of variables accesible/usable in the code before they are actually declared. "Variables lifted to the top of their scope".
+
+This takes place during the _creation phase_ of the execution context, and basically what happens behind the scenes is that, before execution, code is scanned for variable declarations, and for each variable, a new property is created in the **variable environment object**
+
+Hoisting does not work the same for all variable types
+
+<div align="center">
+  <img src="./assets/hoisting.png" />
+</div>
+<br />
+
+# How the `this` keyword works
+
+Special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the _this_ keyord is used. What's very important to understand is that the value of _this_ is **NOT** static. It depends on **how** the function is called, and its value is only assigned when the functions **is actually called.**
+
+Let's analyze 4 different ways in which functions can be called:
+
+1. **Method (As a function attached to an object) -> _`this` = Object that is calling the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
+
+<div align="center">
+  <img src="./assets/method_example.png" />
+</div>
+<br />
+
+2. **Simply function call -> `this` = undefined:** This is only valid for _strict mode_. So, if you're not in strict mode _this_ would actually point to the global object which in case of the browser is the window object.
+
+3. **Arrow functions -> this = _this_ of surrounding function (lexical `this`):** While they are not exactly a way of calling functions it's an important one that we need to consider. Remember: they do not get their own `this` keyword. Instead, if you use the `this` variable in an arrow function it would simply be the `this` keyword of the surrounding function (of the parent function). And in technical terms , this is called: The lexical keyword, because it simply get picked up from the outter lexical scope of the arrow function.
+
+4. Event listener -> `this` = DOM element that the handler function is attached to.
+
+5. Using the keywords _new, call, apply, bind_.
+
+What the `this` keyword is not: `this` would never point to the function itself, and also **NOT** point to the variable environment of the function.
