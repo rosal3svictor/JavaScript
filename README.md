@@ -35,6 +35,7 @@
 - [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
 - [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
 - [How the `this` keyword works](#how-the-this-keyword-works)
+- [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
 
 # How to open the inspector tools in Chrome
 
@@ -812,7 +813,7 @@ Special variable that is created for every execution context (every function). T
 
 Let's analyze 4 different ways in which functions can be called:
 
-1. **Method (As a function attached to an object) -> _`this` = Object that is calling the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
+1. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
 
 <div align="center">
   <img src="./assets/method_example.png" />
@@ -828,3 +829,21 @@ Let's analyze 4 different ways in which functions can be called:
 5. Using the keywords _new, call, apply, bind_.
 
 What the `this` keyword is not: `this` would never point to the function itself, and also **NOT** point to the variable environment of the function.
+
+# Regular Functions VS Arrow Functions
+
+```JavaScript
+const victor = {
+  firstName: 'Victor',
+  year: 1991,
+  calcAge: functions () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+  greet: () => console.log(`Hey ${this.firstName}`);
+};
+
+jonas.greet() // Will output 'Hey undefined' since the arrow functions don't get their own `this` keyword. They would simply use the `this` keyword from their surroundings. In other words, their parent's `this` keyword (Global Scope in this case, and this.firstName is also undefined)
+```
+
+# First-Class and Higer-Order Functions
