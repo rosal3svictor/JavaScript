@@ -832,7 +832,11 @@ What the `this` keyword is not: `this` would never point to the function itself,
 
 # Regular Functions VS Arrow Functions
 
+Pitfalls of the `this` keyword related to regular functions and arrow functions:
+
 ```JavaScript
+1st Pitfall
+
 const victor = {
   firstName: 'Victor',
   year: 1991,
@@ -846,4 +850,51 @@ const victor = {
 jonas.greet() // Will output 'Hey undefined' since the arrow functions don't get their own `this` keyword. They would simply use the `this` keyword from their surroundings. In other words, their parent's `this` keyword (Global Scope in this case, and this.firstName is also undefined)
 ```
 
+```JavaScript
+2nd Pitfall (When we have a `function` inside of a method)
+
+const victor = {
+  firstName: 'Victor',
+  year: 1991,
+  calcAge: functions () {
+    console.log(this);
+    console.log(2037 - this.year);
+
+    // Solution One
+    // const self = this; // To avoid the error we can do this.
+    // const isMillenial = function () {
+    //   console.log(self.year >= 1981 && self.year <= 1996)
+    //   //console.log(this.year >= 1981 && this.year <= 1996)
+    // }
+
+    // Solution Two -> The arrow function inherits the `this` keyword from the parent scope.
+    const isMillenial = () => {
+      console.log(self.year >= 1981 && self.year <= 1996)
+      //console.log(this.year >= 1981 && this.year <= 1996)
+    }
+    isMillenial(); // As it is a function call the `this` keyword is undefined.
+  },
+  greet: () => console.log(`Hey ${this.firstName}`);
+};
+jonas.greet()
+jonas.calcAge()
+```
+
+# Primitive vs Reference Value
+
+<div align="center">
+  <img src="./assets/primitiveVSreference.png" />
+</div>
+<br />
+
 # First-Class and Higer-Order Functions
+
+<div align="center">
+  <img src="./assets/fcFunctionsVShoFunctions.png" />
+</div>
+<br />
+
+Some people think they're the same thing, but they mean different things:
+
+1. First-Class Functions is just a feature that a programming language either has or does not have, all it means is that all functions are values, that's it. There are not first-class functions in practice, it's just a concept.
+2. There are, however, higher-order functions in practice which are posible because the language supports first-class functions.
