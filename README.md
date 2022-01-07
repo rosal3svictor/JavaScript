@@ -36,6 +36,9 @@
 - [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
 - [How the `this` keyword works](#how-the-this-keyword-works)
 - [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
+- [Primitive VS Reference Value](#primitive-vs-reference-value)
+- [Fist-Class and Higher-Order Functions](#first-class-and-higer-order-functions)
+- [Closures](#closures)
 
 # How to open the inspector tools in Chrome
 
@@ -898,3 +901,34 @@ Some people think they're the same thing, but they mean different things:
 
 1. First-Class Functions is just a feature that a programming language either has or does not have, all it means is that all functions are values, that's it. There are not first-class functions in practice, it's just a concept.
 2. There are, however, higher-order functions in practice which are posible because the language supports first-class functions.
+
+# Closures
+
+I'll start by defining a new function called `secureBooking` and is this function that would create the `closure`. Now, the first thing that I have to tell you about the `closures` is that they're not a feature that we explicitly use so, we don't create them manually like we create a new array or a new function. A closure simply happens automatically in certains situations, we just need to recognize them.
+
+```JavaScript
+  const secureBooking = function() {
+    let passengerCount = 0;
+
+    return function() {
+      passengerCount++;
+      console.log(`${passengerCount} passengers`);
+    }
+  }
+
+  const booker = secureBooking();
+
+  booker();
+  booker();
+  booker();
+```
+
+<div align="center">
+  <img src="./assets/closures1.png" />
+</div>
+<br />
+
+<div align="center">
+  <img src="./assets/closures2.png" />
+</div>
+<br />
