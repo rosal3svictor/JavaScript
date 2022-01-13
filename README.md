@@ -39,6 +39,8 @@
 - [Primitive VS Reference Value](#primitive-vs-reference-value)
 - [Fist-Class and Higher-Order Functions](#first-class-and-higer-order-functions)
 - [Closures](#closures)
+- [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
+- [Working with arrays](#working-with-arrays)
 
 # How to open the inspector tools in Chrome
 
@@ -932,3 +934,16 @@ I'll start by defining a new function called `secureBooking` and is this functio
   <img src="./assets/closures2.png" />
 </div>
 <br />
+
+# Data Transformations map, filter, reduce
+
+<div align="center">
+  <img src="./assets/dataTransformations.png" />
+</div>
+<br />
+
+# Working with arrays
+
+<div>
+  <img src="./assets/arrayMethods.png" />
+</div>
