@@ -41,6 +41,9 @@
 - [Closures](#closures)
 - [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
 - [Working with arrays](#working-with-arrays)
+- [What is Object Oriented Programming](#what-is-object-oriented-programming)
+  1. [Classes and instances](#classes-and-instances)
+  2. [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
 
 # How to open the inspector tools in Chrome
 
@@ -947,3 +950,50 @@ I'll start by defining a new function called `secureBooking` and is this functio
 <div>
   <img src="./assets/arrayMethods.png" />
 </div>
+
+# What is Object Oriented Programming
+
+OOP, in short, is a programming paradigm (style of code, "how" we write and organize the code) based on the concept of objects.
+
+We use objects to **model** (describe) real-world (user or TO-DO list item) or abstract features (HTML component or data structure).
+
+Objects may contain data (properties) and code (methods). By using objects, we pack **data and the corresponding behaviour** into one block.
+
+<div align="center">
+  <img src="./assets/dataAndBehaviour.png" />
+</div>
+<br />
+
+In OOP, objects are **self-contained** pieces/blocks of code.
+
+Objects are **building blocks** of applications, and **interact** with one another.
+
+Interactions happen througha **public interface** (API): methods that the code **outside** of the object can access and use to communicate with the object.
+
+OOP was developed with the goal of **organizing** code,to make it **more flexible and easier to maintain** (avoid "spaghetti code").
+
+# Classes and instances
+
+In OOP we actually need a way to create new objects from our code and to do that, in traditional OOP, we use something called **classes**. Yoy can think of a class as a blueprint from which we can create new objects based on the rules described in the class. We call all objects created through a class **instances of that class**, they're real objects we can use in our code which were created from a class and the class itself is not an object.
+
+<div align="center">
+  <img src="./assets/instances.png" />
+</div>
+<br />
+
+# The 4 fundamental OOP principles
+
+How do we actually design classes? How do we model real-world data into classes?
+
+1. Abstraction: Ignoring or hiding details that **don't matter**, allowing us to get an **overview** perspective of the _thing_ we're implementing, instead of messing with details that don't really matter to our implementation.
+
+<div align="center">
+  <img src="./assets/abstraction.png" />
+</div>
+<br />
+
+Abstraction is very important in programming in general. In fact, we create and use abstraction all the time. For example, take de _window.addEventListener_ method that we use all the time, do we actually know how exactly it works behind the scenes? Well, we don't. And, do we care? No, not really, and we don't have to because, once more, the low-level details about how exactly it works has been extracted away from us. We are simply the user, so we can simply use that function without completely understanding it and without having to implement it ourselves.
+
+2. Encapsulation:
+3. Inheritance:
+4. Polymorphism:
