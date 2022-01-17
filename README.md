@@ -985,15 +985,36 @@ In OOP we actually need a way to create new objects from our code and to do that
 
 How do we actually design classes? How do we model real-world data into classes?
 
-1. Abstraction: Ignoring or hiding details that **don't matter**, allowing us to get an **overview** perspective of the _thing_ we're implementing, instead of messing with details that don't really matter to our implementation.
+1. **Abstraction**: Ignores or hides details that **don't matter**, allowing us to get an **overview** perspective of the _thing_ we're implementing, instead of messing with details that don't really matter to our implementation.
 
 <div align="center">
   <img src="./assets/abstraction.png" />
 </div>
 <br />
 
-Abstraction is very important in programming in general. In fact, we create and use abstraction all the time. For example, take de _window.addEventListener_ method that we use all the time, do we actually know how exactly it works behind the scenes? Well, we don't. And, do we care? No, not really, and we don't have to because, once more, the low-level details about how exactly it works has been extracted away from us. We are simply the user, so we can simply use that function without completely understanding it and without having to implement it ourselves.
+Abstraction is very important in programming in general. In fact, we create and use abstraction all the time. For example, take de _window.addEventListener_ method that we use all the time, do we actually know how exactly it works behind the scenes? Well, we don't. And, do we care? No, not really, and we don't have to because, once more, the low-level details about how exactly it works has been extracted away from us. We are simply the user, so we can simply use that function without completely understanding it and without having to implement it ourselves. So, that's _abstraction_ that actually blends in with the next principle which is
 
-2. Encapsulation:
-3. Inheritance:
-4. Polymorphism:
+2. **Encapsulation**: Keeps properties and methods **private** inside the class, so they are **not accessiblble from outside the class**. Some methods can be **exposed** as a public interface (API). By having this critical properties nicely encapsulated like this we prevent external code from accidentally manipulating internal properties/state (object data). This is really important, because allowing external code to manipulate internal state directly can cause many kinds of bugs, specially in large code bases at developer teams.
+
+Now, as you see, there's also a privata method here, again it's not accessible from outside the class but, it's used internally. So, we want no one else outside of the class to be able to use this method (we don't basically make it part of the public interface). The public interface is essentially all the methods that are not _private (that are not encapsulated)_. Making methods _private_ makes it easier for us to change our code without breaking code from the outside which might rely on some of these methods.
+
+<div align="center">
+  <img src="./assets/encapsulation.png" />
+</div>
+<br />
+
+3. **Inheritance**:
+
+Let's say que have these two classes, _user_ and _admin_, and as we can see they have actually a lot in common. In fact, _admin_, has all the properties and methods that user has, and that makes sense because if you think about it and _admin_ is also a _user_ so, an _admin_ also nees a password, and email, and also needs to log in, for example. However, if we design our classes like this, as two separate entities we'll end up with a lot of duplicate code, and we know that that's bad. But well, that when _inheritance_ comes into play. So, in OOP, when we have two classes that are closely , like _user_ and _admin_ here, we can one class inherit from another, so we would have a _parent class_ and a _child class_, having the child class exteding the parent class. What all of this mean? well, basically a child class inherits all the properties and methods from its parent class. In more formal terms: **_Inheritance_** makes all properties and methods of a certain class **available to a child class**, forming a hierarchical relationship between classes. This allows us to **reuse commom logic** and to model real-world relationships.
+
+<div align="center">
+  <img src="./assets/inheritance.png" />
+</div>
+<br />
+
+4. **Polymorphism**: It sounds a bit weird, which is because it comes from greek where it literally means _many shapes_. Now, in the context of OOP, it means that a child class can **overwrite** a method it inherited from a parent class (it's more complex than that, but enough for our purposes)
+
+<div align="center">
+  <img src="./assets/polymorphism.png" />
+</div>
+<br />
