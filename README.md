@@ -44,6 +44,7 @@
 - [What is Object Oriented Programming](#what-is-object-oriented-programming)
   1. [Classes and instances](#classes-and-instances)
   2. [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
+  3. [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
 
 # How to open the inspector tools in Chrome
 
@@ -1016,5 +1017,48 @@ Let's say que have these two classes, _user_ and _admin_, and as we can see they
 
 <div align="center">
   <img src="./assets/polymorphism.png" />
+</div>
+<br />
+
+# How does OOP actually works in JavaScript
+
+We have something called **_prototypes_**, and all objects are **linked** to a prototype object. So, we say that each object has a prototype.
+
+And now here, comes the magic: the prototype object contains methods and properties that all the objects that are linked to that prototype can access and use, and this behaviour is usually called **_prototypal inheritance_**. Basically, objects inherit methods and properties from the prototype which is the reason this mechanism is called _prototypal inheritance_, just note that this inheritance is different from the inheritance we talked about in a previous step, that was one class inherinting from another class. But, in this case, it's basically an instance inheriting from a class. We can also say that objects delegate behaviour to the linked prototype object, and behaviour is just another term for methods.
+
+So, besides **_prototypal inheritance_** we also call this mechanism **_delegation_**. And that's also the reason why this arrow is pointing upwards because technically objects delegate their behaviour to the prototype.
+
+On the other hands, in clasical OOP with classes, the behaviour (the methods) are copied from the class to the objects and so, that's completely different.
+
+How do we implement OOP in JavaScript in practice?
+
+1. Constructor Functions:
+
+```Text
+- Technique to create objects from a functions, which will also set the new object prototype.
+- This is how 'built-in' objects like Arrays, Maps or Sets are actually implemented. Actually, this is how OOP has been done in JavaScript basically since the beginning.
+```
+
+2. ES6 Classes:
+
+```Text
+- Modern alternative to constructor function syntax.
+- 'Syntactic sugar': behind the scenes, ES6 classes work exactly like constructor functions.
+- ES6 classes do NOT behave like classes in 'classical OOP'
+```
+
+3. Object.create()
+
+```Text
+- The easiest and most straightforward way of linking an object to a ptototype object.
+```
+
+<div align="center">
+  <img src="./assets/prototypalInheritance.png" />
+</div>
+<br />
+
+<div align="center">
+  <img src="./assets/prototypeChain.png" />
 </div>
 <br />
