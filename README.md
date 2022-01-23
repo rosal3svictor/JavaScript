@@ -61,28 +61,37 @@ JavaScript is a high-level, prototype-based object oriented, multi-paradigm, int
 Let's deconstruct this to make a little more sense:
 
 - **Programming Language**: It's a tool that allow us to write code that will instruct a computer to do something.
-- **Concurrent**: Means multiple computations are happening at the same time.
-- **Asynchronous**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
-- **Non-Blocking**: Refers to code that doesn't block the execution of the program. By using an event loop: takes long tasks, executed them in the "background", and puts them back in the main thread once they are finished.
-- **Dynamically-Typed**: In JavaScript we don't assign data types to variables, instead they only became known when the JavaScript engine executes our code. Also, the type of variables can easily be changed as we re-assign variables.
-- **Single-Threaded**: It has only one call stack that is used to execute the program. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
-- **Multi-Paradigm**: Meaning that it's so flexible and versatile that we can use all kind of different programming styles such as imperative and declarative programming, and these different styles are different ways to structure our code basically.
-- **First-class Functions**: In a language with first-class functions, functions are simply **treated as variables**. We can pass them into other functions, and return them from functions.
-- **Object-Oriented**: About the this nature, it is a prototype-based object-oriented approach. What does that mean?
+- **High-Level**: Every program that runs on your computer needs som hardware resources such as memory, and a CPU to do it's work. Now, there are low-level languages such as _C_, where you have to manually manage these resources. For example, asking the computer for memory to create a new variable. On the other hand, you have high-level languages such as _JavaScript or Python_ where we don't have to manage resuources at all, because these languages have so called **_abstractions_** that take all of that work away from us. Those things make the language easier to write and learn but, the downside is that program would never be as fast or as optimized as _C_ programs.
+- **Garbage-collected**: This is one of the powerful tools that takes _Memory Management_ away from us. It's basically an algorythm inside the JavaScript engine which automatically removes all unused objects from the computer memory in order not to clog it up with unneccesary stuff. So, it's a little bit like JavaScript has a cleaning guy who cleans out memory from time to time so that we don't have to do it manually in our code.
+- **Interpreted or _just-in-time_ compiled**: The computer processor only understands _0_ and _1_, which is also called _machine code_ and since it's not practical to write, we simply write human-readable JavaScript code which is an abstraction over machine code. But this code, eventually needs to be translated to machine code, and that step can be either compiling or interpreting. This step is neccesary in every programming language, which in JavaScript, it happens inside the JavaScript Engine.
+- **Multi-Paradigm**: In programming, a **_paradigm_** is an approach and mindset of structuring our code, which will direct your coding style and technique. Three popular paradigm are:
 
-  1. Almost everything in JavaScript is an object except for primitive values: Have you ever wondered why we can create an array and then use the _push_ method on it for example? Well, it's because of the _prototypo inherintance_. Baically we create arrays from an array blueprint, which is like a template, and this is called the _prototype_; This prototype contains all the array methods, and the arrays we create in our code then inherit the methods from the blueprint so that we can use them on the arrays.
-
-- **Multi-paradigm**: A _paradigm_ is an approach and mindset of structuring code, which will direct your coding style and technique. Three popular paradigm are:
-
-  1. Procedural Programming
+  1. Procedural Programming: It's a programming paradigm built around the idea that programs are sequences of instructions to be executed. They focus heavily on splitting up programs into named sets of instructions called procedures, analogous to functions.
   2. Object Oriented Programming (OOP)
   3. Functional Programming (FP)s
 
-  They can be clasified between _imperative_ and _declarative_.
+They can be clasified between _imperative_ and _declarative_.
 
-- **Interpreted or _just-in-time_ compiled**: The computer processor only understands _0_ and _1_, which is also called _machine code_ and since it's not practical to write, we simply write human-readable JavaScript code which is an abstraction over machine code. But this code, eventually needs to be converted into machine code, and that step can be either compiling or interpreting. This step is neccesary in every programming language, which in JavaScript, it happens inside the JavaScript Engine.
-- **Garbage-collected**: It's basically an algorythim inside the JavaScript engine which automatically removes all unused objects from the computer memory.
-- **High-Level**: We don't have to worry about complex stuff such as managing the computer's memory while it runs our program. In JavaScript there are many of these so called _abstractions_ that we don't want to worry about. Those things make the language easier to write and learn.
+JavaScript is so flexible and versatile that we can use all kind of different programming styles such as imperative and declarative programming, and these different styles are different ways to structure our code basically.
+
+- **Object-Oriented**: About the this nature, it is a prototype-based object-oriented approach. What does that mean?
+
+  1. Almost everything in JavaScript is an object except for primitive values. Now, have you ever wondered why we can create an array and then use the _push_ method on it for example? Well, it's because of the _prototypal inherintance_. Baically we create arrays from an array blueprint, which is like a template, and this is called the _prototype_; This prototype contains all the array methods, and the arrays we create in our code then inherit the methods from the blueprint, so that we can use them on the arrays.
+
+- **First-class Functions**: In a language with first-class functions, functions are simply **treated as regular variables**. We can pass them into other functions, and return them from functions.
+- **Dynamically-Typed**: In JavaScript we don't assign data types to variables, instead they only became known when the JavaScript engine executes our code. Also, the type of variables can easily be changed as we re-assign variables.
+
+What is a **_concurrency model?_** Well, it's just a fancy name that means how the JavaScript Engine handles multiple tasks happening at the same time.
+
+Why do we need that? Because JavaScript itself runs in one **single-thread**, which means that it can only do one thing at a time. (In computing, a **_thread_** is a set of instructions that is executed in the computer's CPU. So, basically, the thread is where our code is executed in a machine's processor)
+
+Okay but what about if there's a long-running task (like fetching data from a remote server)? it sound like it would block the single thread. However, we want non-blocking behaviour.
+
+How do we achieve that? By using an **event loop**: takes long running tasks, executes them in the "background", and puts them back in the main thread once they're finished.
+
+- **Single-Threaded**: It has only one call stack that is used to execute the program. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
+- **Non-Blocking**: Refers to code that doesn't block the execution of the program. By using an event loop: takes long tasks, executed them in the "background", and puts them back in the main thread once they are finished.
+- **Asynchronous**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
 
 # Values and Variables
 
