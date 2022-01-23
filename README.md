@@ -81,17 +81,12 @@ JavaScript is so flexible and versatile that we can use all kind of different pr
 - **First-class Functions**: In a language with first-class functions, functions are simply **treated as regular variables**. We can pass them into other functions, and return them from functions.
 - **Dynamically-Typed**: In JavaScript we don't assign data types to variables, instead they only became known when the JavaScript engine executes our code. Also, the type of variables can easily be changed as we re-assign variables.
 
-What is a **_concurrency model?_** Well, it's just a fancy name that means how the JavaScript Engine handles multiple tasks happening at the same time.
+What is a **_concurrency model?_** Well, it's just a fancy name that means how the JavaScript Engine handles multiple tasks happening at the same time. Okay, that's cool but, why do we need that?
 
-Why do we need that? Because JavaScript itself runs in one **single-thread**, which means that it can only do one thing at a time. (In computing, a **_thread_** is a set of instructions that is executed in the computer's CPU. So, basically, the thread is where our code is executed in a machine's processor)
+- **Single-Threaded**: JavaScript has only one call stack that is used to execute the program, which means that it can only do one thing at a time. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
 
-Okay but what about if there's a long-running task (like fetching data from a remote server)? it sound like it would block the single thread. However, we want non-blocking behaviour.
-
-How do we achieve that? By using an **event loop**: takes long running tasks, executes them in the "background", and puts them back in the main thread once they're finished.
-
-- **Single-Threaded**: It has only one call stack that is used to execute the program. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
-- **Non-Blocking**: Refers to code that doesn't block the execution of the program. By using an event loop: takes long tasks, executed them in the "background", and puts them back in the main thread once they are finished.
-- **Asynchronous**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
+- **Non-Blocking**: Refers to code that doesn't block the execution of the program. What about if there's a long-running task (like fetching data from a remote server)? it sound like it would block the single thread. However, we want non-blocking behaviour. Then, how do we achieve that? By using an **event loop**: takes long running tasks, executes them in the "background", and puts them back in the main thread once they're finished.
+  - **Asynchronous Code Definition**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
 
 # Values and Variables
 
