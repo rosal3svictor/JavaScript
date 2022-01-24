@@ -95,7 +95,7 @@ What is a **_concurrency model?_** Well, it's just a fancy name that means how t
 
 # Variable Naming Conventions
 
-1. They must be written using camelCase notation. Important: Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names is for a specific use case which is Object Oriented Programming.
+1. They must be written using camelCase notation. Important: Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names are for a specific use case which is Object Oriented Programming.
 2. You cannot use keywords from the language such as `new` or `function`.
 3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them, but they cannot start with a number.
 4. Declare only constants using all uppercase letters (it's a convention).
