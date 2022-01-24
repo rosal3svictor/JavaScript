@@ -139,7 +139,7 @@ Another expressions we can use are: _**Objects and arrays**_. On each position o
                       });
 ```
 
-3. **Objec Properties**:
+3. **Object Properties**:
 
 ```JavaScript
                           let unaVariable;
