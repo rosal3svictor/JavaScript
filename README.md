@@ -125,9 +125,9 @@ Let's suppose we have to assign a value to a variable, how do you think we can c
 
 ```
 
-we can also use certain _reserved words_ of the language like _this_, or the name of other variable. All of them are _**primary expressions**_ since with a single word we are producinga single value.
+we can also use certain _reserved words_ of the language like _this_, or the name of other variable. All of them are _**primary expressions**_ since with a single word we are producing a single value.
 
-Another expressions we can use are: _**Objects and arrays**_. On each position of the array we have to define a _**value**_, or something that _**produces a value**_, an expression. The same happens with the object: keys are generally string that do not need _quotes ('', "")_ if the dont have _blank spaces_ in between, and its values are expressions.
+Another expressions we can use are: _**Objects and arrays**_. On each position of the array we have to define a _**value**_, or something that _**produces a value**_, an expression. The same happens with the object: keys are generally strings that do not need _quotes ('', "")_ if the dont have _blank spaces_ in between, and its values are expressions.
 
 2. **Function Expressions**:
    When we write a function in the part of the code where we're expecting a value.
