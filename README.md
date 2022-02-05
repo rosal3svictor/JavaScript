@@ -66,9 +66,26 @@ Let's deconstruct this to make a little more sense:
 - **Interpreted or _just-in-time_ compiled**: The computer processor only understands _0_ and _1_, which is also called _machine code_ and since it's not practical to write, we simply write human-readable JavaScript code which is an abstraction over machine code. But this code, eventually needs to be translated to machine code, and that step can be either compiling or interpreting. This step is neccesary in every programming language, which in JavaScript, it happens inside the JavaScript Engine.
 - **Multi-Paradigm**: In programming, a **_paradigm_** is an approach and mindset of structuring our code, which will direct your coding style and technique. Three popular paradigm are:
 
-  1. Procedural Programming: It's a programming paradigm built around the idea that programs are sequences of instructions to be executed. They focus heavily on splitting up programs into named sets of instructions called procedures, analogous to functions.
-  2. Object Oriented Programming (OOP)
-  3. Functional Programming (FP)s
+  1. Procedural Programming:
+
+  It's a programming paradigm built around the idea that programs are sequences of instructions to be executed. They focus heavily on splitting up programs into named sets of instructions called procedures, analogous to functions.
+
+  2. Object Oriented Programming (OOP):
+
+  Object-oriented programming is a programming paradigm that organizes data and the software structure based on the concept of classes and objects.
+
+  Classes are a set of instructions (or blueprints) that establish a data structure for a specific object, determining what the object will contain (the types of variables that can exist in an object) and how it will behave (the methods or member functions that define how to operate on the variables). Thus, objects are instances of classes since classes work as "templates" to create objects. Plus, objects can contain data in the form of fields (also known as attributes) and code in the form of procedures (also named methods).
+
+  3. Functional Programming (FP)s:
+
+  It's a method of writting applications by using **functions** that avoid **shared state and mutable data**. It is an **essential concept in JavaScript**.
+
+  When talking about functional JavaScript, **4 main concepts** should come to mind:
+
+  1. **_Pure functions_**: Functions that return the same output given a specific input.
+  2. **_Higher-Order Functions_**: Functions that receive another function as a parameter or have a function as a return value.
+  3. **_Avoiding Side Effects_**: Side Effects are mutations or actions that happen in our code that we cannot keep into account or predict
+  4. **_First-Class Objects_**: JavaScript functions are actually objects, meaning we can work with them the same as a variable; assign them to a variable, pass them as argument, return them, include them in different data structures.
 
 They can be clasified between _imperative_ and _declarative_.
 
