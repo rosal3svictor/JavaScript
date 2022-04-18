@@ -109,14 +109,24 @@ What is a **_concurrency model?_** Well, it's just a fancy name that means how t
 
 # Values and Variables
 
-- **Value**: It's basically a piece of data so, it's the most fundamental unit of information that we have in programming.
-- **Variable**: Imagine a box, within it you can hold some object, for example a book, and we can then write a label on the box to describe what's in it. Later on, when needed, we can find that object by using the label.
+- **Value**: It's basically a piece of data so, it's the most fundamental unit of information that we have in programming. For example:
+
+```JavaScript
+'Victor'
+23
+```
+
+- **Variable**: Imagine a box (space in memory), within it you can hold some object, for example a book, and we can then write a label on the box to describe what's in it. Later on, when needed, we can find that object by using the label.
+
+```JavaScript
+let firstName = 'Victor';
+```
 
 # Variable Naming Conventions
 
 1. They must be written using camelCase notation. Important: Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names are for a specific use case which is Object Oriented Programming.
 2. You cannot use keywords from the language such as `new` or `function`.
-3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them, but they cannot start with a number.
+3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them, and they cannot start or use any special character.
 4. Declare only constants using all uppercase letters (it's a convention).
 5. Always make **descriptive** the name for variables so, it provides a notion of what it holds.
 
