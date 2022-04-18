@@ -52,7 +52,9 @@ There are 3 ways to accomplish that:
 
 1. command + option + i (MacOS), control + alt + i (Windows)
 2. right click and then select option "inspect"
-3. On Chrome: Click on view -> developer -> inspect elements.
+3. **On Chrome**: Click on View -> Developer -> Developer Tools
+4. **On Firefox**: Click on Tools -> Browser Tools -> Developer Tools
+5. **On Microsoft Edge**: Click on Tools -> Developer -> Developer Tools
 
 # Brief introduction to JavaScript
 
