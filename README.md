@@ -83,6 +83,7 @@ Extra Important Official References
 - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 - [Types Of Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#operators)
 - [Operator Precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+- [Template literals (Template strings)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
 # How to open the inspector tools in Chrome
 
@@ -504,8 +505,6 @@ Declarations with `var` are hoisted but, with `let` and `const` variables go int
 `let` we'll use it to convey that a variable can be re-assigned. In general, we use it to **iterate over for loops** or when there's no other option.
 
 `var` doesn't tell us that much. It won't give us any signal about how the variables should be used. It can represent either a constant or a variable that can be re-assigned. It could serve to declare variables inside a block or a function, which is confusing and highly prone to introduce bugs.
-
-``
 
 # Data Types
 
