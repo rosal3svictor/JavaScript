@@ -18,6 +18,15 @@
 - [Values and Variables](#values-and-variables)
 - [Variable Naming Conventions](#variable-naming-conventions)
 - [Statements and Expressions](#statements-and-expressions)
+- [VAR, LET or CONST: Which should I use?](#var-let-or-const-which-should-i-use)
+  - [Compatibility](#compatibility)
+  - [Scope](#scope)
+  - [Reassignment](#reassignment)
+  - [Redeclaration](#redeclaration)
+  - [Declaration Without Initial Value](#declaration-without-initial-value)
+  - [Global Object Property](#global-object-property)
+  - [Hoisting](#hoisting)
+  - [Conslusion](#conslusion)
 - [Data Types](#data-types)
   - [Primitive Types](#primitive-types)
     - [String](#string)
@@ -235,6 +244,266 @@ Now, this difference between expressions and statements is important to know bec
     console.log(`I'm ${if (23 > 10) const str = "23 is bigger"} years old.`);
     // This 👆🏻 won't work. It doesn't even make sense to do something like that.
 ```
+
+# VAR, LET or CONST: Which should I use?
+
+In order to follow the best approach, you should be using them exactly on this order:
+
+```JavaScript
+  const > let > var
+```
+
+Now, let's compare their main caracteristics so you can really understand why we should use `const` over `let` and `let` over `var`.
+
+## Compatibility
+
+`var` is the old way to declare variables, since it is present from the beginning of the language (1995). Now, since `ES2015`, it was introduced `let` and `const` as alternatives to declare variables in order to solve the problem that `var` has.
+
+Can we just use `let` and `const` without overthinking?
+
+if we check the compatibility of both of them on the site [https://caniuse.com/](https://caniuse.com/):
+
+- [let](https://caniuse.com/?search=let)
+- [const](https://caniuse.com/?search=const)
+
+we'll see that we can use them in majority of the modern web browsers without any issue except for `Opera Mini` which currentlt has incompatibilities. And in `Node.js` they can use used from the version `6.4.0`
+
+- [let](https://node.green/#ES2015-bindings-let)
+- [const](https://node.green/#ES2015-bindings-const)
+
+To summarize, `var` can be used on any evnironment but `let` and `const` have incompatibilities with certain version of browsers (in case we're using babel to compile our projects we are covered)
+
+## Scope
+
+Variables declared with `var` have `function scope`
+
+```JavaScript
+function greet() {
+  var name = 'Victor';
+  console.log(`Hola ${name}`);
+}
+```
+
+in this example, `name` is only `accesible` inside `greet funciton`. We can't do this
+
+```JavaScript
+function greet() {
+  var name = 'Victor';
+  console.log(`Hola ${name}`);
+}
+
+console.log(name)
+```
+
+since it will throw
+
+```
+ReferenceError: name is not defined"
+```
+
+Variables declared with `let` and `const` are going to have a `block scope`. Which means, every portion of code surrounded by `{}`
+
+```JavaScript
+function divide() {
+  let result = [];
+
+  for (let i=0; i < numbers.length; i++) {
+    let number = numbers[i];
+    let half = numero / 2;
+    result.push(half);
+  }
+
+  return result;
+}
+```
+
+the good thing about them is that in the case we have the same variable declared in different blocks of code
+
+```JavaScript
+function divide() {
+  let result = [];
+  let number = 42;
+
+  for (let i=0; i < numbers.length; i++) {
+    let number = numbers[i];
+    let half = numero / 2;
+    result.push(half);
+  }
+
+  console.log('number ', number); // 42
+
+  return result;
+}
+```
+
+we will not lose the value of the first one. But, in case we want to access any of the variables inside the `for loop` outside, this is what's going to happen
+
+```JavaScript
+function divide() {
+  let result = [];
+  let number = 42;
+
+  for (let i=0; i < numbers.length; i++) {
+    let number = numbers[i];
+    let half = numero / 2;
+    result.push(half);
+  }
+
+  console.log('number ', number); // 42
+  console.log('half ', half); // ReferenceError: half is undefined.
+
+  return result;
+}
+```
+
+## Reassignment
+
+Varibles declared with `const` can't be re-assigned. `cont` serves to declare variable in a `block scope` that can't be re-assigned.
+
+```JavaScript
+const name = 'Victor';
+name = 'John'; // TypeError: Assignment to constant variable
+```
+
+it is a `constant variable` but heads up: the fact the is a constant <u>doesn't mean</u> that is immutable. As you may recall, `primitive values are immutable`, they're just values.
+
+## Redeclaration
+
+What would happen if inside a scope we re-declare a variable with an existing name?
+
+In case we do it with `var`, nothing will happen
+
+```JavaScript
+functios greet(name) {
+  var greeting = 'Hola';
+  var greeting = 'Hello';
+
+  console.log(`${greeting} ${name}`);
+}
+```
+
+but is case we use `let` or `const` instead, this is what will happen
+
+```JavaScript
+functios greet(name) {
+  let greeting = 'Hola';
+  let greeting = 'Hello';
+  // SyntaxError: Identifier 'greeting' has already been declared.
+
+  console.log(`${greeting} ${name}`);
+}
+
+functios greet(name) {
+  const greeting = 'Hola';
+  const greeting = 'Hello';
+  // SyntaxError: Identifier 'greeting' has already been declared.
+
+  console.log(`${greeting} ${name}`);
+}
+```
+
+what we **can do** is to declare another variable with the same name but `inside another scope`
+
+```JavaScript
+functios greet(name) {
+  let greeting = 'Hola';
+
+  if (name === 'Victor') {
+    let greeting = 'Hello';
+    console.log(`Here the greeting ${greeting}, ${nombre}`);
+  }
+
+  console.log(`${greeting} ${name}`);
+}
+```
+
+## Declaration Without Initial Value
+
+In case we declare a variable by using `var` or `let` without defining it, by default, JavaScript will assign the value `undefined` to it.
+
+As you may know, we can not assign a new value to variables declared with `const`, essentially because of its nature, they are `constants`, and it doesn't make sense to declare a constant without a value because we won't be able to assign it one.
+
+```JavaScript
+const name;
+name = 'Victor'; // This can't be done
+```
+
+However, JavaScript won't let us declare a constant without assigning it a value. It will be thown this error
+
+```
+SyntaxError: Missing initializer in const declaration
+```
+
+## Global Object Property
+
+If we declare a globally a variable using `var`
+
+```JavaScript
+var name = 'Victor';
+name === window.name // true
+```
+
+this will be added as a property of the Global Object `Window`.
+
+In the case of `let` or `const`
+
+```JavaScript
+let name = 'Victor';
+```
+
+```JavaScript
+const name = 'Victor';
+```
+
+they will be globally declared if we defined them outside of all blocks of code or functions but they won't be added as properties of the Global Object `Window`.
+
+## Hoisting
+
+`Hoisting` in Spanish translates into `Elevación`, and in JavaScript when we use that term, generally we refer that when we declare variables with `var` inside of a function, it doesn't matter where in the code we've done it, the JavaScript interpreter will do this: It will separate the variable declaration and it's going to elevate to where the scope starts, but just its declararion, its assginment will be left in the same place, as follows
+
+<div align="center">
+  <img src="./assets/var_hoisting.png" alt="VAR Hoisting"/>
+</div>
+
+this is something internally done by the interpreter at runtime, it's just the way JavaScript reads the code.
+
+If we'd like, we would access the variable before its initialization and we'd see its value. It is one of the strangest parts that JavaScript has and that can cause confusion.
+
+With the variables delcared with `let` and `const` the `Hoisting` works differently. We can't access the variable before its initialization, if we attempt it we'll get this error
+
+```JavaScript
+console.log(name);
+const name = 'Victor';
+// ReferenceError: Cannt access 'name' before initialization
+```
+
+and what would happen on this case? when the `console.log(name)` is read
+
+```JavaScript
+const name = 'Victor';
+
+if (true) {
+  console.log(name);
+  const name = 'Peter';
+}
+// ReferenceError: Cannt access 'name' before initialization
+```
+
+what happens in the case of `let` and `const` is that the interpreter is going to read our code and it's also going to separate the variable declaration and elevate it of the start of the scope where it belongs but, they won't be defined as `undefined` but instead, they will be **_marked_** as **_uninitialized_**. Something also different is that the block that is composed by all the lines of code that go from the beginning of the block until the line where variables are initialized, is called `Temporal Dead Zone`. That means that we won't to be able to access a variable before its declaration.
+
+And this is another reason why we should use `let` and `const` over `var`. The `hoisting` is a very strange behavior, in which case would we want to access a variable that hasn't been declared yet?
+
+Declarations with `var` are hoisted but, with `let` and `const` variables go into the TDZ from the beginning of the block until the line of code where declaration takes place.
+
+## Conslusion
+
+`const` it's a signal that a particular variable can't be re-assigned. It's going to force us to write a **cleaner code.**
+
+`let` we'll use it to convey that a variable can be re-assigned. In general, we use it to **iterate over for loops** or when there's no other option.
+
+`var` doesn't tell us that much. It won't give us any signal about how the variables should be used. It can represent either a constant or a variable that can be re-assigned. It could serve to declare variables inside a block or a function, which is confusing and highly prone to introduce bugs.
+
+``
 
 # Data Types
 
