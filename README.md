@@ -82,6 +82,7 @@ Extra Important Official References
 - [General JavaScript guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#general_javascript_guidelines)
 - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 - [Types Of Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#operators)
+- [Operator Precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
 # How to open the inspector tools in Chrome
 
