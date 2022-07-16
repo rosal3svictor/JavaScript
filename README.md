@@ -20,26 +20,26 @@
 - [Statements and Expressions](#statements-and-expressions)
 - [Data Types](#data-types)
   - [Primitive Types](#primitive-types)
-    - [String:](#string)
-    - [Number:](#number)
-    - [Boolean:](#boolean)
-    - [Null:](#null)
-    - [Undefined:](#undefined)
-    - [Symbol: To be reviewed](#symbol-to-be-reviewed)
-    - [BigInt:](#bigint)
+    - [String](#string)
+    - [Number](#number)
+    - [Boolean](#boolean)
+    - [Null](#null)
+    - [Undefined](#undefined)
+    - [Symbol](#symbol)
+    - [BigInt](#bigint)
 - [Values vs References](#values-vs-references)
 - [Type Systems](#type-systems)
   - [Type checking](#type-checking)
   - [Type Requirement](#type-requirement)
   - [Type Conversion](#type-conversion)
     - [To a string (if the value is neither null nor undefined):](#to-a-string-if-the-value-is-neither-null-nor-undefined)
-    - [To a number:](#to-a-number)
-    - [To a boolean:](#to-a-boolean)
+    - [To a number](#to-a-number)
+    - [To a boolean](#to-a-boolean)
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-    - [**When to use (strict equality operator) === :**](#when-to-use-strict-equality-operator--)
-    - [**When to use (loose equality operator) == :**](#when-to-use-loose-equality-operator--)
+    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
@@ -67,55 +67,6 @@
   3. [Type conversion](#type-conversion)
   4. [Type equivalence or compatibility](#type-equivalence-or-compatibility)
   5. [TypeScript](#typeScript)
-
-- [How to open the inspector tools in Chrome](#how-to-open-the-inspector-tools-in-chrome)
-- [Brief introduction to JavaScript](#brief-introduction-to-javascript)
-- [Values and Variables](#values-and-variables)
-- [Variable Naming Conventions](#variable-naming-conventions)
-- [Statements and Expressions](#statements-and-expressions)
-- [Data Types](#data-types)
-  - [Primitive Types](#primitive-types)
-    - [String:](#string)
-    - [Number:](#number)
-    - [Boolean:](#boolean)
-    - [Null:](#null)
-    - [Undefined:](#undefined)
-    - [Symbol: To be reviewed](#symbol-to-be-reviewed)
-    - [BigInt:](#bigint)
-- [Values vs References](#values-vs-references)
-- [Type Systems](#type-systems)
-  - [Type checking](#type-checking)
-  - [Type Requirement](#type-requirement)
-  - [Type Conversion](#type-conversion)
-    - [To a string (if the value is neither null nor undefined):](#to-a-string-if-the-value-is-neither-null-nor-undefined)
-    - [To a number:](#to-a-number)
-    - [To a boolean:](#to-a-boolean)
-  - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
-  - [TypeScript](#typescript)
-- [== vs ===](#-vs-)
-    - [**When to use (strict equality operator) === :**](#when-to-use-strict-equality-operator--)
-    - [**When to use (loose equality operator) == :**](#when-to-use-loose-equality-operator--)
-- [Functions](#functions)
-- [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
-  - [Compilation VS Interpretation](#compilation-vs-interpretation)
-  - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
-  - [JavaScript Runtime](#javascript-runtime)
-- [Execution Contexts And The Call Stack](#execution-contexts-and-the-call-stack)
-  - [Execution Context In Detail](#execution-context-in-detail)
-- [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
-  - [The 3 Types Of Scope](#the-3-types-of-scope)
-- [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
-- [How the `this` keyword works](#how-the-this-keyword-works)
-- [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
-- [Primitive vs Reference Value](#primitive-vs-reference-value)
-- [First-Class and Higer-Order Functions](#first-class-and-higer-order-functions)
-- [Closures](#closures)
-- [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
-- [Working with arrays](#working-with-arrays)
-- [What is Object Oriented Programming](#what-is-object-oriented-programming)
-- [Classes and instances](#classes-and-instances)
-- [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
-- [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
 
 Extra Important Official References
 
@@ -322,7 +273,7 @@ They are basic, immutable values that contain neither methods nor properties.
           "Bocina"
 ```
 
-### String:
+### String
 
 1. They allows to represent texts in our programs.
 2. They are defined between 2 `doble` or `single` quotes. The important thing here is that we have to use them consistently `'string'` or `"string"` not `'string"`.
@@ -347,7 +298,7 @@ or concatenating it with the empty string
                                   29 + '' = '29'
 ```
 
-### Number:
+### Number
 
 They are so called floating point numbers, which means that they always have decimals even if we don't see them of define them.
 
@@ -438,19 +389,19 @@ it's a very special value in JavaScript, it's not equal to anything even itself
                             isFinite(Infinity) === false
 ```
 
-### Boolean:
+### Boolean
 
 It's a logical type which can only be _true_ or _false_
 
 1. Used for taking decisions.
 2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')
 
-### Null:
+### Null
 
 1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
 2. `Null` is a primitive data type even though that the typeof operator returns `object`.
 
-### Undefined:
+### Undefined
 
 1. It means _**unknown data type**_. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
 2. `Undefined` means:
@@ -459,9 +410,11 @@ It's a logical type which can only be _true_ or _false_
 - It was not received a param.
 - A function call finished without returning a value.
 
-### Symbol: To be reviewed
+### Symbol
 
-### BigInt:
+To be reviewed
+
+### BigInt
 
 1. It allows us to write integer numbers without limit.
 2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
@@ -675,7 +628,7 @@ var valor = true
 valor.toString() ---> "true"
 ```
 
-### To a number:
+### To a number
 
 ```
 +'1234' = 1234
@@ -686,7 +639,7 @@ valor.toString() ---> "true"
 
 _**NOTE: Either by implicit or explicit conversion, if a value is tried to be converted into a number and that operation cannot be resolved, we will obtain `NaN` as a result.**_
 
-### To a boolean:
+### To a boolean
 
 <div aign="center">
   <img src="./assets/img12.png" alt="image 12"/>
@@ -744,7 +697,7 @@ Is a typed superset of JavaScript that compiles to plain JavaScript, built and m
 
 JavaScript has two ways of comparing values but, they work differently. Now, when should I use any and why?
 
-### **When to use (strict equality operator) === :**
+### When to use (strict equality operator)
 
 We check both type and value equality.
 
@@ -761,7 +714,7 @@ NOTE:
 1. Strings are case sentitive, be careful with this.
 2. Strict equality operator is also known as identity operator: When we use it to compare objects, this operator tell us wheter we are referencing to the same space in memory, or to the same object in memory.
 
-### **When to use (loose equality operator) == :**
+### When to use (loose equality operator)
 
 <div aign="center">
   <img src="./assets/img20.png" alt="image 20"/>
