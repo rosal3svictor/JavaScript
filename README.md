@@ -17,10 +17,50 @@
 - [Brief introduction to JavaScript](#brief-introduction-to-javascript)
 - [Values and Variables](#values-and-variables)
 - [Variable Naming Conventions](#variable-naming-conventions)
-- [Statements and Expresions](#statements-and-expressions)
+- [Statements and Expressions](#statements-and-expressions)
 - [Data Types](#data-types)
-- [Value vs References](#values-vs-references)
-- [Type systems](#type-systems)
+  - [Primitive Types](#primitive-types)
+    - [String:](#string)
+    - [Number:](#number)
+    - [Boolean:](#boolean)
+    - [Null:](#null)
+    - [Undefined:](#undefined)
+    - [Symbol: To be reviewed](#symbol-to-be-reviewed)
+    - [BigInt:](#bigint)
+- [Values vs References](#values-vs-references)
+- [Type Systems](#type-systems)
+  - [Type checking](#type-checking)
+  - [Type Requirement](#type-requirement)
+  - [Type Conversion](#type-conversion)
+    - [To a string (if the value is neither null nor undefined):](#to-a-string-if-the-value-is-neither-null-nor-undefined)
+    - [To a number:](#to-a-number)
+    - [To a boolean:](#to-a-boolean)
+  - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
+  - [TypeScript](#typescript)
+- [== vs ===](#-vs-)
+    - [**When to use (strict equality operator) === :**](#when-to-use-strict-equality-operator--)
+    - [**When to use (loose equality operator) == :**](#when-to-use-loose-equality-operator--)
+- [Functions](#functions)
+- [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
+  - [Compilation VS Interpretation](#compilation-vs-interpretation)
+  - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
+  - [JavaScript Runtime](#javascript-runtime)
+- [Execution Contexts And The Call Stack](#execution-contexts-and-the-call-stack)
+  - [Execution Context In Detail](#execution-context-in-detail)
+- [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
+  - [The 3 Types Of Scope](#the-3-types-of-scope)
+- [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
+- [How the `this` keyword works](#how-the-this-keyword-works)
+- [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
+- [Primitive vs Reference Value](#primitive-vs-reference-value)
+- [First-Class and Higer-Order Functions](#first-class-and-higer-order-functions)
+- [Closures](#closures)
+- [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
+- [Working with arrays](#working-with-arrays)
+- [What is Object Oriented Programming](#what-is-object-oriented-programming)
+- [Classes and instances](#classes-and-instances)
+- [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
+- [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
 
   1. [Type checking](#type-checking)
   2. [Type requirement](#type-requirement)
@@ -28,23 +68,59 @@
   4. [Type equivalence or compatibility](#type-equivalence-or-compatibility)
   5. [TypeScript](#typeScript)
 
-- [== vs ===](#==-vs===)
+- [How to open the inspector tools in Chrome](#how-to-open-the-inspector-tools-in-chrome)
+- [Brief introduction to JavaScript](#brief-introduction-to-javascript)
+- [Values and Variables](#values-and-variables)
+- [Variable Naming Conventions](#variable-naming-conventions)
+- [Statements and Expressions](#statements-and-expressions)
+- [Data Types](#data-types)
+  - [Primitive Types](#primitive-types)
+    - [String:](#string)
+    - [Number:](#number)
+    - [Boolean:](#boolean)
+    - [Null:](#null)
+    - [Undefined:](#undefined)
+    - [Symbol: To be reviewed](#symbol-to-be-reviewed)
+    - [BigInt:](#bigint)
+- [Values vs References](#values-vs-references)
+- [Type Systems](#type-systems)
+  - [Type checking](#type-checking)
+  - [Type Requirement](#type-requirement)
+  - [Type Conversion](#type-conversion)
+    - [To a string (if the value is neither null nor undefined):](#to-a-string-if-the-value-is-neither-null-nor-undefined)
+    - [To a number:](#to-a-number)
+    - [To a boolean:](#to-a-boolean)
+  - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
+  - [TypeScript](#typescript)
+- [== vs ===](#-vs-)
+    - [**When to use (strict equality operator) === :**](#when-to-use-strict-equality-operator--)
+    - [**When to use (loose equality operator) == :**](#when-to-use-loose-equality-operator--)
 - [Functions](#functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
+  - [Compilation VS Interpretation](#compilation-vs-interpretation)
+  - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
+  - [JavaScript Runtime](#javascript-runtime)
 - [Execution Contexts And The Call Stack](#execution-contexts-and-the-call-stack)
+  - [Execution Context In Detail](#execution-context-in-detail)
 - [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
+  - [The 3 Types Of Scope](#the-3-types-of-scope)
 - [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
 - [How the `this` keyword works](#how-the-this-keyword-works)
 - [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
-- [Primitive VS Reference Value](#primitive-vs-reference-value)
-- [Fist-Class and Higher-Order Functions](#first-class-and-higer-order-functions)
+- [Primitive vs Reference Value](#primitive-vs-reference-value)
+- [First-Class and Higer-Order Functions](#first-class-and-higer-order-functions)
 - [Closures](#closures)
 - [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
 - [Working with arrays](#working-with-arrays)
 - [What is Object Oriented Programming](#what-is-object-oriented-programming)
-  1. [Classes and instances](#classes-and-instances)
-  2. [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
-  3. [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
+- [Classes and instances](#classes-and-instances)
+- [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
+- [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
+
+Extra Important Official References
+
+- [General JavaScript guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#general_javascript_guidelines)
+- [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 
 # How to open the inspector tools in Chrome
 
@@ -53,8 +129,9 @@ There are 3 ways to accomplish that:
 1. command + option + i (MacOS), control + alt + i (Windows)
 2. right click and then select option "inspect"
 3. **On Chrome**: Click on View -> Developer -> Developer Tools
-4. **On Firefox**: Click on Tools -> Browser Tools -> Developer Tools
+4. **On Firefox**: Click on Tools -> Browser Tools -> Web Developer Tools
 5. **On Microsoft Edge**: Click on Tools -> Developer -> Developer Tools
+6. **On Opera**: Click on Developer -> Developer Tools
 
 # Brief introduction to JavaScript
 
@@ -105,7 +182,7 @@ What is a **_concurrency model?_** Well, it's just a fancy name that means how t
 - **Single-Threaded**: JavaScript has only one call stack that is used to execute the program, which means that it can only do one thing at a time. In computing, _a thread_, is like a set of instructions that is executed in the computer's CPU. So, basically the thread is where our code is actually executed in a machine's processor.
 
 - **Non-Blocking**: Refers to code that doesn't block the execution of the program. What about if there's a long-running task (like fetching data from a remote server)? it sounds like it would block the single thread. However, we want non-blocking behaviour. Then, how do we achieve that? By using an **event loop**: it takes long running tasks, executes them in the "background", and puts them back in the main thread once they're finished.
-    - **Asynchronous Code Definition**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
+  - **Asynchronous Code Definition**: Asynchronous code allows the program to be executed immediately where the synchronous code will block further execution of the remaining code until it finishes the current one.
 
 # Values and Variables
 
@@ -116,15 +193,22 @@ What is a **_concurrency model?_** Well, it's just a fancy name that means how t
 23
 ```
 
-- **Variable**: Imagine a box (space in memory), within it you can hold some object, for example a book, and we can then write a label on the box to describe what's in it. Later on, when needed, we can find that object by using the label.
+- **Variable**: Variable means anything that can _vary_. In JavaScript, a variable stores the data value that can be changed later on. Imagine a box (space in memory), within it you can hold some object, for example a book, and we can then write a label on the box to describe what's in it. Later on, when needed, we can find that object by using the label.
+
+To get into more understanding about decalring variables in JavaScript, please see [MDN Web Docs References.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations)
 
 ```JavaScript
-let firstName = 'Victor';
+// Syntax
+var <variable-name>;
+var <variable-name> = <value>;
+
+// Example
+var firstName = 'Victor';
 ```
 
 # Variable Naming Conventions
 
-1. They must be written using `lowerCamelCase` notation. Important: Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names are for a specific use case which is Object Oriented Programming. (See Reference: https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variables)
+1. They must be written using `lowerCamelCase` notation. Important: Do not start a variable with an uppercase letter. That's not illegal, it's just that this kind of variable names are for a specific use case which is Object Oriented Programming. [See Reference](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variables)
 2. You cannot use keywords from the language such as `new` or `function`.
 3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them, and they cannot start or use any special character.
 4. Declare only constants using all uppercase letters (it's a convention).
@@ -214,7 +298,7 @@ It also has a weak type, which means that we can perform computations among valu
 
 Due to its particular characteristics, there are two groups of data types:
 
-1. Primitive Types
+1. Primitive Types (Number, String, Boolean, Undefined, Null, Symbol and BigInt)
 2. Object Types (Arrays, functions, dates, regular expressions and any literal object)
 
 ## Primitive Types
@@ -238,7 +322,7 @@ They are basic, immutable values that contain neither methods nor properties.
           "Bocina"
 ```
 
-- String:
+### String:
 
 1. They allows to represent texts in our programs.
 2. They are defined between 2 `doble` or `single` quotes. The important thing here is that we have to use them consistently `'string'` or `"string"` not `'string"`.
@@ -263,10 +347,12 @@ or concatenating it with the empty string
                                   29 + '' = '29'
 ```
 
-- Number: They are so called floating point numbers, which means that they always have decimals even if we don't see them of define them.
+### Number:
 
-  1. They allow us to represent numbers: positive, negative and decimal.
-  2. When it comes to repesent numbers, JavaScript is not accurate
+They are so called floating point numbers, which means that they always have decimals even if we don't see them of define them.
+
+1. They allow us to represent numbers: positive, negative and decimal.
+2. When it comes to repesent numbers, JavaScript is not accurate
 
 ```JavaScript
                            0.1 + 0.2 = 0.30000000000000004
@@ -352,31 +438,33 @@ it's a very special value in JavaScript, it's not equal to anything even itself
                             isFinite(Infinity) === false
 ```
 
-- Boolean: It's a logical type which can only be _true_ or _false_
+### Boolean:
 
-  1. Used for taking decisions.
-  2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')
+It's a logical type which can only be _true_ or _false_
 
-- Null:
+1. Used for taking decisions.
+2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')
 
-  1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
-  2. `Null` is a primitive data type even though that the typeof operator returns `object`.
+### Null:
 
-- Undefined:
+1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
+2. `Null` is a primitive data type even though that the typeof operator returns `object`.
 
-  1. It means _**unknown data type**_. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
-  2. `Undefined` means:
+### Undefined:
 
-  - A variable was not given a value.
-  - It was not received a param.
-  - A function call finished without returning a value.
+1. It means _**unknown data type**_. It's the value that is automatically given to a variable when is declared but not assigned a value. It's a data type different from `null`.
+2. `Undefined` means:
 
-- Symbol: To be reviewed
+- A variable was not given a value.
+- It was not received a param.
+- A function call finished without returning a value.
 
-- BigInt:
+### Symbol: To be reviewed
 
-  1. It allows us to write integer numbers without limit.
-  2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
+### BigInt:
+
+1. It allows us to write integer numbers without limit.
+2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
 
 ```JavaScript
               let numeroGrande = 8927345254435334599065n
