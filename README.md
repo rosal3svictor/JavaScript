@@ -41,7 +41,7 @@
   - [Type checking](#type-checking)
   - [Type Requirement](#type-requirement)
   - [Type Conversion](#type-conversion)
-    - [To a string (if the value is neither null nor undefined):](#to-a-string-if-the-value-is-neither-null-nor-undefined)
+    - [To a string (if the value is neither null nor undefined)](#to-a-string-if-the-value-is-neither-null-nor-undefined)
     - [To a number](#to-a-number)
     - [To a boolean](#to-a-boolean)
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
@@ -887,7 +887,7 @@ _**NOTE: We have to use them as functions, not as contructors. If we do so, we'r
 
 There are another ways of making explicit type convertions:
 
-### To a string (if the value is neither null nor undefined):
+### To a string (if the value is neither null nor undefined)
 
 ```
 2019 + "" = "2019"
