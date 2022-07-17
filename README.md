@@ -17,6 +17,10 @@
 - [Brief introduction to JavaScript](#brief-introduction-to-javascript)
 - [Values and Variables](#values-and-variables)
 - [Variable Naming Conventions](#variable-naming-conventions)
+- [Types Of Operators](#types-of-operators)
+- [Operator Precedence](#operator-precedence)
+- [Template literals (Template strings)](#template-literals-template-strings)
+- [Control Structures (if...else)](#control-structures-ifelse)
 - [Statements and Expressions](#statements-and-expressions)
 - [VAR, LET or CONST: Which should I use?](#var-let-or-const-which-should-i-use)
   - [Compatibility](#compatibility)
@@ -47,8 +51,8 @@
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
-    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
+  - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+  - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
@@ -81,10 +85,6 @@ Extra Important Official References
 
 - [General JavaScript guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#general_javascript_guidelines)
 - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
-- [Types Of Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#operators)
-- [Operator Precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
-- [Template literals (Template strings)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
-- [Control Structures (if...else)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
 
 # How to open the inspector tools in Chrome
 
@@ -177,6 +177,22 @@ var firstName = 'Victor';
 3. You are only able to use `$`, `_` , `numbers` and `letters` to declare them, and they cannot start or use any special character.
 4. Declare only constants using all uppercase letters (it's a convention).
 5. Always make **descriptive** the name for variables so, it provides a notion of what it holds.
+
+# Types Of Operators
+
+- [Types Of Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#operators)
+
+# Operator Precedence
+
+- [Operator Precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+
+# Template literals (Template strings)
+
+- [Template literals (Template strings)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+# Control Structures (if...else)
+
+- [Control Structures (if...else)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
 
 # Statements and Expressions
 
