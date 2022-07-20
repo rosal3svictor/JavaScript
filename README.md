@@ -20,7 +20,9 @@
 - [Types Of Operators](#types-of-operators)
 - [Operator Precedence](#operator-precedence)
 - [Template literals (Template strings)](#template-literals-template-strings)
-- [Control Structures (if...else)](#control-structures-ifelse)
+- [Control Structures](#control-structures)
+  - [if statement](#if-statement)
+  - [Switch Statement](#switch-statement)
 - [Statements and Expressions](#statements-and-expressions)
 - [VAR, LET or CONST: Which should I use?](#var-let-or-const-which-should-i-use)
   - [Compatibility](#compatibility)
@@ -195,9 +197,11 @@ var firstName = 'Victor';
 
 - [Template literals (Template strings)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
-# Control Structures (if...else)
+# Control Structures
 
-- [Control Structures (if...else)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+## [if statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+
+## [Switch Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
 
 # Statements and Expressions
 
@@ -1060,6 +1064,7 @@ NOTE:
 
 1. Strings are case sentitive, be careful with this.
 2. Strict equality operator is also known as identity operator: When we use it to compare objects, this operator tell us wheter we are referencing to the same space in memory, or to the same object in memory.
+3. It's `strict` because it doesn't performe `type coertion`, it only returns `true` when both values are the same.
 
 ### When to use (loose equality operator)
 
