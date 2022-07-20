@@ -21,8 +21,6 @@
 - [Operator Precedence](#operator-precedence)
 - [Template literals (Template strings)](#template-literals-template-strings)
 - [Control Structures](#control-structures)
-  - [if statement](#if-statement)
-  - [Switch Statement](#switch-statement)
 - [Statements and Expressions](#statements-and-expressions)
 - [VAR, LET or CONST: Which should I use?](#var-let-or-const-which-should-i-use)
   - [Compatibility](#compatibility)
@@ -47,6 +45,7 @@
     - [Undefined](#undefined)
     - [Symbol](#symbol)
     - [BigInt](#bigint)
+- [Strict Mode](#strict-mode)
 - [Values vs References](#values-vs-references)
 - [Type Systems](#type-systems)
   - [Type checking](#type-checking)
@@ -199,9 +198,13 @@ var firstName = 'Victor';
 
 # Control Structures
 
-## [if statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+- [if statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
 
-## [Switch Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+- [Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+
+- [Switch Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+
+- [Statements and declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements)
 
 # Statements and Expressions
 
@@ -815,6 +818,8 @@ have their equivalents in the object's. For instance:
 ```
 
 these objects are going to be used by the JavaScript Engine. Each time we want to access to a property or attribute of a primitive value, the JavaScript Engine is going to create one of these objects temporaryly so we can be able to access them. This temporary object as so called _**Object Wrapper**_, that is basically and object that wraps a primitive value when we want to access any property or method of it. This object is goint to be temporary because the engine only uses it for a fraction of time, after being used it is removed from the memory.
+
+# Strict Mode
 
 # Values vs References
 
