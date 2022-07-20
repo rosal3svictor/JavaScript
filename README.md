@@ -46,6 +46,8 @@
     - [Symbol](#symbol)
     - [BigInt](#bigint)
 - [Strict Mode](#strict-mode)
+  - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
+  - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
 - [Values vs References](#values-vs-references)
 - [Type Systems](#type-systems)
   - [Type checking](#type-checking)
@@ -821,6 +823,182 @@ these objects are going to be used by the JavaScript Engine. Each time we want t
 
 # Strict Mode
 
+```JavaScript
+'use strict';
+
+const button = document.getElementById('btnSignup');
+
+button.addEventListener('click', () => {})
+```
+
+It's an instruction addressed to the JavaScript interpreter that makes us easy to write **secure and clean code**. With _secure_ I mean, that `strict mode` makes it easier for us
+developer to avoid accidental errors so, basically, it avoids introducing bugs into our code. This is because of two reasons:
+
+1. It forbid us to do certains things.
+2. It will create visible errors for us in certaing situations in which without it JavaScript would simply fail silently without letting us now that we made a mistake.
+
+For instance,
+
+```JavaScript
+'use strict';
+
+name = 'Victor'; // Uncaught ReferenceError: name is not defined
+```
+
+this is something good, because JavaScript will convert our mistakes into errors and in that way we are going to be able to fix them before it reaches to the user.
+
+## Why do the 'strict mode' and the 'sloppy mode' exist?
+
+JavaScript was created on 1996 and it's based on ECMAScript. ECMAScript is a _specification_, a standar to create programming languages. JavaScript is an _implementation_ of that specification.
+
+The 1st version of it was officially announced, and as years went by, newer version we released and the browsers were updated so they support the new functionalities.
+
+On 2015, it was decided that we would have a new version each year with contributions from all the community.
+
+On ES5 (2009), was introduced the instruction `use strict`, to avoid having error very easy to make on older versions. In case we don't add that instruction to the program, it will simply run on `sloppy mode` (It could be added at the beginning of the program or at the beginning of a specific block of code)
+
+## What changes on 'strict mode'?
+
+1.  Fixes the accidental creation of global variables
+
+```HTML
+<script>
+  let name = 'Victor';
+  let edad = 12;
+
+  if (edad > 20) {
+    nme = 'Eduardo';
+  }
+
+  window.nme; // 'Eduardo'
+</script>
+```
+
+if we are on `sloppy mode` and we attempt to modify the value of a certain variable but we make a typo, it is created a new variable with that name also plus, added as a property of the global object.
+
+2. Read-Only Attributes
+
+```HTML
+<script>
+  const user = {};
+  Object.defineProperty(user, 'name', {value: 'Victor', writable: false});
+
+  user.name = 'Peter';
+  console.log(user.name);
+</script>
+```
+
+we can define a property to an object in JavaScript, we can also give it a `initial value` and also set it to be `read-only`. If after doing so we attempt to assign a new variable and printing via console, it will not throw an error.
+
+3. Non-Extensible Objects
+
+```HTML
+<script>
+  const user = {name: 'Victor'};
+  Object.preventExtensions(user);
+
+  user.edad = 29;
+  console.log(user);
+</script>
+```
+
+We can make an object not to be added new properties with `preventExtensions`. In case we attemp to to do on `sloppy mode`, we won't see any error but, the property won't also be added. Even though that functionally is okay we won't be notified of the error.
+
+4. Duplicate Parameters
+
+```HTML
+<script>
+  function greet(name, lastName, name) {
+    console.log(`Hi, ${name} ${lastName}`)
+  }
+
+  // If we execute it:
+  // greet('Victor', 'Rosales');
+
+  // It willbe printed 'Hi, undefined Rosales'
+</script>
+```
+
+with `strict mode` we'll see in the console
+
+```code
+  Uncaught SyntaxError: Duplicate parameter name not allowed in this context.
+```
+
+5. Error with 'delete'
+
+The _delete operator_ allow us to remove **properties from an object** or **elements from an array** returning us `true` or `false` in case it was removed (or not).
+
+what can't we delete?
+
+```JavaScript
+  delete name;   //false - Variable
+  delete greet;  //false - Function
+  delete window; //false - Global Object
+```
+
+with `strict mode`, any of the previous instructor will throw an error.
+
+6. Free Functions, Functions without and "owner"
+
+```HTML
+<script>
+  const user = {
+    name: 'Victor',
+    greet: function () {
+      console.log(`Hi, I'm ${this.nombre}`)
+    }
+  }
+
+  usuario.greet();
+  // 'usuario' is the object owner of the function. The value that 'this' is going to take
+</script>
+```
+
+So, in `sloppy mode` when that function is executed will be printed
+
+```
+Hi, I'm Victor
+```
+
+Now, what happens if we copy a reference of the function to another variable and we invoke it individually?
+
+```HTML
+<script>
+  const user = {
+    name: 'Victor',
+    greet: function () {
+      console.log(`Hi, ${this.nombre}`)
+    }
+  }
+
+  // usuario.greet();
+  const greet = user.greet;
+  greet();
+</script>
+```
+
+when it is executed, the function won't be being called with the object `usuario`, and in `sloppy mode` it's like we were doing this
+
+```JavaScript
+window.greet();
+```
+
+`window` will be the owner of the function. So, as the `Global Object` does not have a property `name` we'll see printed
+
+```
+Hi, I'm undefined
+```
+
+But in `strict mode`, if you execute this program what changes is that the functions
+invoked individually won't have as the owner the `Global Object` but directly, they won't have any owner. The owner won't be defined, so when JavaScript attempts to access the value of `this` inside of the function it will receive `undefined` and `undefined.name` will give us one of the most common error we've seen.
+
+And this is okay, since the `Global Object` does not need to be the owner of indiviadlly invoked functions.
+
+```
+Uncaught TypeError: Cannot read property 'name' of undefined
+```
+
 # Values vs References
 
 When we declare a variable _fruit_ and assign it the _string_ "banana" we'd be creating a little container in the computer's memory and storing inside of it the value "banana". If next we change the value to the fruit variable, we'd be changing the value that is being stored and the previous value it had would be lost.
@@ -1126,6 +1304,8 @@ The only case for that operation to return TRUE is the both values are the same,
 </div>
 
 # Functions
+
+[MDN Reference - Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 
 <div align="center">
   <img src="./assets/functions_0.jpeg" alt="image 0" />
