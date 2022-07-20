@@ -36,6 +36,11 @@
     - [String](#string)
     - [Number](#number)
     - [Boolean](#boolean)
+      - [Falsy Values](#falsy-values)
+      - [Checking for falsy values on variables](#checking-for-falsy-values-on-variables)
+      - [General Examples](#general-examples)
+      - [Fun With Arrays](#fun-with-arrays)
+      - [Caveat](#caveat)
     - [Null](#null)
     - [Undefined](#undefined)
     - [Symbol](#symbol)
@@ -51,8 +56,8 @@
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-  - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
-  - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
+    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
@@ -527,7 +532,7 @@ Declarations with `var` are hoisted but, with `let` and `const` variables go int
 
 JavaScript has a `dynamic type` which means that variables don't have to manually define the data type of the value they store. Instead, data types are determined **automatically**. The distinction between `value` and `variable` is pretty important, because in JavaScript is the _**value**_ that has a type, not the variable. So, variables simply store values that have a type. We also can assign a new value with a different data type to the same variable previously defined without a problem.
 
-It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` and it has a great impact on how our programs are executed. The data type of a variable is determined when is exceuted the line of code that contains it. It depends on the operation that is being perfomed with it.
+It also has a weak type, which means that we can perform computations among values of different types. Under the hood, JavaScript would make its best effort to concrete the computation you want to perform, making an implicit data type conversion called `Type Coertion` ([see referencee](https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/)) and it has a great impact on how our programs are executed. The data type of a variable is determined when is exceuted the line of code that contains it. It depends on the operation that is being perfomed with it.
 
 ```JavaScript
                                       2 + '1' = 21
@@ -681,7 +686,62 @@ it's a very special value in JavaScript, it's not equal to anything even itself
 It's a logical type which can only be _true_ or _false_
 
 1. Used for taking decisions.
-2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')
+2. Values evaluated to `false`: `""`, `0`, `null`, `undefined` and `NaN`. Any other value evaluates to `true`. (they're called 'falsy values')+
+
+   #### Falsy Values
+
+   A falsy value is something which evaluates to FALSE, for instance when checking a variable. There are only six falsy values in JavaScript: `undefined`, `null`, `NaN`, `0`, `""` (empty string), and `false` of course.
+
+   #### Checking for falsy values on variables
+
+   It is possible to check for a falsy value in a variable with a simple conditional
+
+   ```JavaScript
+   if (!variable) {
+    // When the variable has a falsy value the condition is true.
+   }
+   ```
+
+   #### General Examples
+
+   ```JavaScript
+    var string = ""; // <-- falsy
+    var filledString = "some string in here"; // <-- truthy
+    var zero = 0; // <-- falsy
+    var numberGreaterThanZero // <-- truthy
+    var emptyArray = []; // <-- truthy, we'll explore more about this next
+    var emptyObject = {}; // <-- truthy
+   ```
+
+#### Fun With Arrays
+
+```JavaScript
+  if ([] == false) // <-- truthy, will run code in if-block
+  if ([]) // <-- truthy, will also run code in if-block
+  if ([] == true) // <-- falsy, will NOT run code in if-block
+  if (![]) // <-- falsy, will also NOT run code in if-block
+```
+
+#### Caveat
+
+Be aware of the data type when evaluating a value in a Boolean context. If the data type of the value is meant to be a number, the truthy/falsy evalution can result in an unexpected outcome:
+
+```JavaScript
+const match = { teamA: 0, teamB: 1 }
+if (match.teamA) {
+  // The following won't run due to the falsy evaluation
+  console.log('Team A: ' + match.teamA);
+}
+```
+
+An alternative to the use case above is to evaluate the value using `typeof`
+
+```JavaScript
+const match = { teamA: 0, teamB: 1 }
+if (typeof match.teamA === 'number') {
+  console.log('Team A: ' + match.teamA);
+}
+```
 
 ### Null
 
@@ -707,7 +767,7 @@ To be reviewed
 2. To use is we basically write the number we want to use and add it an `n` at the end. Like follows:
 
 ```JavaScript
-              let numeroGrande = 8927345254435334599065n
+   let numeroGrande = 8927345254435334599065n
 ```
 
 we can also use the `Bigint` function to create them based on numbers or strings.
