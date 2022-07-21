@@ -59,9 +59,10 @@
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
-    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
+  - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+  - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
+  - [Arrow Function Expressions](#arrow-function-expressions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
   - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
@@ -1305,13 +1306,20 @@ The only case for that operation to return TRUE is the both values are the same,
 
 # Functions
 
-[MDN Reference - Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+- [MDN Reference - Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+- [Function Expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function)
+- [Function Declaration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
 
 <div align="center">
   <img src="./assets/functions_0.jpeg" alt="image 0" />
   <br/><br/>
   <img src="./assets/functions_1.jpeg" alt="image 1" />
 </div>
+<br />
+
+## Arrow Function Expressions
+
+- [Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 # JavaScript Engine and Runtime
 
