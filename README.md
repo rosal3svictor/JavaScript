@@ -49,6 +49,9 @@
 - [Objects](#objects)
 - [For Loop](#for-loop)
 - [While Loop](#while-loop)
+- [Destructuring assignment](#destructuring-assignment)
+- [Short Circuiting (&& and ||)](#short-circuiting--and-)
+- [Short Circuiting (&& and ||)](#short-circuiting--and--1)
 - [Strict Mode](#strict-mode)
   - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
   - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
@@ -846,6 +849,20 @@ these objects are going to be used by the JavaScript Engine. Each time we want t
 # While Loop
 
 - [While](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
+
+# Destructuring assignment
+
+- [Destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+  - [Spread syntax (...)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+  - [Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+
+# Short Circuiting (&& and ||)
+
+- [Logical AND (&&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND)
+
+# Short Circuiting (&& and ||)
+
+- [Nullish coalescing operator (??)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator)
 
 # Strict Mode
 
