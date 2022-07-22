@@ -47,6 +47,8 @@
     - [BigInt](#bigint)
 - [Arrays](#arrays)
 - [Objects](#objects)
+- [For Loop](#for-loop)
+- [While Loop](#while-loop)
 - [Strict Mode](#strict-mode)
   - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
   - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
@@ -831,6 +833,19 @@ these objects are going to be used by the JavaScript Engine. Each time we want t
 # Objects
 
 - [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+# For Loop
+
+- [For](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+  - [Continue](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue)
+  - [Break](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break)
+- [For...in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
+- [For...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+  - [Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+
+# While Loop
+
+- [While](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
 
 # Strict Mode
 
