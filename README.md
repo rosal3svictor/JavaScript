@@ -55,6 +55,7 @@
 - [Logical OR assignment (||=)](#logical-or-assignment-)
 - [Logical nullish assignment (??=)](#logical-nullish-assignment-)
 - [Bitwise AND assignment (&=)](#bitwise-and-assignment-)
+- [Enhanced Object Literals](#enhanced-object-literals)
 - [Strict Mode](#strict-mode)
   - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
   - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
@@ -880,6 +881,10 @@ IMPORTANT: The `spread` and `rest` syntax both look exactly the same but, they w
 # Bitwise AND assignment (&=)
 
 - [Bitwise AND assignment (&=)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND_assignment)
+
+# Enhanced Object Literals
+
+- [Enhanced Object Literals](https://www.sitepoint.com/es6-enhanced-object-literals/)
 
 # Strict Mode
 
