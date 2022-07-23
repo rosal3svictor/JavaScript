@@ -51,7 +51,10 @@
 - [While Loop](#while-loop)
 - [Destructuring assignment](#destructuring-assignment)
 - [Short Circuiting (&& and ||)](#short-circuiting--and-)
-- [Short Circuiting (&& and ||)](#short-circuiting--and--1)
+- [Nullish coalescing operator (??)](#nullish-coalescing-operator-)
+- [Logical OR assignment (||=)](#logical-or-assignment-)
+- [Logical nullish assignment (??=)](#logical-nullish-assignment-)
+- [Bitwise AND assignment (&=)](#bitwise-and-assignment-)
 - [Strict Mode](#strict-mode)
   - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
   - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
@@ -856,13 +859,27 @@ these objects are going to be used by the JavaScript Engine. Each time we want t
   - [Spread syntax (...)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
   - [Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
+IMPORTANT: The `spread` and `rest` syntax both look exactly the same but, they work in opposite ways depending on where they are used. So, the `spread operator` is used where we would otherwise write values separated by a comma; on the other hand, the `rest pattern` is basically used where we would otherwise write variable names separated by commas. So, it's a suttle distinction but this is how you know when/where to used.
+
 # Short Circuiting (&& and ||)
 
 - [Logical AND (&&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND)
 
-# Short Circuiting (&& and ||)
+# Nullish coalescing operator (??)
 
 - [Nullish coalescing operator (??)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator)
+
+# Logical OR assignment (||=)
+
+- [Logical OR assignment (||=)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR_assignment)
+
+# Logical nullish assignment (??=)
+
+- [Logical nullish assignment (??=)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_nullish_assignment)
+
+# Bitwise AND assignment (&=)
+
+- [Bitwise AND assignment (&=)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND_assignment)
 
 # Strict Mode
 
