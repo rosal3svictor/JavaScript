@@ -45,6 +45,7 @@
     - [Undefined](#undefined)
     - [Symbol](#symbol)
     - [BigInt](#bigint)
+- [Strings](#strings)
 - [Arrays](#arrays)
 - [Objects](#objects)
 - [For Loop](#for-loop)
@@ -56,6 +57,9 @@
 - [Logical nullish assignment (??=)](#logical-nullish-assignment-)
 - [Bitwise AND assignment (&=)](#bitwise-and-assignment-)
 - [Enhanced Object Literals](#enhanced-object-literals)
+- [Optional chaining (?.)](#optional-chaining-)
+- [Set](#set)
+- [Map](#map)
 - [Strict Mode](#strict-mode)
   - [Why do the 'strict mode' and the 'sloppy mode' exist?](#why-do-the-strict-mode-and-the-sloppy-mode-exist)
   - [What changes on 'strict mode'?](#what-changes-on-strict-mode)
@@ -74,6 +78,8 @@
   - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
   - [Arrow Function Expressions](#arrow-function-expressions)
+- [OOP In JavaScript](#oop-in-javascript)
+- [Asynchronous JavaScript](#asynchronous-javascript)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
   - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
@@ -833,6 +839,10 @@ have their equivalents in the object's. For instance:
 
 these objects are going to be used by the JavaScript Engine. Each time we want to access to a property or attribute of a primitive value, the JavaScript Engine is going to create one of these objects temporaryly so we can be able to access them. This temporary object as so called _**Object Wrapper**_, that is basically and object that wraps a primitive value when we want to access any property or method of it. This object is goint to be temporary because the engine only uses it for a fraction of time, after being used it is removed from the memory.
 
+# Strings
+
+- [Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+
 # Arrays
 
 - [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
@@ -885,6 +895,18 @@ IMPORTANT: The `spread` and `rest` syntax both look exactly the same but, they w
 # Enhanced Object Literals
 
 - [Enhanced Object Literals](https://www.sitepoint.com/es6-enhanced-object-literals/)
+
+# Optional chaining (?.)
+
+- [Optional chaining (?.)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+
+# Set
+
+- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+
+# Map
+
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
 # Strict Mode
 
@@ -1384,6 +1406,17 @@ The only case for that operation to return TRUE is the both values are the same,
 ## Arrow Function Expressions
 
 - [Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+# OOP In JavaScript
+
+- [A Beginner’s Guide to JavaScript’s Prototype](https://www.freecodecamp.org/news/a-beginners-guide-to-javascripts-prototype/amp/)
+- [Object Oriented Programming in JavaScript – Explained with Examples](https://www.freecodecamp.org/news/how-javascript-implements-oop/amp/)
+
+# Asynchronous JavaScript
+
+- [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
 
 # JavaScript Engine and Runtime
 
