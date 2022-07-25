@@ -1418,6 +1418,11 @@ The only case for that operation to return TRUE is the both values are the same,
 - [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 - [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
 
+<div align="center">
+  <img src="./assets/promise_lifecycle.png" alt="Promises Lifecyle" />
+</div>
+<br/>
+
 # JavaScript Engine and Runtime
 
 - Engine: program that **executes** our code. Every browser has its own JavaScript engine, but probably the most well-known engine is Google's V8. V8 powers Google Chrome but also NodeJS, which is that JavaScript runtime.
