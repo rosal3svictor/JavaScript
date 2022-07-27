@@ -80,6 +80,8 @@
   - [Arrow Function Expressions](#arrow-function-expressions)
 - [OOP In JavaScript](#oop-in-javascript)
 - [Asynchronous JavaScript](#asynchronous-javascript)
+- [Ways To Store Data Inside Of A Browser](#ways-to-store-data-inside-of-a-browser)
+- [Closer Look Into Functions](#closer-look-into-functions)
 - [JavaScript Engine and Runtime](#javascript-engine-and-runtime)
   - [Compilation VS Interpretation](#compilation-vs-interpretation)
   - [Modern JUST-IN-TIME compilation of JavaScript](#modern-just-in-time-compilation-of-javascript)
@@ -1414,14 +1416,31 @@ The only case for that operation to return TRUE is the both values are the same,
 
 # Asynchronous JavaScript
 
-- [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+- [Asynchronous Vs Synchronous Programming](https://youtu.be/Kpn2ajSa92c)
 - [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Async Await](https://youtu.be/V_Kr9OSfDeU)
 - [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
 
+# Ways To Store Data Inside Of A Browser
+
+- [JavaScript Cookies vs Local Storage vs Session](https://youtu.be/GihQAC1I39Q)
+
+# Closer Look Into Functions
+
+- [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+- [How Passing Argument Works: Value VS Reference](https://www.javascripttutorial.net/javascript-pass-by-value/)
+- [Closures MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+- [CLAUSURAS (Closures) EN JAVASCRIPT](https://youtu.be/JXG_gQ0OF74)
+- [First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
+- [Understanding Higher-Order Functions in JavaScript](https://blog.bitsrc.io/understanding-higher-order-functions-in-javascript-75461803bad)
+
 <div align="center">
-  <img src="./assets/promise_lifecycle.png" alt="Promises Lifecyle" />
+  <img src="./assets/HOF_VS_FCF.png" />
 </div>
-<br/>
+<br />
+
+- [How to Use the Call, Apply, and Bind Functions in JavaScript](https://www.freecodecamp.org/news/understand-call-apply-and-bind-in-javascript-with-examples/#how-to-use-the-bind-function-in-javascript)
+- [IIFE((Immediately Invoked Function Expression))](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
 
 # JavaScript Engine and Runtime
 
