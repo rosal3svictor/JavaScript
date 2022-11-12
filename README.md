@@ -612,8 +612,9 @@ They are basic, immutable values that contain neither methods nor properties.
                               "29".toString() = "29"
 ```
 
-<i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i>
-or concatenating it with the empty string
+<i>Note: If we use this method we have to make sure that the variable does not contain either `null` or `undefined`. Otherwhise we will get an TypeError: Cannot read property 'toString' of null</i></br></br>
+
+or concatenate it with the empty string
 
 ```JavaScript
                                   29 + '' = '29'
