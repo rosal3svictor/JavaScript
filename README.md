@@ -775,7 +775,7 @@ if (typeof match.teamA === 'number') {
 
 ### Null
 
-1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable we know that later on will get a value.
+1. It allows to represent the absence of value, it comes handy when whe want to define that a variable is empty or that we do not know its value yet. We can use it to assign a initial value to a variable.
 2. `Null` is a primitive data type even though that the typeof operator returns `object`.
 
 ### Undefined
