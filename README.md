@@ -96,6 +96,9 @@
 - [Primitive vs Reference Value](#primitive-vs-reference-value)
 - [First-Class and Higer-Order Functions](#first-class-and-higer-order-functions)
 - [Closures](#closures)
+  - [Lexical Environment](#lexical-environment)
+    - [**Creation Phase**](#creation-phase)
+  - [**Execution Phase**](#execution-phase)
 - [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
 - [Working with arrays](#working-with-arrays)
 - [What is Object Oriented Programming](#what-is-object-oriented-programming)
@@ -1678,6 +1681,80 @@ I'll start by defining a new function called `secureBooking` and is this functio
   <img src="./assets/closures2.png" />
 </div>
 <br />
+
+A closure is a function defined inside another function and has access to its
+lexical scope even when it is executing outside its lexical scope. The closure
+has access to variables in three scopes:
+
+    Variables declared in its own scope
+    Variables declared in the scope of the parent function
+    Variables declared in the global scope
+
+In JavaScript, all functions are closures because they have access to the outer
+scope, but most functions don't utilise the usefulness of closures: the
+persistence of state. Closures are also sometimes called stateful functions
+because of this.
+
+In addition, closures are the only way to store private data that can't be
+accessed from the outside in JavaScript. They are the key to the UMD
+(Universal Module Definition) pattern, which is frequently used in libraries
+that only expose a public API but keep the implementation details private,
+preventing name collisions with other libraries or the user's own code.
+
+    Closures are useful because they let you associate data with a function
+    that operates on that data.
+
+    A closure can substitute an object with only a single method.
+
+    Closures can be used to emulate private properties and methods.
+
+## Lexical Environment
+
+Closures not only have to do with the _scope_ but with the different
+_execution contexts_. To be able to understand this we have to go further down
+into the CallStack, specially with something called **Lexical Environment**.
+
+When JavaScript starts executing our program, the first thing that it does is to
+create the _initial context execution_, for that it is created the first record,
+the global object. It is associated to the function that executes the entire
+program and every context execution goes under two phases:
+
+### **Creation Phase**
+
+It is loaded in memory all that is required to execute that function. On this
+phase, the record is initialized with certain information such as:
+
+- Name of the file that the function belongs to
+- Pointer to the next line of code to be executed
+- The Global Object (Window) is created (This is only done for the Global Record)
+- It is defined the value of `this:window` within the function (This applies for
+  the case in which it is not used `strict mode` and it is a isolated function call)
+- It is associated the execution context being created with the code to be
+  executed
+- It is created the object `arguments`, an object similar to arrays that contains
+  all the arguments that the function receives when it was called
+
+and this is the most important part: It is created the Lexical Environment. It's
+an object that contains all the execution contexts under which there are stored
+the variable names declared within a function as well as their current values.
+It's like a dictionary, deinfed through key/value pairs.
+
+Once it is assigned a new value to any of those variables, it is going to be
+updated the lexical environment that variable belongs to. All arrays, functions
+and objects are going to be stored as pointer references to each memory allocation.
+The section of the Lexical Environment when that definitions are perfomed is
+called _Environment Record_
+
+Futhermore, each lexical environment has a pointer to its outter lexical
+environment, the environment under which it was created.
+
+Many times, when we say that a function is executed, it is created a new scope
+for its variables. We are making reference to this object, the place where the
+variables and their values are store so that the function can be executed.
+
+## **Execution Phase**
+
+The JavaScript Engine executes our program statement by statement
 
 # Data Transformations map, filter, reduce
 
