@@ -51,11 +51,11 @@
 - [For Loop](#for-loop)
 - [While Loop](#while-loop)
 - [Destructuring assignment](#destructuring-assignment)
-- [Short Circuiting (&& and ||)](#short-circuiting--and-)
+- [Short Circuiting (\&\& and ||)](#short-circuiting--and-)
 - [Nullish coalescing operator (??)](#nullish-coalescing-operator-)
 - [Logical OR assignment (||=)](#logical-or-assignment-)
 - [Logical nullish assignment (??=)](#logical-nullish-assignment-)
-- [Bitwise AND assignment (&=)](#bitwise-and-assignment-)
+- [Bitwise AND assignment (\&=)](#bitwise-and-assignment-)
 - [Enhanced Object Literals](#enhanced-object-literals)
 - [Optional chaining (?.)](#optional-chaining-)
 - [Set](#set)
@@ -105,12 +105,6 @@
 - [Classes and instances](#classes-and-instances)
 - [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
 - [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
-
-  1. [Type checking](#type-checking)
-  2. [Type requirement](#type-requirement)
-  3. [Type conversion](#type-conversion)
-  4. [Type equivalence or compatibility](#type-equivalence-or-compatibility)
-  5. [TypeScript](#typeScript)
 
 Extra Important Official References
 
@@ -1563,9 +1557,277 @@ Hoisting does not work the same for all variable types
 
 Special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the _this_ keyord is used. What's very important to understand is that the value of _this_ is **NOT** static. It depends on **how** the function is called, and its value is only assigned when the functions **is actually called.**
 
-Let's analyze 4 different ways in which functions can be called:
+If I show this function and ask you to tell me exactly what text does it print
+in the console
 
-1. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
+```TypeScript
+function saludar(name) {
+  console.log(`Hello, ${nombre}`);
+}
+```
+
+you won't give me an answer at first sight. It prints "Hello" followed by a comma
+and the text that is received on the name `argument`. Unless you execute it,
+you can't know the value of that argument, and finally to whom this function is
+greeting to.
+
+Something similar is what happens with `this`, check this out:
+
+```TypeScript
+const me = {
+  nombre: 'Victor',
+  saludar: function() {
+    console.log(`Hello, I am ${this.nombre}`);
+  }
+}
+```
+
+This function allows the object that executes it, greets a person saying their
+name. But, even though it is written as the method of a function, what can
+happen is that when it is invoked `this` the object that is executing it is not
+the object defined. In fact, it is very common that is happens. Maybe we don't
+know what's happening and JavaScript uses a value for this that we didn't
+expect or because we explicitly want to change the value of it when that function
+is executed.
+
+```Text
+Chaging the value of 'this' allows us to grab methods of one object and execute
+it over other object, reusing the same logic.
+```
+
+Since `this` may change, it could be an object for the first time we execute a
+function and, for the second time we execute the same function it could be another
+one. So it is recommended that you think of `this` as a special parameter that a
+function receives. It is not passed as a traditional parameter but instead, it is
+defined in another way. Making the question: who is `this`? or what value does `this`
+have? is the same that asking: what object is executing the function this time?
+In other words, `we're asking in which context is the function being executed`
+
+```Text
+Context - It is the object  that is executing  a function in a specific moment
+```
+
+Heads up! do not get confused:
+_Context_ and _Execution Context_ are two different things.
+`Context has to do with the 'this object' and Execution Context has to do with the Call Stack`.
+
+Every time JavaScript executes a method or a function it creates an `Execution Context`
+for that execution, loading in memory everything that is necessary to be run:
+
+1. The params the functon receives (Better known as arguments)
+2. The name of the file the function belongs to.
+3. The pointer to the next number of the line of code to be executed.
+4. It creates a new lexical environment for the variables declared.
+5. It determines the value of `this` for this function execution.
+
+```Text
+Remember: This is what is done EVERY TIME a function is executed.
+```
+
+Probably, you'll know what will happen on this example. An object's method
+access an inner property of itself to print it in the console.
+
+```TypeScript
+const me = {
+  name: 'Victor',
+  greet: function() {
+    console.log(`Hello, I am ${this.name}`);
+  }
+}
+
+me.greet(); // Hello, I am Victor
+```
+
+Now, the real question comes for this case: when we stored the method on a
+variable and we execute it
+
+```TypeScript
+const me = {
+  name: 'Victor',
+  greet: function() {
+    console.log(`Hello, I am ${this.name}`);
+  }
+}
+
+const greet = me.greet;
+greet(); // Hello, I am undefined
+```
+
+Were you expecting to see something different?
+
+```TypeScript
+const me = {
+  name: 'Victor',
+  greet: function() {
+    console.log(`Hello, I am ${this.name}`);
+  }
+}
+
+const button = document.getElementById('myButton');
+button.addEventListener('click', me.greet); // Hello, I am undefined
+```
+
+This will trigger the same value even though what's happening in the background
+is something different. Then, why we see undefined in the console?
+
+Remember, `this` is the object that is executing the function. If we see
+`undefined` it is because that object does not have defined the property
+`name` which means `me object` is not the one running the function.
+
+When we think of `this`, it comes handy to associate it with a rubber band. In
+the end, our goal as developers will be binding the right object for `this` to the
+funcion so when it is executed it is done in the right context. But, in case
+we didn't assign it any value, JavaScript will decide it for us, which indeed
+could lead to some unwanted errors.
+
+```TypeScript
+Binding - Assign the value that is going to take this when the function is
+executed
+```
+
+Let's analyze 5 different ways in which functions can be called. They are applied
+by JavaScript in the order that they are presented on this list:
+
+1. Lexical Binding (Arrow Functions)
+2. New Binding (Object Instanciation)
+3. Explicit Binding (Indirect Invocation)
+4. Implicit Binding (Method Invocation)
+5. Default Binding (Direct Invocation)
+
+How does JavaScript know what type to apply? It verifies these things:
+
+- How the function was written
+- Modifications from the creation phase
+- Where it was invoked (call site)
+
+Even though JavaScript applies the binding on this order ↓, we are going to get
+to know them in the inverse ↑:
+
+1. **Default Binding (Direct Invocation)**: As its name suggests, if JavaScript
+   determines that it can't be applied any other type of binding the this will be
+   applied. This type of binding is applied on cases like this:
+
+   ```TypeScript
+   function whoAmI() {
+    console.log(`Hello, I am: ${this}`);
+   }
+
+   whoAmI();
+   ```
+
+   we have a normal `function declaration` (not an arrow function) and we invoke
+   it direclty. This is why it is also known as, Direct Invocation Binding.
+
+   What value is going to be hold by `this`? When we execute it, we'll see that
+   for isolated functions `this` is the `Global Object` (which in the browser
+   is `window` and in Node.JS is the `global` object)
+
+   But, in case you run the function in `stric mode`, now `this` will be
+   `undefined`. In `stric mode` the isolated functions end up totally isolated.
+   Remember that, if you are using the ECMAScript Modules, it is enabled by
+   default so, `this` won't be defined.
+
+   Now, since the `strict mode` is the one under which we are supposed to be
+   developing a good practce is `not to use this in global functions` because
+   it won't be defined. In case you want to refer to the global object then
+   express it using `window`.
+
+2. **Implicit Binding (Method Invocation)**: This is the easiest to remember
+   because it is intuitive. It is performed when it is invoked an object's method.
+
+   ```TypeScript
+   const victor = {
+    name: 'Victor',
+    greet: function() {
+      console.log(`Hello, my name is ${this.name}`);
+    },
+    brother: {
+      name: 'Samuel',
+      greet: function() {
+        console.log(`Me the brother, I'm called ${this.name}`);
+      }
+    }
+   }
+   ```
+
+   If we want `Victor` to greet we do
+
+   ```TypeScript
+   victor.greet(); // Hello, my name is Victor
+   ```
+
+   and in case we want `Samuel` to make the greeting instead, we do
+
+   ```TypeScript
+   victor.brother.greet(); // Me the brother, I'm called Samuel
+   ```
+
+   It is easy to know when the `Implicit Binding` is performed because we are
+   invoking a function and right before we see a `dot (.)`. When the function
+   is executed, `this` under each case, will be the first object that is
+   `on the left` of the `dot(.)`
+
+   Now, let's combine the two types of bindings we know so far and get to know
+   how JavaScript determines which one is the one to be applied:
+
+   ```TypeScript
+   'use strict';
+
+   const victor = {
+    name: 'Victor',
+    twitter: '@vrosales',
+    greet: function() {
+      function followMeOnTwitter() {
+        console.log(`Follow me on Twitter: ${this.twitter}`);
+      }
+
+      console.log(`Hello, my name is ${this.name}`);
+      followMeOnTwitter();
+    },
+   }
+   ```
+
+   what will happend when we execute `victor.greet();`
+
+   ```TypeScript
+    victor.greet();
+    // Hello, my name is Victor
+    // Uncaught TypeError: Cannot read property 'twitter' of undefined
+   ```
+
+   Let's recap on what going on here: First, there's no issues since it is being
+   applied the `Implicit Biding` when `victor.greet();` is invoked because we are
+   executing an object's method so, for that reason `this` will be `object 'victor'`.
+   In the process, `followMeOnTwitter` is delcared but it is not yet invoked so we
+   continue with the next statement. It is printed the geeting without issues but
+   next, it is invoked `followMeOnTwitter()`. Remember, when a funcion is executed
+   JavaScript will determine the value of `this` on that function execution. So,
+   since we don't see a `dot(.)` before `followMeOnTwitter` it means that we are
+   just directly invoking a function which leads JavaScript to apply the `Default Binding`,
+   and since we are in `strict mode`, `this` is `undefined`.
+
+   For this concern, it is very important that we know how to write our JavaScript
+   code, where and how we write our functions. This problem can be solved by
+   defining the function as a new method under `object 'victor'` and making a
+   reference to it inside `greet`
+
+   ```TypeScript
+   'use strict';
+
+   const victor = {
+    name: 'Victor',
+    twitter: '@vrosales',
+    greet: function() {
+      console.log(`Hello, my name is ${this.name}`);
+      this.followMeOnTwitter();
+    },
+    followMeOnTwitter: function() {
+      console.log(`Follow me on Twitter: ${this.twitter}`);
+    }
+   }
+   ```
+
+3. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
 
 <div align="center">
   <img src="./assets/method_example.png" />
