@@ -1827,7 +1827,95 @@ to know them in the inverse ↑:
    }
    ```
 
-3. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
+   What if we add an event to an element from the document, do you know what
+   happens?
+
+   ```TypeScript
+    const victor = {
+      name: 'Victor',
+      greet: function() {
+        console.log(`Hello, my name is ${this.name}`);
+      }
+    }
+
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', victor.greet);
+   ```
+
+   on that example, we're using `vitor.greet` as a callback for the event. This
+   will reproduce the following output
+
+```Text
+  Hello, my name is undefined
+```
+
+Once again, `this` is not what we expected. So then, who is `this`? well, on these
+cases in where you don't know who `this` is, just printing it in the console
+will help a lot. if we do it, we'll notice that `this` is the same button.
+
+```HTML
+<button id='myButton'>SALUDAR</button>
+```
+
+This may surprose you a bit, because when working with the Browser API's, just
+like the events, we can't get to see the call site of the function. We can only
+see the part where we configure that the function `victor.greet` is executed
+once clicked.
+
+```HTML
+IMPORTAMT: When we work with DOM Events, `this` by default, is the element that triggers the event
+```
+
+We make emphasis in the 'by default' because, if we use the next binging type
+we can change that.
+
+3. **Explicit Binding (Indirect Invocation)**: It allow us to **define ourselves**
+   exactly _what is the object we want `this` to be_ when the function is executed.
+
+   It basically allows us to change the context explicitly, and this is good
+   for the case we had previously, when we passed methods like callbacks as params
+   for other functions but we want `this` to be tied up to the correct object.
+
+   Another case would be when have a method of an object that uses `this` but we
+   want to use it over another object, in short, we want to change it from context.
+
+   There are three methods that all JavaScript function have that allow us to
+   do that
+
+   ```TypeScript
+   const victor = {
+    name: 'Victor',
+    greet: function(yelling, withFarewell) {
+      const normalGreeting = `Hello, my name is ${this.name}!`
+      const normalFarewell = `Bye!`
+
+      const greeting = yelling ? normalGreeting.toUpperCase() : normalGreeting;
+      const farewell =  withFarewell ? normalFarewell.toUpperCase() : normalFarewell;
+
+      console.log(greeting);
+
+      if (withFarewell) {
+        console.log(farewell);
+      }
+    }
+   }
+   ```
+
+   given that portion of code the question is: How can we do to invoke this same
+   method over another object that also contains the same `name` property on it?
+
+   We have to call that same function but, in another context. Does it ring a bell
+   for you? All functions in JavaScript are objects and by so, they have properties
+   and methods what we can use. Among those ones there is
+
+   ```Text
+   Function.prototype.call - Method that allow us to invoke a function changing its context, changing the value that `this` is going to take.
+   ```
+
+   In order to use it, we can simply write the function we want to use and invoke
+   it but not directly, but instead doin it with the `call` method.
+
+4. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
 
 <div align="center">
   <img src="./assets/method_example.png" />
