@@ -1869,7 +1869,7 @@ IMPORTAMT: When we work with DOM Events, `this` by default, is the element that 
 We make emphasis in the 'by default' because, if we use the next binging type
 we can change that.
 
-3. **Explicit Binding (Indirect Invocation)**: It allow us to **define ourselves**
+3. **Explicit Binding (Indirect Invocation) - bind, call, apply**: It allows us to **define ourselves**
    exactly _what is the object we want `this` to be_ when the function is executed.
 
    It basically allows us to change the context explicitly, and this is good
@@ -1913,9 +1913,114 @@ we can change that.
    ```
 
    In order to use it, we can simply write the function we want to use and invoke
-   it but not directly, but instead doin it with the `call` method.
+   it but not directly, but instead doin it with the `call` method. The first
+   para it receives is the _new context (the object to which this is going to
+   be)_ and then, there will be a list of elments separated by comma representing
+   the params (in our case _yelling_ and _withFarewell_).
 
-4. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
+   ```TypeScript
+    const pepe = { nombre: 'Pepe' };
+    victor.greet.call(pepe, true, true);
+   ```
+
+   in case we use `apply` it's also very similiar the implementation
+
+   ```TypeScript
+   const pepe = { name: 'Pepe' };
+   victor.greet.apply(pepe, [true, true]);
+   ```
+
+   so, which one should I use? Honestly, they do exactly the same, what changes
+   is the way the are written (the syntax).
+
+   As you may noticed noticed, the function is invoked right away with those
+   methods but, what if it's required to just pass the instance of the function
+   so we can call it when needed without invoking it immediately?
+
+   That's when `bind` comes into play
+
+   ```Text
+   Function.prototype.bind - Method that returns a new function with the context provided.
+   ```
+
+   ```TypeScript
+     const sacha = {
+       name: 'Sacha',
+       saludar: function () {
+         console.log(`Hello, my name is ${this.name}!`);
+       }
+     }
+
+     const boundGreet = victor.greet.bind()
+   ```
+
+```HTML
+IMPORTAMT: A function that was created with `call`, `apply` or `bind` can't be associated with a new object once created.
+
+That's why `bind` is also known as the `the strong binding method`
+```
+
+4. **New Binding (Object Instanciation)**: JavaScript is multiparadigm programming
+   language, and due to this reason we can be able to develop using the OOP paradignm
+   or the functional programming paradigmn. Well, in order to instantiate objects in JavaScript we can use `constructor functions` or the `ES2015 Classes`.
+
+   By using either, when we instantiate objects with `new`, we're also performing
+   a binding. When we use `new`, JavaScript creates a new `empty object` and
+   invokes the `constructor function` with that object as the `this` value.
+
+5. **Lexical Binding (Arrow Functions)**: This binding is called that way because
+   it has to do with how we write the functions, with its lexical part, with which
+   characters we use to write that function and its produced when we
+   _write a function as arrow function_.
+
+   For example, do you remember this case?
+
+```TypeScript
+'use strict';
+
+const victor = {
+  name: 'Victor',
+  twitter: '@vrosales',
+  greet: function() {
+    // function followMeOnTwitter() {
+    //   console.log(`Follow me on Twitter: ${this.twitter}`);
+    // }
+    const followMeOnTwitter = () => {
+      console.log(`Follow me on Twitter: ${this.twitter}`);
+    }
+
+    console.log(`Hello, my name is ${this.name}`);
+    followMeOnTwitter();
+  },
+}
+```
+
+what will happend when we execute `victor.greet();`
+
+```TypeScript
+ victor.greet();
+ // Hello, my name is Victor
+ // Follow me on Twitter: @vrosales
+```
+
+You guessed it, `this` is going to take the value we wanted, it's going to be
+the `object victor`. This is because the arrow functions are executed in the
+same context they were created but, what does it mean?
+
+This function
+
+```TypeScript
+  const followMeOnTwitter = () => {
+    console.log(`Follow me on Twitter: ${this.twitter}`);
+  }
+```
+
+is created/loaded in memory once `victor.greet();` is executed and the function
+reaches that line of code. And once created, JavaScript checks what value `this`
+has at that moment and that's the value to which that function is going to end
+up bound (This is also known as a strong binding)
+
+1. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
 
 <div align="center">
   <img src="./assets/method_example.png" />
