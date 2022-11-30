@@ -1596,9 +1596,9 @@ So, it is recommended that you think of `this` as a special parameter that a
 function receives and is created for every time it is executed. It is not passed
 as a traditional parameter but instead, it is defined in another way.
 
-What's very important to understand is that the value of _this_ is **NOT**
+What's very important to understand is that the value of `this` is **NOT**
 static. It depends on **how** the function is called, and its value is only
-assigned when the function **is actually called.**
+assigned when the function **is actually called**.
 
 By making the question: who is `this`? or what value does `this`
 have? is the same as asking: what object is executing the function this time?
@@ -1611,8 +1611,10 @@ Context - It is the object  that is executing  a function in a specific moment
 Heads up! do not get confused:
 _Context_ and _Execution Context_ are two different things:
 
-`Context has to do with the 'this object' and Execution Context has to do with`
-`the Call Stack`.
+```Text
+Context has to do with the 'this object' and Execution Context has to do with
+'The Call Stack'
+```
 
 Every time JavaScript executes a method or a function it creates an
 `Execution Context`, loading in memory everything that is necessary to be run:
@@ -1641,8 +1643,8 @@ const me = {
 me.greet(); // Hello, I am Victor
 ```
 
-Now, the real question comes for this case: when we stored the method on a
-variable and we execute it
+As you might've guessed the output was the expected. Now, the real question
+comes for this case: when we stored the method on a variable and we execute it
 
 ```TypeScript
 const me = {
@@ -1678,8 +1680,8 @@ Remember, `this` is the object that is executing the function. If we see
 `name` which means `me object` is not the one running the function.
 
 When we think of `this`, it comes handy to associate it with a rubber band. In
-the end, our goal as developers will be binding the right object for `this` to the
-funcion so when it is executed it is done in the right context. But, in case
+the end, our goal as developers will be binding the right object for `this` to
+the funcion so when it is executed it is done in the right context. But, in case
 we didn't assign it any value, JavaScript will decide it for us, which indeed
 could lead to some unwanted errors.
 
@@ -1688,8 +1690,8 @@ Binding - Assign the value that is going to take this when the function is
 executed
 ```
 
-Let's analyze 5 different ways in which functions can be called. They are applied
-by JavaScript in the order that they are presented on this list:
+Let's analyze 5 different ways in which functions can be called. They are
+applied by JavaScript in the order that they are presented on this list:
 
 1. Lexical Binding (Arrow Functions)
 2. New Binding (Object Instanciation)
@@ -1707,8 +1709,8 @@ Even though JavaScript applies the binding on this order ↓, we are going to ge
 to know them in the inverse ↑:
 
 1. **Default Binding (Direct Invocation)**: As its name suggests, if JavaScript
-   determines that it can't be applied any other type of binding the this will be
-   applied. This type of binding is applied on cases like this:
+   determines that it can't be applied any other type of binding the this will
+   be applied. This type of binding is applied on cases like this:
 
    ```TypeScript
    function whoAmI() {
@@ -1721,7 +1723,7 @@ to know them in the inverse ↑:
    we have a normal `function declaration` (not an arrow function) and we invoke
    it direclty. This is why it is also known as, Direct Invocation Binding.
 
-   What value is going to be hold by `this`? When we execute it, we'll see that
+   What value is going to be held by `this`? When we execute it, we'll see that
    for isolated functions `this` is the `Global Object` (which in the browser
    is `window` and in Node.JS is the `global` object)
 
@@ -1731,12 +1733,13 @@ to know them in the inverse ↑:
    default so, `this` won't be defined.
 
    Now, since the `strict mode` is the one under which we are supposed to be
-   developing a good practce is `not to use this in global functions` because
+   developing a good practce is `not to use 'this' in global functions` because
    it won't be defined. In case you want to refer to the global object then
    express it using `window`.
 
 2. **Implicit Binding (Method Invocation)**: This is the easiest to remember
-   because it is intuitive. It is performed when it is invoked an object's method.
+   because it is intuitive. It is performed when it is invoked an object's
+   method.
 
    ```TypeScript
    const victor = {
@@ -1798,16 +1801,16 @@ to know them in the inverse ↑:
     // Uncaught TypeError: Cannot read property 'twitter' of undefined
    ```
 
-   Let's recap on what going on here: First, there's no issues since it is being
+   Let's recap on what's going on here: First, there's no issues since it is being
    applied the `Implicit Biding` when `victor.greet();` is invoked because we are
    executing an object's method so, for that reason `this` will be `object 'victor'`.
    In the process, `followMeOnTwitter` is delcared but it is not yet invoked so we
-   continue with the next statement. It is printed the geeting without issues but
+   continue with the next statement. It is printed the greeting without issues but
    next, it is invoked `followMeOnTwitter()`. Remember, when a funcion is executed
    JavaScript will determine the value of `this` on that function execution. So,
    since we don't see a `dot(.)` before `followMeOnTwitter` it means that we are
-   just directly invoking a function which leads JavaScript to apply the `Default Binding`,
-   and since we are in `strict mode`, `this` is `undefined`.
+   just directly invoking a function which leads JavaScript to apply the
+   `Default Binding`, and since we are in `strict mode`, `this` is `undefined`.
 
    For this concern, it is very important that we know how to write our JavaScript
    code, where and how we write our functions. This problem can be solved by
@@ -1852,9 +1855,10 @@ to know them in the inverse ↑:
   Hello, my name is undefined
 ```
 
-Once again, `this` is not what we expected. So then, who is `this`? well, on these
-cases in where you don't know who `this` is, just printing it in the console
-will help a lot. if we do it, we'll notice that `this` is the same button.
+Once again, `this` is not what we expected. So then, who is `this`? well, on
+these cases in where you don't know who `this` is, just printing it in the
+console will help a lot. if we do it, we'll notice that `this` is the same
+button.
 
 ```HTML
 <button id='myButton'>SALUDAR</button>
@@ -1872,18 +1876,21 @@ IMPORTAMT: When we work with DOM Events, `this` by default, is the element that 
 We make emphasis in the 'by default' because, if we use the next binging type
 we can change that.
 
-3. **Explicit Binding (Indirect Invocation) - bind, call, apply**: It allows us to **define ourselves**
-   exactly _what is the object we want `this` to be_ when the function is executed.
+3. **Explicit Binding (Indirect Invocation) - bind, call, apply**: It allows us
+   to **define ourselves** exactly _what is the object we want `this` to be_
+   when the function is executed.
 
    It basically allows us to change the context explicitly, and this is good
-   for the case we had previously, when we passed methods like callbacks as params
-   for other functions but we want `this` to be tied up to the correct object.
+   for the case we had previously, when we passed methods like callbacks as
+   params for other functions but we want `this` to be tied up to the correct
+   object.
 
-   Another case would be when have a method of an object that uses `this` but we
-   want to use it over another object, in short, we want to change it from context.
+   Another case would be when we have a method of an object that uses `this` but
+   we want to use it over another object, in short, we want to change the context
+   of it.
 
-   There are three methods that all JavaScript function have that allow us to
-   do that
+   There are three methods that all JavaScript functions have that allow us to
+   do that.
 
    ```TypeScript
    const victor = {
@@ -1907,19 +1914,19 @@ we can change that.
    given that portion of code the question is: How can we do to invoke this same
    method over another object that also contains the same `name` property on it?
 
-   We have to call that same function but, in another context. Does it ring a bell
-   for you? All functions in JavaScript are objects and by so, they have properties
-   and methods what we can use. Among those ones there is
+   We have to call that same function but, in another context. Does it ring a
+   bell for you? All functions in JavaScript are objects and by so, they have
+   properties and methods what we can use. Among those ones there is
 
    ```Text
    Function.prototype.call - Method that allow us to invoke a function changing its context, changing the value that `this` is going to take.
    ```
 
    In order to use it, we can simply write the function we want to use and invoke
-   it but not directly, but instead doin it with the `call` method. The first
-   para it receives is the _new context (the object to which this is going to
-   be)_ and then, there will be a list of elments separated by comma representing
-   the params (in our case _yelling_ and _withFarewell_).
+   it but not directly, but instead doing it with the `call` method. The first
+   param it receives is the _new context (the object to which `this` is going to
+   be)_ and then, there will be a list of elments separated by commas
+   representing the params (in our case _yelling_ and _withFarewell_).
 
    ```TypeScript
     const pepe = { nombre: 'Pepe' };
@@ -1936,7 +1943,7 @@ we can change that.
    so, which one should I use? Honestly, they do exactly the same, what changes
    is the way the are written (the syntax).
 
-   As you may noticed noticed, the function is invoked right away with those
+   As you may have noticed it, the function is invoked right away with those
    methods but, what if it's required to just pass the instance of the function
    so we can call it when needed without invoking it immediately?
 
@@ -1958,18 +1965,20 @@ we can change that.
    ```
 
 ```HTML
-IMPORTAMT: A function that was created with `call`, `apply` or `bind` can't be associated with a new object once created.
+IMPORTANT: A function that was created with `call`, `apply` or `bind` can't be associated with a new object once created.
 
 That's why `bind` is also known as the `the strong binding method`
 ```
 
 4. **New Binding (Object Instanciation)**: JavaScript is multiparadigm programming
-   language, and due to this reason we can be able to develop using the OOP paradignm
-   or the functional programming paradigmn. Well, in order to instantiate objects in JavaScript we can use `constructor functions` or the `ES2015 Classes`.
+   language, and due to this reason we can be able to develop using the OOP
+   paradignm or the functional programming paradigmn. Well, in order to
+   instantiate objects in JavaScript we can use `constructor functions` or the
+   `ES2015 Classes`.
 
    By using either, when we instantiate objects with `new`, we're also performing
    a binding. When we use `new`, JavaScript creates a new `empty object` and
-   invokes the `constructor function` with that object as the `this` value.
+   invokes the `constructor function` with that object as the value for `this`.
 
 5. **Lexical Binding (Arrow Functions)**: This binding is called that way because
    it has to do with how we write the functions, with its lexical part, with which
@@ -2021,24 +2030,7 @@ This function
 is created/loaded in memory once `victor.greet();` is executed and the function
 reaches that line of code. And once created, JavaScript checks what value `this`
 has at that moment and that's the value to which that function is going to end
-up bound (This is also known as a strong binding)
-
-1. **Method (As a function attached to an object) -> _`this` = Object that is calling (not defining) the method_**: When we call a method, the _this_ keyword inside that method would simply point to the object on which the method is called (in other words, it points to the object that is calling the method).
-
-<div align="center">
-  <img src="./assets/method_example.png" />
-</div>
-<br />
-
-2. **Simply function call -> `this` = undefined:** This is only valid for _strict mode_. So, if you're not in strict mode _this_ would actually point to the global object which in case of the browser is the window object.
-
-3. **Arrow functions -> this = _this_ of surrounding function (lexical `this`):** While they are not exactly a way of calling functions it's an important one that we need to consider. Remember: they do not get their own `this` keyword. Instead, if you use the `this` variable in an arrow function it would simply be the `this` keyword of the surrounding function (of the parent function). And in technical terms , this is called: The lexical keyword, because it simply get picked up from the outter lexical scope of the arrow function.
-
-4. Event listener -> `this` = DOM element that the handler function is attached to.
-
-5. Using the keywords _new, call, apply, bind_.
-
-What the `this` keyword is not: `this` would never point to the function itself, and also **NOT** point to the variable environment of the function.
+up bound to (This is also known as a strong binding)
 
 # Regular Functions VS Arrow Functions
 
