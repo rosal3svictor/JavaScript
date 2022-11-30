@@ -1586,19 +1586,19 @@ not the object defined. The reason? Maybe we don't know what's happening and
 JavaScript uses a value for `this` that we didn't expect or the opposite, we do
 know and we explicitly want to change the value of it when that function is
 executed. We have to go a little deeper so we can get to understand this but,
-for the moment, I can tell you that: **Chaging the value of `this` allows us to
+for the moment, I can tell you that: **Changing the value of `this` allows us to
 grab methods from one object and execute it over other object reusing the same
 logic.**
 
 Since `this` may change, it could be an object for the first time we execute a
 function and, for the second time we execute it, `this` could be a different one.
 So, it is recommended that you think of `this` as a special parameter that a
-function receives and is created for every time is is executed. It is not passed
+function receives and is created for every time it is executed. It is not passed
 as a traditional parameter but instead, it is defined in another way.
 
 What's very important to understand is that the value of _this_ is **NOT**
 static. It depends on **how** the function is called, and its value is only
-assigned when the functions **is actually called.**
+assigned when the function **is actually called.**
 
 By making the question: who is `this`? or what value does `this`
 have? is the same as asking: what object is executing the function this time?
