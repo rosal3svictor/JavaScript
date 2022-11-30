@@ -1555,12 +1555,6 @@ Hoisting does not work the same for all variable types
 
 # How the `this` keyword works
 
-Special variable that is created for every execution context (every function).
-Takes the value of (points to) the "owner" of the function in which the _this_
-keyord is used. What's very important to understand is that the value of _this_
-is **NOT** static. It depends on **how** the function is called, and its value
-is only assigned when the functions **is actually called.**
-
 If I show this function and ask you to tell me exactly what text is printed on
 the console
 
@@ -1570,12 +1564,11 @@ function greet(name) {
 }
 ```
 
-you won't give me an answer at first sight. It prints "Hello" followed by a
-comma and the text that is received on the name `argument`. Unless you execute
-it, you can't know the value of that argument, and finally to whom this function
-is greeting to.
+unless you execute it, you won't give me an answer at first sight.
+_It prints 'Hello' followed by a comma and the text that is passed on the
+name `parameter`_.
 
-Something similar is what happens with the following example, check this out:
+Something similar happens with the following example:
 
 ```TypeScript
 const me = {
@@ -1586,23 +1579,26 @@ const me = {
 }
 ```
 
-This function allows the object that executes it (the context) to greet a
-person saying their name. But, even though it is written as the method of a
-function, what can happen is that when it is invoked `this` is not the object
-defined. The reason? Maybe we don't know what's happening and JavaScript uses a
-value for `this` that we didn't expect or we do know and we explicitly want to
-change the value of it when that function is executed.
-
-```Text
-Chaging the value of 'this' allows us to grab methods from one object and
-execute it over other object, reusing the same logic.
-```
+This function allows the object that executes it (me - which plays the role of
+the context) to greet a person saying their name. But, even though it is written
+as the method of an object, what can happen is that when it is invoked `this` is
+not the object defined. The reason? Maybe we don't know what's happening and
+JavaScript uses a value for `this` that we didn't expect or the opposite, we do
+know and we explicitly want to change the value of it when that function is
+executed. We have to go a little deeper so we can get to understand this but,
+for the moment, I can tell you that: **Chaging the value of `this` allows us to
+grab methods from one object and execute it over other object reusing the same
+logic.**
 
 Since `this` may change, it could be an object for the first time we execute a
-function and, for the second time we execute the same function it could be
-another one. So, it is recommended that you think of `this` as a special
-parameter that a function receives. It is not passed as a traditional parameter
-but instead, it is defined in another way.
+function and, for the second time we execute it, `this` could be a different one.
+So, it is recommended that you think of `this` as a special parameter that a
+function receives and is created for every time is is executed. It is not passed
+as a traditional parameter but instead, it is defined in another way.
+
+What's very important to understand is that the value of _this_ is **NOT**
+static. It depends on **how** the function is called, and its value is only
+assigned when the functions **is actually called.**
 
 By making the question: who is `this`? or what value does `this`
 have? is the same as asking: what object is executing the function this time?
