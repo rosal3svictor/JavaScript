@@ -74,8 +74,8 @@
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-  - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
-  - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
+    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
   - [Arrow Function Expressions](#arrow-function-expressions)
 - [OOP In JavaScript](#oop-in-javascript)
@@ -1555,52 +1555,57 @@ Hoisting does not work the same for all variable types
 
 # How the `this` keyword works
 
-Special variable that is created for every execution context (every function). Takes the value of (points to) the "owner" of the function in which the _this_ keyord is used. What's very important to understand is that the value of _this_ is **NOT** static. It depends on **how** the function is called, and its value is only assigned when the functions **is actually called.**
+Special variable that is created for every execution context (every function).
+Takes the value of (points to) the "owner" of the function in which the _this_
+keyord is used. What's very important to understand is that the value of _this_
+is **NOT** static. It depends on **how** the function is called, and its value
+is only assigned when the functions **is actually called.**
 
-If I show this function and ask you to tell me exactly what text does it print
-in the console
+If I show this function and ask you to tell me exactly what text is printed on
+the console
 
 ```TypeScript
-function saludar(name) {
-  console.log(`Hello, ${nombre}`);
+function greet(name) {
+  console.log(`Hello, ${name}`);
 }
 ```
 
-you won't give me an answer at first sight. It prints "Hello" followed by a comma
-and the text that is received on the name `argument`. Unless you execute it,
-you can't know the value of that argument, and finally to whom this function is
-greeting to.
+you won't give me an answer at first sight. It prints "Hello" followed by a
+comma and the text that is received on the name `argument`. Unless you execute
+it, you can't know the value of that argument, and finally to whom this function
+is greeting to.
 
-Something similar is what happens with `this`, check this out:
+Something similar is what happens with the following example, check this out:
 
 ```TypeScript
 const me = {
-  nombre: 'Victor',
-  saludar: function() {
-    console.log(`Hello, I am ${this.nombre}`);
+  name: 'Victor',
+  greet: function() {
+    console.log(`Hello, I am ${this.name}`);
   }
 }
 ```
 
-This function allows the object that executes it, greets a person saying their
-name. But, even though it is written as the method of a function, what can
-happen is that when it is invoked `this` the object that is executing it is not
-the object defined. In fact, it is very common that is happens. Maybe we don't
-know what's happening and JavaScript uses a value for this that we didn't
-expect or because we explicitly want to change the value of it when that function
-is executed.
+This function allows the object that executes it (the context) to greet a
+person saying their name. But, even though it is written as the method of a
+function, what can happen is that when it is invoked `this` is not the object
+defined. The reason? Maybe we don't know what's happening and JavaScript uses a
+value for `this` that we didn't expect or we do know and we explicitly want to
+change the value of it when that function is executed.
 
 ```Text
-Chaging the value of 'this' allows us to grab methods of one object and execute
-it over other object, reusing the same logic.
+Chaging the value of 'this' allows us to grab methods from one object and
+execute it over other object, reusing the same logic.
 ```
 
 Since `this` may change, it could be an object for the first time we execute a
-function and, for the second time we execute the same function it could be another
-one. So it is recommended that you think of `this` as a special parameter that a
-function receives. It is not passed as a traditional parameter but instead, it is
-defined in another way. Making the question: who is `this`? or what value does `this`
-have? is the same that asking: what object is executing the function this time?
+function and, for the second time we execute the same function it could be
+another one. So, it is recommended that you think of `this` as a special
+parameter that a function receives. It is not passed as a traditional parameter
+but instead, it is defined in another way.
+
+By making the question: who is `this`? or what value does `this`
+have? is the same as asking: what object is executing the function this time?
 In other words, `we're asking in which context is the function being executed`
 
 ```Text
@@ -1608,15 +1613,17 @@ Context - It is the object  that is executing  a function in a specific moment
 ```
 
 Heads up! do not get confused:
-_Context_ and _Execution Context_ are two different things.
-`Context has to do with the 'this object' and Execution Context has to do with the Call Stack`.
+_Context_ and _Execution Context_ are two different things:
 
-Every time JavaScript executes a method or a function it creates an `Execution Context`
-for that execution, loading in memory everything that is necessary to be run:
+`Context has to do with the 'this object' and Execution Context has to do with`
+`the Call Stack`.
 
-1. The params the functon receives (Better known as arguments)
+Every time JavaScript executes a method or a function it creates an
+`Execution Context`, loading in memory everything that is necessary to be run:
+
+1. The params that the function receives (Found in the prop `arguments`)
 2. The name of the file the function belongs to.
-3. The pointer to the next number of the line of code to be executed.
+3. The pointer to the next line of code to be executed.
 4. It creates a new lexical environment for the variables declared.
 5. It determines the value of `this` for this function execution.
 
