@@ -105,6 +105,7 @@
 - [Classes and instances](#classes-and-instances)
 - [The 4 fundamental OOP principles](#the-4-fundamental-oop-principles)
 - [How does OOP actually works in JavaScript](#how-does-oop-actually-works-in-javascript)
+- [What is a Generator Function, Provide A Use Case](#what-is-a-generator-function-provide-a-use-case)
 
 Extra Important Official References
 
@@ -2329,3 +2330,111 @@ How do we implement OOP in JavaScript in practice?
   <img src="./assets/prototypeChain.png" />
 </div>
 <br />
+
+# What is a Generator Function, Provide A Use Case
+
+In JavaScript, a generator function is a special type of function that can be
+paused and resumed during its execution. It's defined using the function* syntax
+and contains one or more yield statements. When the generator function is called,
+it doesn't execute the code immediately; instead, it returns an iterator called
+a "generator object." This iterator can be used to control the execution of the
+generator function.
+
+The main advantage of using generator functions is that they allow you to create
+sequences of values over time, without having to compute or generate all of them
+at once. This can be very useful for dealing with potentially large datasets or
+for implementing asynchronous operations in a more readable and sequential
+manner.
+
+Here's a simple example of a generator function and its use case:
+
+```TypeScript
+    function* countUpTo(limit) {
+        let count = 1;
+        while (count <= limit) {
+            yield count;
+            count++;
+        }
+    }
+
+    // Using the generator function to create an iterator
+    const counter = countUpTo(5);
+
+    // Iterating over the sequence using the generator
+    console.log(counter.next().value); // Output: 1
+    console.log(counter.next().value); // Output: 2
+    console.log(counter.next().value); // Output: 3
+    console.log(counter.next().value); // Output: 4
+    console.log(counter.next().value); // Output: 5
+    console.log(counter.next().value); // Output: undefined
+
+```
+
+In this example, the countUpTo generator function generates a sequence of numbers
+from 1 up to a given limit. When you call counter.next(), it resumes the
+execution of the generator until the next yield statement is encountered. The
+value produced by the yield statement is returned as the value property of the
+iterator's result object.
+
+Use Case: Asynchronous Data Fetching
+Generators can also be used to simplify asynchronous operations, like fetching
+data from an API. Here's a brief example of how this might look:
+
+```TypeScript
+function* fetchUserData(userId) {
+  try {
+    const response = yield fetch(`https://api.example.com/users/${userId}`);
+    const data = yield response.json();
+    yield data;
+  } catch (error) {
+    yield null;
+  }
+}
+
+const userFetcher = fetchUserData(123);
+
+const fetchUser = async () => {
+  const response1 = userFetcher.next();
+  if (!response1.done) {
+    const response2 = userFetcher.next(await response1.value);
+    if (!response2.done) {
+      const userData = userFetcher.next(await response2.value);
+      console.log(userData.value);
+    }
+  }
+};
+
+fetchUser();
+```
+
+In this use case, the generator fetchUserData is used to perform asynchronous
+operations step by step, yielding control back to the caller at each asynchronous
+point. The generator is managed manually by the fetchUser function. While this
+example is quite simplified, it demonstrates the concept of using generators for
+asynchronous flow control.
+
+Here's a list of some other use cases:
+
+- Infinite Sequences: Generators can be used to create infinite sequences or
+streams of data. For example, generating an infinite sequence of prime numbers,
+random values, or timestamp updates.
+
+- Data Pagination: When working with paginated data from APIs, you can use
+generators to retrieve and process chunks of data one at a time, making it easier
+to manage pagination and memory consumption.
+
+- Custom Iterators: Generators can be used to create custom iterators for your
+own data structures or objects. This can provide a more intuitive and
+user-friendly way to iterate over complex data.
+
+- Asynchronous Control Flow: While modern JavaScript provides async/await for
+handling asynchronous operations, generator-based control flow libraries like
+"co" and "suspend" were used before async/await became widespread. These
+libraries leveraged generator functions to simplify managing asynchronous
+operations.
+
+IMPORTANT: Remember that while generator functions offer flexibility and unique
+advantages in certain scenarios, modern JavaScript features like Promises,
+async/await, and Iterators have largely replaced generators in many use cases due
+to their more straightforward syntax and improved readability. Always choose the
+tool that best fits your specific task and the maintainability of your code.
