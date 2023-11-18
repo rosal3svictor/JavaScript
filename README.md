@@ -74,8 +74,8 @@
   - [Type Equivalence or Compatibility](#type-equivalence-or-compatibility)
   - [TypeScript](#typescript)
 - [== vs ===](#-vs-)
-    - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
-    - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
+  - [When to use (strict equality operator)](#when-to-use-strict-equality-operator)
+  - [When to use (loose equality operator)](#when-to-use-loose-equality-operator)
 - [Functions](#functions)
   - [Arrow Function Expressions](#arrow-function-expressions)
 - [OOP In JavaScript](#oop-in-javascript)
@@ -318,12 +318,12 @@ if we check the compatibility of both of them on the site [https://caniuse.com/]
 - [let](https://caniuse.com/?search=let)
 - [const](https://caniuse.com/?search=const)
 
-we'll see that we can use them in majority of the modern web browsers without any issue except for `Opera Mini` which currentlt has incompatibilities. And in `Node.js` they can use used from the version `6.4.0`
+we'll see that we can use them in the majority of the modern web browsers without any issue except for `Opera Mini` which currentlt has incompatibilities. And in `Node.js` they can use used from the version `6.4.0`
 
 - [let](https://node.green/#ES2015-bindings-let)
 - [const](https://node.green/#ES2015-bindings-const)
 
-To summarize, `var` can be used on any evnironment but `let` and `const` have incompatibilities with certain version of browsers (in case we're using babel to compile our projects we are covered)
+To summarize, `var` can be used on any environment but `let` and `const` have incompatibilities with certain version of browsers (in case we're using babel to compile our projects we are covered)
 
 ## Scope
 
@@ -336,7 +336,7 @@ function greet() {
 }
 ```
 
-in this example, `name` is only `accesible` inside `greet funciton`. We can't do this
+in this example, `name` is only `accesible` inside `greet function`. We can't do this
 
 ```JavaScript
 function greet() {
@@ -350,7 +350,7 @@ console.log(name)
 since it will throw
 
 ```
-ReferenceError: name is not defined"
+"ReferenceError: name is not defined"
 ```
 
 Variables declared with `let` and `const` are going to have a `block scope`. Which means, every portion of code surrounded by `{}`
@@ -417,7 +417,8 @@ const name = 'Victor';
 name = 'John'; // TypeError: Assignment to constant variable
 ```
 
-it is a `constant variable` but heads up: the fact the is a constant <u>doesn't mean</u> that is immutable. As you may recall, `primitive values are immutable`, they're just values.
+it is a `constant variable` but heads up: the fact the is a constant <u>doesn't mean</u> that it's value is immutable.
+As you may recall, `primitive values are immutable`.
 
 ## Redeclaration
 
@@ -426,7 +427,7 @@ What would happen if inside a scope we re-declare a variable with an existing na
 In case we do it with `var`, nothing will happen
 
 ```JavaScript
-functios greet(name) {
+function greet(name) {
   var greeting = 'Hola';
   var greeting = 'Hello';
 
@@ -437,7 +438,7 @@ functios greet(name) {
 but is case we use `let` or `const` instead, this is what will happen
 
 ```JavaScript
-functios greet(name) {
+function greet(name) {
   let greeting = 'Hola';
   let greeting = 'Hello';
   // SyntaxError: Identifier 'greeting' has already been declared.
@@ -445,7 +446,7 @@ functios greet(name) {
   console.log(`${greeting} ${name}`);
 }
 
-functios greet(name) {
+function greet(name) {
   const greeting = 'Hola';
   const greeting = 'Hello';
   // SyntaxError: Identifier 'greeting' has already been declared.
@@ -457,7 +458,7 @@ functios greet(name) {
 what we **can do** is to declare another variable with the same name but `inside another scope`
 
 ```JavaScript
-functios greet(name) {
+function greet(name) {
   let greeting = 'Hola';
 
   if (name === 'Victor') {
@@ -511,13 +512,7 @@ they will be globally declared if we defined them outside of all blocks of code 
 
 ## Hoisting
 
-`Hoisting` in Spanish translates into `Elevación`, and in JavaScript when we use that term, generally we refer that when we declare variables with `var` inside of a function, it doesn't matter where in the code we've done it, the JavaScript interpreter will do this: It will separate the variable declaration and it's going to elevate to where the scope starts, but just its declararion, its assginment will be left in the same place, as follows
-
-<div align="center">
-  <img src="./assets/var_hoisting.png" alt="VAR Hoisting"/>
-</div>
-
-this is something internally done by the interpreter at runtime, it's just the way JavaScript reads the code.
+`Hoisting` in Spanish translates into `Elevación`, and in JavaScript when we use that term, generally we refer that when we declare variables with `var` inside of a function, it doesn't matter where in the code we've done it, the JavaScript interpreter will do this: It will separate the variable declaration and it's going to elevate to where the scope starts, but just its declararion, its assginment will be left in the same place. This is something internally done by the interpreter at runtime, it's just the way JavaScript reads the code.
 
 If we'd like, we would access the variable before its initialization and we'd see its value. It is one of the strangest parts that JavaScript has and that can cause confusion.
 
@@ -541,11 +536,11 @@ if (true) {
 // ReferenceError: Cannt access 'name' before initialization
 ```
 
-what happens in the case of `let` and `const` is that the interpreter is going to read our code and it's also going to separate the variable declaration and elevate it of the start of the scope where it belongs but, they won't be defined as `undefined` but instead, they will be **_marked_** as **_uninitialized_**. Something also different is that the block that is composed by all the lines of code that go from the beginning of the block until the line where variables are initialized, is called `Temporal Dead Zone`. That means that we won't to be able to access a variable before its declaration.
+what happens in the case of `let` and `const` is that the interpreter is going to read our code and it's also going to separate the variable declaration and elevate it of the start of the scope where it belongs but, they won't be defined as `undefined` but instead, they will be **_marked_** as **_uninitialized_**. Something also different is that the block that is composed by all the lines of code that go from the beginning of the block until the line where variables are initialized, is called `Temporal Dead Zone`. That means that we won't be able to access a variable before its declaration.
 
 And this is another reason why we should use `let` and `const` over `var`. The `hoisting` is a very strange behavior, in which case would we want to access a variable that hasn't been declared yet?
 
-Declarations with `var` are hoisted but, with `let` and `const` variables go into the TDZ from the beginning of the block until the line of code where declaration takes place.
+Declarations with `var` are hoisted but, with `let` and `const` variables go into the TDZ from the beginning of the block until the line of code where assignment takes place.
 
 ## Conslusion
 
@@ -2243,7 +2238,12 @@ OOP was developed with the goal of **organizing** code,to make it **more flexibl
 
 # Classes and instances
 
-In OOP we actually need a way to create new objects from our code and to do that, in traditional OOP, we use something called **classes**. Yoy can think of a class as a blueprint from which we can create new objects based on the rules described in the class. We call all objects created through a class **instances of that class**, they're real objects we can use in our code which were created from a class and the class itself is not an object.
+In OOP we actually need a way to create new objects from our code and to do that,
+in traditional OOP, we use something called **classes**. You can think of a
+class as a blueprint from which we can create new objects based on the rules
+described in the class. We call all objects created through a class
+**instances of that class**, they're real objects we can use in our code which
+were created from a class and the class itself is not an object.
 
 <div align="center">
   <img src="./assets/instances.png" />
