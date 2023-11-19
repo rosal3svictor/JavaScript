@@ -90,7 +90,6 @@
   - [Execution Context In Detail](#execution-context-in-detail)
 - [Scoping and Scope In JavaScript](#scoping-and-scope-in-javascript)
   - [The 3 Types Of Scope](#the-3-types-of-scope)
-- [Hoisting and Temporal Dead Zone](#hoisting-and-temporal-dead-zone)
 - [How the `this` keyword works](#how-the-this-keyword-works)
 - [Regular Functions VS Arrow Functions](#regular-functions-vs-arrow-functions)
 - [Primitive vs Reference Value](#primitive-vs-reference-value)
@@ -536,7 +535,11 @@ if (true) {
 // ReferenceError: Cannt access 'name' before initialization
 ```
 
-what happens in the case of `let` and `const` is that the interpreter is going to read our code and it's also going to separate the variable declaration and elevate it of the start of the scope where it belongs but, they won't be defined as `undefined` but instead, they will be **_marked_** as **_uninitialized_**. Something also different is that the block that is composed by all the lines of code that go from the beginning of the block until the line where variables are initialized, is called `Temporal Dead Zone`. That means that we won't be able to access a variable before its declaration.
+what happens in the case of `let` and `const` is that the interpreter is going to read our code and it's also going to separate the variable declaration and elevate it of the start of the scope where it belongs but, they won't be defined as `undefined` but instead, they will be **_marked_** as **_uninitialized_**.
+
+Something also different is that the block that is composed by all the lines of code that go from the beginning of the block until the line where variables are initialized, is called `Temporal Dead Zone`. That means that we won't be able to access a variable before its declaration.
+
+The `temporal dead zone` refers to the period between the entering of the scope (lexical scope) and the declaration of a variable using let or const keywords. During this temporal dead zone, if you try to access the variable, a `ReferenceError` will be thrown. In other words, it is a region of code where a variable cannot be accessed because the program execution has not yet reached the line of code where it is declared.
 
 And this is another reason why we should use `let` and `const` over `var`. The `hoisting` is a very strange behavior, in which case would we want to access a variable that hasn't been declared yet?
 
@@ -1536,19 +1539,6 @@ _**Scope**_: Space or environment in which a certain variable is **declared** _(
 </div>
 <br />
 
-# Hoisting and Temporal Dead Zone
-
-- _**Hoisting**_: Makes some types of variables accesible/usable in the code before they are actually declared. "Variables lifted to the top of their scope".
-
-This takes place during the _creation phase_ of the execution context, and basically what happens behind the scenes is that, before execution, code is scanned for variable declarations, and for each variable, a new property is created in the **variable environment object**
-
-Hoisting does not work the same for all variable types
-
-<div align="center">
-  <img src="./assets/hoisting.png" />
-</div>
-<br />
-
 # How the `this` keyword works
 
 If I show this function and ask you to tell me exactly what text is printed on
@@ -2334,7 +2324,7 @@ How do we implement OOP in JavaScript in practice?
 # What is a Generator Function, Provide A Use Case
 
 In JavaScript, a generator function is a special type of function that can be
-paused and resumed during its execution. It's defined using the function* syntax
+paused and resumed during its execution. It's defined using the function\* syntax
 and contains one or more yield statements. When the generator function is called,
 it doesn't execute the code immediately; instead, it returns an iterator called
 a "generator object." This iterator can be used to control the execution of the
@@ -2416,22 +2406,22 @@ asynchronous flow control.
 Here's a list of some other use cases:
 
 - Infinite Sequences: Generators can be used to create infinite sequences or
-streams of data. For example, generating an infinite sequence of prime numbers,
-random values, or timestamp updates.
+  streams of data. For example, generating an infinite sequence of prime numbers,
+  random values, or timestamp updates.
 
 - Data Pagination: When working with paginated data from APIs, you can use
-generators to retrieve and process chunks of data one at a time, making it easier
-to manage pagination and memory consumption.
+  generators to retrieve and process chunks of data one at a time, making it easier
+  to manage pagination and memory consumption.
 
 - Custom Iterators: Generators can be used to create custom iterators for your
-own data structures or objects. This can provide a more intuitive and
-user-friendly way to iterate over complex data.
+  own data structures or objects. This can provide a more intuitive and
+  user-friendly way to iterate over complex data.
 
 - Asynchronous Control Flow: While modern JavaScript provides async/await for
-handling asynchronous operations, generator-based control flow libraries like
-"co" and "suspend" were used before async/await became widespread. These
-libraries leveraged generator functions to simplify managing asynchronous
-operations.
+  handling asynchronous operations, generator-based control flow libraries like
+  "co" and "suspend" were used before async/await became widespread. These
+  libraries leveraged generator functions to simplify managing asynchronous
+  operations.
 
 IMPORTANT: Remember that while generator functions offer flexibility and unique
 advantages in certain scenarios, modern JavaScript features like Promises,
