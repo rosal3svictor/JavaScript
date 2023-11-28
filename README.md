@@ -95,9 +95,6 @@
 - [Primitive vs Reference Value](#primitive-vs-reference-value)
 - [First-Class and Higer-Order Functions](#first-class-and-higer-order-functions)
 - [Closures](#closures)
-  - [Lexical Environment](#lexical-environment)
-    - [**Creation Phase**](#creation-phase)
-  - [**Execution Phase**](#execution-phase)
 - [Data Transformations map, filter, reduce](#data-transformations-map-filter-reduce)
 - [Working with arrays](#working-with-arrays)
 - [What is Object Oriented Programming](#what-is-object-oriented-programming)
@@ -2089,24 +2086,15 @@ Some people think they're the same thing, but they mean different things:
 
 # Closures
 
-I'll start by defining a new function called `secureBooking` and is this function that would create the `closure`. Now, the first thing that I have to tell you about the `closures` is that they're not a feature that we explicitly use so, we don't create them manually like we create a new array or a new function. A closure simply happens automatically in certains situations, we just need to recognize them.
+[Reference Video](https://drive.google.com/file/d/1QavMHxz56pqRCsMXKDj9pinjORHih0zQ/view?usp=drive_link)
 
-```JavaScript
-  const secureBooking = function() {
-    let passengerCount = 0;
+A closure is a feature that allows a function to retain access to variables from its outer (enclosing) scope, even after the outer function has finished executing. This means that the inner function "closes over" the variables from the outer function, creating a closure. A closure in JavaScript has access to:
 
-    return function() {
-      passengerCount++;
-      console.log(`${passengerCount} passengers`);
-    }
-  }
+1. **Variables declared in its own scope:** This includes parameters and variables declared within the function itself.
 
-  const booker = secureBooking();
+2. **Variables declared in the scope of the parent function:** If the closure is defined within another function (parent function), it has access to the variables declared in that parent function's scope, even after the parent function has completed execution.
 
-  booker();
-  booker();
-  booker();
-```
+3. **Variables declared in the global scope:** If a closure is defined in the global scope, it has access to global variables.
 
 <div align="center">
   <img src="./assets/closures1.png" />
@@ -2118,16 +2106,8 @@ I'll start by defining a new function called `secureBooking` and is this functio
 </div>
 <br />
 
-A closure is a function defined inside another function and has access to its
-lexical scope even when it is executing outside its lexical scope. The closure
-has access to variables in three scopes:
-
-    Variables declared in its own scope
-    Variables declared in the scope of the parent function
-    Variables declared in the global scope
-
-In JavaScript, all functions are closures because they have access to the outer
-scope, but most functions don't utilise the usefulness of closures: the
+In JavaScript, **all functions are closures because they have access to the outer
+scope**, but most functions don't utilise the usefulness of closures: the
 persistence of state. Closures are also sometimes called stateful functions
 because of this.
 
@@ -2137,12 +2117,75 @@ accessed from the outside in JavaScript. They are the key to the UMD
 that only expose a public API but keep the implementation details private,
 preventing name collisions with other libraries or the user's own code.
 
-    Closures are useful because they let you associate data with a function
-    that operates on that data.
+## Use Cases For Closures
 
-    A closure can substitute an object with only a single method.
+1. **Data Encapsulation And Privacy:**
 
-    Closures can be used to emulate private properties and methods.
+```JavaScript
+function createCounter() {
+  let count = 0;
+
+  return function() {
+    return ++count;
+  };
+}
+
+let counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+2. **Factory Function**
+
+```JavaScript
+function multiplier(factor) {
+  return function(x) {
+    return x * factor;
+  };
+}
+
+let double = multiplier(2);
+console.log(double(5)); // 10
+```
+
+3. **Callback Functions:**
+
+```JavaScript
+function doSomethingAsync(callback) {
+  let result = 'Operation completed!';
+  setTimeout(function() {
+    callback(result);
+  }, 1000);
+}
+
+doSomethingAsync(function(message) {
+  console.log(message); // Operation completed!
+});
+```
+
+4. **Event Handlers:**
+
+```JavaScript
+function setupEventListener() {
+  let count = 0;
+  document.getElementById('myButton').addEventListener('click', function() {
+    console.log('Button clicked ' + (++count) + ' times.');
+  });
+}
+```
+
+5. **Partial Application and Currying:**
+
+```JavaScript
+function add(x) {
+  return function(y) {
+    return x + y;
+  };
+}
+
+let add5 = add(5);
+console.log(add5(3)); // 8
+```
 
 ## Lexical Environment
 
