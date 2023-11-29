@@ -2214,9 +2214,7 @@ phase, the record is initialized with certain information such as:
   all the arguments that the function receives when it was called
 
 and this is the most important part: It is created the Lexical Environment. It's
-an object that contains all the execution contexts under which there are stored
-the variable names declared within a function as well as their current values.
-It's like a dictionary, deinfed through key/value pairs.
+an object that all execution contexts have, where the variable names within a function as well as their current values are stored. It's like a dictionary, defined through key/value pairs.
 
 Once it is assigned a new value to any of those variables, it is going to be
 updated the lexical environment that variable belongs to. All arrays, functions
