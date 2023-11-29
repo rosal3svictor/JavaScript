@@ -1538,6 +1538,8 @@ _**Scope**_: Space or environment in which a certain variable is **declared** _(
 
 # How the `this` keyword works
 
+[Reference Video](https://drive.google.com/file/d/1U4OuiWZNC4oTjfHVThJ-lbSrzMdqM8uq/view?usp=drive_link)
+
 If I show this function and ask you to tell me exactly what text is printed on
 the console
 
